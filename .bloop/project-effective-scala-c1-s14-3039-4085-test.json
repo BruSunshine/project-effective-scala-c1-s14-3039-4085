@@ -17,13 +17,35 @@
             "/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.bloop/project-effective-scala-c1-s14-3039-4085/scala-3/classes",
             "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.3.1/scala3-library_3-3.3.1.jar",
             "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/munit-scalacheck_3/0.7.29/munit-scalacheck_3-0.7.29.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/cask_3/0.9.1/cask_3-0.9.1.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/requests_3/0.8.0/requests_3-0.8.0.jar",
             "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar",
             "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/munit_3/0.7.29/munit_3-0.7.29.jar",
             "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalacheck/scalacheck_3/1.15.4/scalacheck_3-1.15.4.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/io/undertow/undertow-core/2.2.20.Final/undertow-core-2.2.20.Final.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle_3/3.0.0/upickle_3-3.0.0.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/cask-util_3/0.9.1/cask-util_3-0.9.1.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/geny_3/1.0.0/geny_3-1.0.0.jar",
             "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/junit-interface/0.7.29/junit-interface-0.7.29.jar",
             "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar",
             "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar",
-            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.4.1.Final/jboss-logging-3.4.1.Final.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/xnio/xnio-api/3.8.7.Final/xnio-api-3.8.7.Final.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/xnio/xnio-nio/3.8.7.Final/xnio-nio-3.8.7.Final.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/threads/jboss-threads/3.1.0.Final/jboss-threads-3.1.0.Final.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/ujson_3/3.0.0/ujson_3-3.0.0.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upack_3/3.0.0/upack_3-3.0.0.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle-implicits_3/3.0.0/upickle-implicits_3-3.0.0.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/sourcecode_3/0.3.0/sourcecode_3-0.3.0.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/pprint_3/0.8.1/pprint_3-0.8.1.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/castor_3/0.3.0/castor_3-0.3.0.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/java-websocket/Java-WebSocket/1.5.3/Java-WebSocket-1.5.3.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wildfly/common/wildfly-common/1.5.4.Final/wildfly-common-1.5.4.Final.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wildfly/client/wildfly-client-config/1.0.1.Final/wildfly-client-config-1.0.1.Final.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle-core_3/3.0.0/upickle-core_3-3.0.0.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/fansi_3/0.4.0/fansi_3-0.4.0.jar",
+            "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"
         ],
         "out": "/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.bloop/project-effective-scala-c1-s14-3039-4085",
         "classesDir": "/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.bloop/project-effective-scala-c1-s14-3039-4085/scala-3/test-classes",
@@ -199,6 +221,40 @@
                     ]
                 },
                 {
+                    "organization": "com.lihaoyi",
+                    "name": "cask_3",
+                    "version": "0.9.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "cask_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/cask_3/0.9.1/cask_3-0.9.1.jar"
+                        },
+                        {
+                            "name": "cask_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/cask_3/0.9.1/cask_3-0.9.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "requests_3",
+                    "version": "0.8.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "requests_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/requests_3/0.8.0/requests_3-0.8.0.jar"
+                        },
+                        {
+                            "name": "requests_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/requests_3/0.8.0/requests_3-0.8.0-sources.jar"
+                        }
+                    ]
+                },
+                {
                     "organization": "org.scala-lang",
                     "name": "scala-library",
                     "version": "2.13.10",
@@ -212,6 +268,346 @@
                             "name": "scala-library",
                             "classifier": "sources",
                             "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.undertow",
+                    "name": "undertow-core",
+                    "version": "2.2.20.Final",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "undertow-core",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/io/undertow/undertow-core/2.2.20.Final/undertow-core-2.2.20.Final.jar"
+                        },
+                        {
+                            "name": "undertow-core",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/io/undertow/undertow-core/2.2.20.Final/undertow-core-2.2.20.Final-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "upickle_3",
+                    "version": "3.0.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "upickle_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle_3/3.0.0/upickle_3-3.0.0.jar"
+                        },
+                        {
+                            "name": "upickle_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle_3/3.0.0/upickle_3-3.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "cask-util_3",
+                    "version": "0.9.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "cask-util_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/cask-util_3/0.9.1/cask-util_3-0.9.1.jar"
+                        },
+                        {
+                            "name": "cask-util_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/cask-util_3/0.9.1/cask-util_3-0.9.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "geny_3",
+                    "version": "1.0.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "geny_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/geny_3/1.0.0/geny_3-1.0.0.jar"
+                        },
+                        {
+                            "name": "geny_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/geny_3/1.0.0/geny_3-1.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jboss.logging",
+                    "name": "jboss-logging",
+                    "version": "3.4.1.Final",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jboss-logging",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.4.1.Final/jboss-logging-3.4.1.Final.jar"
+                        },
+                        {
+                            "name": "jboss-logging",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.4.1.Final/jboss-logging-3.4.1.Final-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jboss.xnio",
+                    "name": "xnio-api",
+                    "version": "3.8.7.Final",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "xnio-api",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/xnio/xnio-api/3.8.7.Final/xnio-api-3.8.7.Final.jar"
+                        },
+                        {
+                            "name": "xnio-api",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/xnio/xnio-api/3.8.7.Final/xnio-api-3.8.7.Final-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jboss.xnio",
+                    "name": "xnio-nio",
+                    "version": "3.8.7.Final",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "xnio-nio",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/xnio/xnio-nio/3.8.7.Final/xnio-nio-3.8.7.Final.jar"
+                        },
+                        {
+                            "name": "xnio-nio",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/xnio/xnio-nio/3.8.7.Final/xnio-nio-3.8.7.Final-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jboss.threads",
+                    "name": "jboss-threads",
+                    "version": "3.1.0.Final",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jboss-threads",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/threads/jboss-threads/3.1.0.Final/jboss-threads-3.1.0.Final.jar"
+                        },
+                        {
+                            "name": "jboss-threads",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jboss/threads/jboss-threads/3.1.0.Final/jboss-threads-3.1.0.Final-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "ujson_3",
+                    "version": "3.0.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "ujson_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/ujson_3/3.0.0/ujson_3-3.0.0.jar"
+                        },
+                        {
+                            "name": "ujson_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/ujson_3/3.0.0/ujson_3-3.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "upack_3",
+                    "version": "3.0.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "upack_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upack_3/3.0.0/upack_3-3.0.0.jar"
+                        },
+                        {
+                            "name": "upack_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upack_3/3.0.0/upack_3-3.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "upickle-implicits_3",
+                    "version": "3.0.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "upickle-implicits_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle-implicits_3/3.0.0/upickle-implicits_3-3.0.0.jar"
+                        },
+                        {
+                            "name": "upickle-implicits_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle-implicits_3/3.0.0/upickle-implicits_3-3.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "sourcecode_3",
+                    "version": "0.3.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "sourcecode_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/sourcecode_3/0.3.0/sourcecode_3-0.3.0.jar"
+                        },
+                        {
+                            "name": "sourcecode_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/sourcecode_3/0.3.0/sourcecode_3-0.3.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "pprint_3",
+                    "version": "0.8.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "pprint_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/pprint_3/0.8.1/pprint_3-0.8.1.jar"
+                        },
+                        {
+                            "name": "pprint_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/pprint_3/0.8.1/pprint_3-0.8.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "castor_3",
+                    "version": "0.3.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "castor_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/castor_3/0.3.0/castor_3-0.3.0.jar"
+                        },
+                        {
+                            "name": "castor_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/castor_3/0.3.0/castor_3-0.3.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.java-websocket",
+                    "name": "Java-WebSocket",
+                    "version": "1.5.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "Java-WebSocket",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/java-websocket/Java-WebSocket/1.5.3/Java-WebSocket-1.5.3.jar"
+                        },
+                        {
+                            "name": "Java-WebSocket",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/java-websocket/Java-WebSocket/1.5.3/Java-WebSocket-1.5.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.wildfly.common",
+                    "name": "wildfly-common",
+                    "version": "1.5.4.Final",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "wildfly-common",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wildfly/common/wildfly-common/1.5.4.Final/wildfly-common-1.5.4.Final.jar"
+                        },
+                        {
+                            "name": "wildfly-common",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wildfly/common/wildfly-common/1.5.4.Final/wildfly-common-1.5.4.Final-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.wildfly.client",
+                    "name": "wildfly-client-config",
+                    "version": "1.0.1.Final",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "wildfly-client-config",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wildfly/client/wildfly-client-config/1.0.1.Final/wildfly-client-config-1.0.1.Final.jar"
+                        },
+                        {
+                            "name": "wildfly-client-config",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wildfly/client/wildfly-client-config/1.0.1.Final/wildfly-client-config-1.0.1.Final-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "upickle-core_3",
+                    "version": "3.0.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "upickle-core_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle-core_3/3.0.0/upickle-core_3-3.0.0.jar"
+                        },
+                        {
+                            "name": "upickle-core_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/upickle-core_3/3.0.0/upickle-core_3-3.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.lihaoyi",
+                    "name": "fansi_3",
+                    "version": "0.4.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "fansi_3",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/fansi_3/0.4.0/fansi_3-0.4.0.jar"
+                        },
+                        {
+                            "name": "fansi_3",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/fansi_3/0.4.0/fansi_3-0.4.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.slf4j",
+                    "name": "slf4j-api",
+                    "version": "1.7.25",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "slf4j-api",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"
+                        },
+                        {
+                            "name": "slf4j-api",
+                            "classifier": "sources",
+                            "path": "/home/bsoleille/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar"
                         }
                     ]
                 },

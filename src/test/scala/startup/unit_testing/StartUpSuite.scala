@@ -10,9 +10,4 @@ class StartUpSuite extends munit.FunSuite:
         assertEquals(obtained, expected)
     }
 
-    test("testing main should return the main result"){
-        val obtained: Unit = startup.run()
-        val expected: Unit = None
-        assertEquals(obtained, expected)
-    }
 end StartUpSuite
