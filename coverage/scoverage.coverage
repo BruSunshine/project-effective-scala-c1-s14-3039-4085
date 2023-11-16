@@ -1,0 +1,309 @@
+# Coverage data, format version: 3.0
+# Statement data:
+# - id
+# - source path
+# - package name
+# - class name
+# - class type (Class, Object or Trait)
+# - full class name
+# - method name
+# - start offset
+# - end offset
+# - line number
+# - symbol name
+# - tree name
+# - is branch
+# - invocations count
+# - is ignored
+# - description (can be multi-line)
+# '' sign
+# ------------------------------------------
+0
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+205
+224
+7
+choose
+Apply
+false
+0
+false
+Gen.choose(-10, 50)
+
+1
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+226
+245
+7
+choose
+Apply
+false
+0
+false
+Gen.choose(-10, 50)
+
+2
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+250
+434
+9
+property
+Apply
+false
+0
+false
+property("all add numbers are positiv") {\n    forAll(addDomain(0).suchThat(x => x > 0), addDomain(1).suchThat(x => x > 0)) { (a: Int, b: Int) => startup.myStart(0).add(a, b) >= 0 }\n  }
+
+3
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+296
+430
+10
+forAll
+Apply
+false
+0
+false
+forAll(addDomain(0).suchThat(x => x > 0), addDomain(1).suchThat(x => x > 0)) { (a: Int, b: Int) => startup.myStart(0).add(a, b) >= 0 }
+
+4
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+303
+336
+10
+suchThat
+Apply
+false
+0
+false
+addDomain(0).suchThat(x => x > 0)
+
+5
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+303
+315
+10
+apply
+Apply
+false
+0
+false
+addDomain(0)
+
+6
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+338
+371
+10
+suchThat
+Apply
+false
+0
+false
+addDomain(1).suchThat(x => x > 0)
+
+7
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+338
+350
+10
+apply
+Apply
+false
+0
+false
+addDomain(1)
+
+8
+../src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+$anonfun
+395
+423
+10
+add
+Apply
+false
+0
+false
+startup.myStart(0).add(a, b)
+
+9
+../src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+101
+273
+6
+test
+Apply
+false
+0
+false
+test("add result in correct addition"){\n        val obtained: Int = startup.myStart(0).add(1,1)\n        val expected: Int = 2\n        assertEquals(obtained, expected)\n    }
+
+10
+../src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+169
+196
+7
+add
+Apply
+false
+0
+false
+startup.myStart(0).add(1,1)
+
+11
+../src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+235
+267
+9
+assertEquals
+Apply
+false
+0
+false
+assertEquals(obtained, expected)
+
+12
+../src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+235
+247
+9
+assertEquals$default$3
+Select
+false
+0
+false
+assertEquals
+
+13
+../src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+279
+454
+12
+test
+Apply
+false
+0
+false
+test("testing main should return the main result"){\n        val obtained: Unit = startup.run()\n        val expected: Unit = None\n        assertEquals(obtained, expected)\n    }
+
+14
+../src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+360
+373
+13
+run
+Apply
+false
+0
+false
+startup.run()
+
+15
+../src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+416
+448
+15
+assertEquals
+Apply
+false
+0
+false
+assertEquals(obtained, expected)
+
+16
+../src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+416
+428
+15
+assertEquals$default$3
+Select
+false
+0
+false
+assertEquals
+
