@@ -62,10 +62,16 @@ val myDataInstance = startup.myStart(myint)
 //myDataInstance.add(1,2).toString()
 //implicit val writer: Writer[startup.myStart] = startup.myStart.rw//
 val jsonString = write(myDataInstance)
+print(jsonString)
+//val jsonObj = ujson.Obj("arg" -> jsonString)
+//print(jsonString)
 //val jsonValue: ujson.Value = writeJs(myDataInstance)
+val argInstance = startup.Arg(myDataInstance)
+val jsonArgString = write(argInstance)
+
 val response3 = basicRequest
   .post(uri"http://localhost:8080/json")
-  .body(jsonString)//.body(jsonValue.toString)
+  .body(jsonArgString)//.body(jsonValue.toString) jsonString
   .send(backend)
 
 println(response3.body)
@@ -74,4 +80,11 @@ import upickle.default.{read}
 val myStartInstance = read[startup.myStart](jsonString)
 myStartInstance.add(1,2)
 
-jsonString.intern()
+//jsonString.intern()
+//ujson.Obj("df" -> s"${jsonString.intern()}")
+
+val json: ujson.Value = ujson.read(jsonString)
+
+json.toString
+
+("5").toString()

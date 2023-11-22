@@ -36,6 +36,10 @@ object myStart:
   )
 */
 
+case class Arg(arg: startup.myStart)
+object Arg:
+  implicit val argRW: RW[Arg] = macroRW
+
 
 
 
