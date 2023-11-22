@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+          "type": "scala",
+          "name": "Debug",
+          "request": "launch",
+          "mainClass": "startup.run",
+          "args": [],
+          "jvmOptions": ["-Xmx2G"],
+          "env": {}
+      }
+    ]
+}

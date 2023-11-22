@@ -6,6 +6,12 @@ import io.undertow.Undertow
 
 trait IntegrationSuite extends munit.FunSuite
 
+import upickle.default.{write}
+val myint:Int = 123
+val myDataInstance = startup.myStart(myint)
+val jsonString = write(myDataInstance)
+
+
 class httpServerSuite extends IntegrationSuite:
   extension (test: FunSuite)
     def withServer(name: String, example: cask.main.Main)(
@@ -22,17 +28,18 @@ class httpServerSuite extends IntegrationSuite:
       res
   test("MinimalApplication") {
     assert(
-      this.withServer("MinimalApplication", app.MinimalApplication)(
+      this.withServer("MinimalApplication", app.MinimalRoutesMain)(
         { host =>
           val success = requests.get(host)
           val conditions = List(
-            success.text() == "Hello World!let's start test with value 5",
+            success.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42",
             success.statusCode == 200,
             requests
               .get(s"$host/doesnt-exist", check = false)
               .statusCode == 404,
             requests.post(s"$host/do-thing", data = "hello").text() == "olleh",
-            requests.delete(s"$host/do-thing", check = false).statusCode == 405
+            requests.delete(s"$host/do-thing", check = false).statusCode == 405,
+            requests.post(s"$host/json", data = jsonString).text() == "OK 42",
           )
           conditions.forall(identity)
         }
