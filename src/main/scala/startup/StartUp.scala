@@ -24,23 +24,14 @@ case class myStart(param: Int):
   def add(x: Int, y: Int): Int = x + y
 
 object myStart:
-  implicit val rw: RW[myStart] = macroRW
-/*
-object myStart:
-  implicit val rw: ReadWriter[myStart] = readwriter[ujson.Value].bimap[myStart](
-    myStartInstance => writeJs(myStartInstance), // Serialize to JSON
-    json => { // Deserialize from JSON
-      val param = json.obj("param").num.toInt//toString.toInt // Explicitly convert to Int
-      myStart(param)
-    }
-  )
-*/
+  //implicit val rw: RW[myStart] = macroRW
+  given rw: RW[myStart] = macroRW
+
 
 case class Arg(arg: startup.myStart)
 object Arg:
-  implicit val argRW: RW[Arg] = macroRW
-
-
+  //implicit val argRW: RW[Arg] = macroRW
+  given argRW: RW[Arg] = macroRW
 
 
 /**
@@ -108,14 +99,3 @@ object Expression:
       case Plus[T](a, b) => ops.add(evaluate(a), evaluate(b))
       case Mult[T](a, b) => ops.mul(evaluate(a), evaluate(b))
   end evaluate
-
-/*
-import upickle.default.{writeJs, write}
-import upickle.default.Writer
-
-implicit def exprWriter : String =
-  this match
-    case Num(value) => write(value)
-    case Plus(left, right) => write("Plus", exprWriter(left), exprWriter(right))
-    case Mult(left, right) => write("Mult", exprWriter(left), exprWriter(right))
-    */

@@ -1,8 +1,8 @@
 package app
 
-import startup.{runComputation, runComputation2}
-import upickle.default.read
+import startup.{runComputation, runComputation2, myStart, Arg}
 import cask.model.Request
+import upickle.default.{ReadWriter => RW, read}
 
 //object MinimalApplication extends cask.MainRoutes:
 
@@ -48,6 +48,7 @@ object JsonPost extends cask.Routes:
   @cask.postJson("/json")
   def jsonEndpoint(arg: ujson.Value) =
     val myStartInstance = read[startup.myStart](arg)
+    //val myStartInstance = summon[RW[Arg]].read(arg)
     val result = "OK " + myStartInstance.add(2,3).toString()
     result
 

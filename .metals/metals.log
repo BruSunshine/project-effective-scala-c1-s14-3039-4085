@@ -29781,3 +29781,154 @@ scala.meta.tokenizers.TokenizeException: <input>:49: error: unclosed string lite
 2023.11.22 18:16:58 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.2s[0m
 2023.11.22 18:17:02 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
 2023.11.22 18:17:02 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.2s[0m
+2023.11.22 18:19:41 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 18:19:41 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.21s[0m
+2023.11.22 18:20:20 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 18:20:20 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.21s[0m
+2023.11.22 18:20:28 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 18:20:28 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.23s[0m
+2023.11.22 20:32:00 INFO  time: evaluated worksheet 'ApiTest.worksheet.sc' in 0.57s[0m
+Nov 22, 2023 8:33:13 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.metals/.reports/metals-full/2023-11-22/r_compiler-error_(project-effective-scala-c1-s14-3039-4085)_20-33-13-936.md
+2023.11.22 20:35:20 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:35:20 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.21s[0m
+2023.11.22 20:35:22 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:35:22 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 47ms[0m
+2023.11.22 20:35:30 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:35:30 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 44ms[0m
+2023.11.22 20:35:33 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:35:33 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.2s[0m
+2023.11.22 20:35:44 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:35:44 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 43ms[0m
+2023.11.22 20:35:49 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:35:49 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 44ms[0m
+2023.11.22 20:35:51 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:35:51 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 43ms[0m
+2023.11.22 20:35:58 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:35:58 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.22s[0m
+2023.11.22 20:35:58 INFO  compiling project-effective-scala-c1-s14-3039-4085 (2 scala sources)[0m
+2023.11.22 20:35:58 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.2s[0m
+2023.11.22 20:37:01 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:37:01 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 73ms[0m
+2023.11.22 20:37:09 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:37:09 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.2s[0m
+2023.11.22 20:37:14 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:37:16 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.63s[0m
+2023.11.22 20:37:16 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:37:17 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.23s[0m
+2023.11.22 20:39:42 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:39:42 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 48ms[0m
+2023.11.22 20:39:43 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:39:45 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.45s[0m
+2023.11.22 20:39:48 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:39:49 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.13s[0m
+2023.11.22 20:40:06 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:40:07 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.05s[0m
+2023.11.22 20:40:58 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:40:59 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.01s[0m
+2023.11.22 20:40:59 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:41:00 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.16s[0m
+2023.11.22 20:42:03 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:42:03 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 50ms[0m
+2023.11.22 20:42:08 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:42:08 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.17s[0m
+2023.11.22 20:42:16 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:42:16 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.22s[0m
+2023.11.22 20:42:24 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:42:26 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.14s[0m
+2023.11.22 20:42:37 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:42:38 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.23s[0m
+2023.11.22 20:42:38 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.22 20:42:39 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.3s[0m
+2023.11.23 09:27:54 INFO  Started: Metals version 1.1.0 in folders '/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085' for client Visual Studio Code 1.84.2.[0m
+2023.11.23 09:27:57 INFO  Attempting to connect to the build server...[0m
+2023.11.23 09:27:57 INFO  skipping build import with status 'Installed'[0m
+2023.11.23 09:27:57 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+Nov 23, 2023 9:27:58 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2023.11.23 09:28:00 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.11.23 09:28:00 INFO  Attempting to connect to the build server...[0m
+2023.11.23 09:28:00 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.11.23 09:28:00 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/project/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.11.23 09:28:00 INFO  time: Connected to build server in 2.43s[0m
+2023.11.23 09:28:00 INFO  Connected to Build server: Bloop v1.5.11[0m
+2023.11.23 09:28:01 INFO  no build target found for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/StartUp.scala. Using presentation compiler with project's scala-library version: 3.3.1[0m
+Nov 23, 2023 9:28:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 12
+2023.11.23 09:28:02 INFO  time: indexed workspace in 1.37s[0m
+2023.11.23 09:28:03 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:28:08 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 4.96s[0m
+Nov 23, 2023 9:28:08 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2023.11.23 09:28:08 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:28:08 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:28:08 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:28:08 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:28:10 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 2.41s[0m
+2023.11.23 09:28:10 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:28:11 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:28:12 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.54s[0m
+2023.11.23 09:28:12 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:30:55 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:30:57 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:30:57 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:30:58 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:30:59 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:31:00 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.47s[0m
+2023.11.23 09:31:00 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:31:00 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:31:01 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:31:02 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.47s[0m
+2023.11.23 09:31:02 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:32:07 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:32:08 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:32:08 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.21s[0m
+2023.11.23 09:32:09 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+Nov 23, 2023 9:32:18 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 116
+2023.11.23 09:32:37 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:32:38 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:32:39 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:32:39 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:32:39 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.32s[0m
+2023.11.23 09:32:40 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+Nov 23, 2023 9:32:47 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 160
+2023.11.23 09:33:13 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:33:15 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:33:16 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:33:16 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.28s[0m
+2023.11.23 09:33:17 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:33:23 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:33:24 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:33:25 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:33:25 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.28s[0m
+2023.11.23 09:33:25 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:33:34 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:33:34 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:33:34 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 98ms[0m
+2023.11.23 09:33:35 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:34:37 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:34:40 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:34:41 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:34:41 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 95ms[0m
+2023.11.23 09:34:41 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:34:45 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:34:46 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:34:46 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:34:46 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 92ms[0m
+2023.11.23 09:34:47 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:34:56 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:34:56 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:34:56 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 0.26s[0m
+2023.11.23 09:34:57 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:36:30 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:36:32 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:36:33 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:36:33 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 57ms[0m
+2023.11.23 09:36:33 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:36:34 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:36:35 INFO  compiling project-effective-scala-c1-s14-3039-4085 (1 scala source)[0m
+2023.11.23 09:36:35 WARN  Could not load snapshot text for /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/App.scala[0m
+2023.11.23 09:36:36 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 1.43s[0m
+2023.11.23 09:37:36 INFO  time: evaluated worksheet 'ApiTest.worksheet.sc' in 3.82s[0m
