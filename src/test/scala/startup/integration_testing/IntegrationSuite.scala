@@ -1,8 +1,13 @@
 package startup.integration_testing
 
 import munit.FunSuite
-import upickle.default.write
+import upickle.default.{write}
 import io.undertow.Undertow
+import startup.{Plus, Mult, Num, Expression, ArgAst, myStart, Arg, myexpr}
+import org.apache.spark.sql.{DataFrame, Dataset, Row}
+import upickle.default.{Reader, Writer, reader, writer}
+
+
 
 trait IntegrationSuite extends munit.FunSuite
 
@@ -36,8 +41,8 @@ class httpServerSuite extends IntegrationSuite:
       this.withServer("MinimalApplication", app.MinimalRoutesMain)(
         { host =>
           val myint: Int = 123
-          val myDataInstance = startup.myStart(myint)
-          val argInstance = startup.Arg(myDataInstance)
+          val myDataInstance = myStart(myint)
+          val argInstance = Arg(myDataInstance)
           val jsonArgString = write(argInstance)
           val test2 = requests.post(
             s"$host/json",
@@ -81,3 +86,38 @@ class httpServerSuite extends IntegrationSuite:
       )
     )
   }
+
+  test("test6") {
+    assert(
+      this.withServer("MinimalApplication", app.MinimalRoutesMain)(
+        { host =>
+          val myAstInstance: Expression[Int] = Mult(Plus(Num(3), Num(4)), Num(5))
+          val argAstInstance = ArgAst(myAstInstance)
+          val jsonArgAstString = write(argAstInstance)
+          val test6 = requests.post(
+            s"$host/jsonast",
+            data = jsonArgAstString
+          )
+          test6.text().toInt == 35
+        }
+      )
+    )
+  }
+/*  
+  test("test7") {
+    assert(
+      this.withServer("MinimalApplication", app.MinimalRoutesMain)(
+        { host =>
+          val myAstInstance: Expression[Dataset[Row]] = myexpr
+          val argAstInstance = ArgAst(myAstInstance)
+          val jsonArgAstString = write(argAstInstance)
+          val test6 = requests.post(
+            s"$host/jsonast",
+            data = jsonArgAstString
+          )
+          test7.text().toInt == 35
+        }
+      )
+    )
+  }
+  */

@@ -11,7 +11,9 @@ package startup
   *   http://blabla
   */
 //import upickle.default.{read, readwriter, writeJs, RW, macroR, macroRW, Reader, ReadWriter}
-import upickle.default.{ReadWriter => RW, macroRW}
+import upickle.default.{ReadWriter => RW, macroRW, Reader, Writer, reader, writer}
+import org.apache.spark.sql.{DataFrame, Dataset, Row}
+import org.apache.spark.sql.functions.{col, concat, lit}
 
 /** A dummy class to test project setup */
 case class myStart(param: Int):
@@ -24,13 +26,11 @@ case class myStart(param: Int):
   def add(x: Int, y: Int): Int = x + y
 
 object myStart:
-  //implicit val rw: RW[myStart] = macroRW
   given rw: RW[myStart] = macroRW
 
 
 case class Arg(arg: startup.myStart)
 object Arg:
-  //implicit val argRW: RW[Arg] = macroRW
   given argRW: RW[Arg] = macroRW
 
 
@@ -63,6 +63,31 @@ object ArithmeticOperation:
   given DoubleOps: ArithmeticOperation[Double] with
     def add(x: Double, y: Double): Double = x + y
     def mul(x: Double, y: Double): Double = x * y
+  /**
+   * Given instance of `ArithmeticOperation` for `DataFrame`.
+   */
+  given DfOps: ArithmeticOperation[Dataset[Row]] with
+    def add(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
+      val resultDf =
+        dfx.alias("dfx")
+        .join(dfy.alias("dfy"), Seq("doubleField", "stringField", "intField"))
+        .select(
+          (col("dfx.doubleField") + col("dfy.doubleField")).as("doubleField"),
+          concat(col("dfx.stringField"), col("dfy.stringField")).as("stringField"),
+          (col("dfx.intField") + col("dfy.intField")).as("intField")
+          )
+      resultDf
+
+    def mul(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
+      val resultDf =
+        dfx.alias("dfx")
+        .join(dfy.alias("dfy"), Seq("doubleField", "stringField", "intField"))
+        .select(
+          (col("dfx.doubleField") + col("dfy.doubleField")).as("doubleField"),
+          concat(col("dfx.stringField"), col("dfy.stringField")).as("stringField"),
+          (col("dfx.intField") + col("dfy.intField")).as("intField")
+          )
+      resultDf
 
 /**
  * A sealed trait representing an arithmetic expression.
@@ -95,7 +120,32 @@ object Expression:
    */
   def evaluate[T](expression: Expression[T])(using ops: ArithmeticOperation[T]): T =
     expression match
-      case Num[T](num) => num
-      case Plus[T](a, b) => ops.add(evaluate(a), evaluate(b))
       case Mult[T](a, b) => ops.mul(evaluate(a), evaluate(b))
+      case Plus[T](a: Mult[T], b) => ops.add(evaluate(a), evaluate(b))
+      case Plus[T](a, b: Mult[T]) => ops.add(evaluate(a), evaluate(b))
+      case Plus[T](a, b) => ops.add(evaluate(a), evaluate(b))
+      case Num[T](num) => num
+      
   end evaluate
+
+  given [T](using RW[T]): RW[Expression[T]] = RW.merge(
+    macroRW[Num[T]],
+    macroRW[Plus[T]],
+    macroRW[Mult[T]]
+  )
+
+case class ArgAst[T](argast: Expression[T])
+object ArgAst:
+  //given argAstRWInt: RW[ArgAst[Int]] = macroRW
+  //given argAstRWDouble: RW[ArgAst[Double]] = macroRW
+  //given argAstRWDf: RW[ArgAst[Dataset[Row]]] = macroRW[Dataset[Row]]
+  given [T](using RW[T]): RW[ArgAst[T]] = macroRW[ArgAst[T]]
+  
+
+  //given [T: Writer]: Writer[ArgAst[T]] with
+  //  def write0[V](out: Visitor[?, V], v: ArgAst[T]): V = summon[Writer[T]].write0(out, v.expr)
+
+  
+  //given [T: Reader: Writer]: RW[ArgAst[T]] with
+  //  def read: Reader[ArgAst[T]] = reader[Expression[T]].map(ArgAst(_))
+  //  def write: Writer[ArgAst[T]] = writer[Expression[T]].comap(_.argast)

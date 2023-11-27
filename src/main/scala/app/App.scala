@@ -52,6 +52,12 @@ object JsonPost extends cask.Routes:
     val result = "OK " + myStartInstance.add(2,3).toString()
     result
 
+  @cask.postJson("/jsonast")
+  def jsonEndpointAst(argast: ujson.Value) =
+    val myAstInstance = read[startup.Expression[Int]](argast)
+    val result = startup.Expression.evaluate(myAstInstance)
+    result
+
   initialize()
 
 object MinimalRoutesMain extends cask.Main:

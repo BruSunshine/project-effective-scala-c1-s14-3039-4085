@@ -88,3 +88,27 @@ val json: ujson.Value = ujson.read(jsonString)
 json.toString
 
 ("5").toString()
+
+
+// Testing the serialization and deserialization of the AST
+
+import startup.{Expression,ArithmeticOperation ,Mult, Num, Plus}
+
+val myAstInstance: Expression[Int] = Plus(Num(3), Num(4))
+Expression.evaluate(myAstInstance)
+
+val jsonStringAst = write[Expression[Int]](myAstInstance)
+print(jsonStringAst)
+
+val myAstInstanceRead = read[Expression[Int]](jsonStringAst)
+Expression.evaluate(myAstInstanceRead)
+
+val argAstInstance = startup.ArgAst[Int](myAstInstance)
+val jsonArgAstString = write[startup.ArgAst[Int]](argAstInstance)
+
+val response4 = basicRequest
+  .post(uri"http://localhost:8080/jsonast")
+  .body(jsonArgAstString)//.body(jsonValue.toString) jsonString
+  .send(backend)
+
+println(response4.body)
