@@ -31,7 +31,7 @@ package startup.ast
   * This package is part of the `startup` application.
   */
 
-import startup.dataframe.spark
+import startup.dataframe.SparkJob.spark
 import java.nio.file.{Paths, Files}
 
 import upickle.default.{
@@ -240,7 +240,7 @@ object DataFrameName:
     *   file.
     */
   extension (df: Dataset[Row])
-    
+
     def toDataFrameName: DataFrameName =
       val dfId = df.contentHash
       val name = DataFrameName(dfId)
@@ -296,4 +296,3 @@ object DataFrameName:
   given Reader[Dataset[Row]] =
     macroRW[DataFrameName]
     .map(_.readAsDataFrame)
-

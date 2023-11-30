@@ -102,3 +102,5 @@ val jsonArgAstString = write(argAstInstance)
 
 doubledDf.show()
 val dfWithIndex = doubledDf.rdd.zipWithIndex().map({case (row, index) => (index, row)})//.toDF("index", "row")
+
+doubledDf.collect().map(row => row.toSeq.mkString(", ")).mkString("\n")

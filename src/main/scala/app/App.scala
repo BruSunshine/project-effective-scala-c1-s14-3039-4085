@@ -3,6 +3,8 @@ package app
 import startup.computation.{runComputation2}
 import startup.ast.{myStart, Expression, Num}
 import startup.ast.DataFrameName.given
+import startup.dataframe.dfString
+import startup.dataframe.dfDummy
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions._
 import cask.model.Request
@@ -12,7 +14,9 @@ object MinimalRoutes extends cask.Routes:
 
   @cask.get("/")
   def hello() =
-    "Hello World!" + runComputation2()
+    //val dfString: String = dfDummy.dfShowString
+    //"Hello World!" + runComputation2()
+    dfString
 
   @cask.post("/do-thing")
   def doThing(request: cask.Request) =
@@ -67,6 +71,11 @@ object JsonPost extends cask.Routes:
     dfResultJson
 
   initialize()
+
+/*
+object MinimalRoutesMain extends cask.Main:
+  val allRoutes = Seq(MinimalRoutes, StaticFiles, FormPost, JsonPost)
+*/
 
 object MinimalRoutesMain extends cask.Main:
   val allRoutes = Seq(MinimalRoutes, StaticFiles, FormPost, JsonPost)
