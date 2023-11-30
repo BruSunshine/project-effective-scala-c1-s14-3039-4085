@@ -1,12 +1,13 @@
 package app
 
-import startup.{runComputation, runComputation2, myStart, Arg}
+import startup.computation.{runComputation2}
+import startup.ast.{myStart, Expression, Num}
+import startup.ast.DataFrameName.given
+import org.apache.spark.sql.{Dataset, Row}
+import org.apache.spark.sql.functions._
 import cask.model.Request
-import upickle.default.{ReadWriter => RW, read}
+import upickle.default.{read, write}
 
-//object MinimalApplication extends cask.MainRoutes:
-
-//case class MinimalRoutes()(implicit cc: castor.Context, log: cask.Logger) extends cask.Routes:
 object MinimalRoutes extends cask.Routes:
 
   @cask.get("/")
@@ -46,17 +47,24 @@ object FormPost extends cask.Routes:
 object JsonPost extends cask.Routes:
 
   @cask.postJson("/json")
-  def jsonEndpoint(arg: ujson.Value) =
-    val myStartInstance = read[startup.myStart](arg)
-    //val myStartInstance = summon[RW[Arg]].read(arg)
-    val result = "OK " + myStartInstance.add(2,3).toString()
+  def jsonEndpoint(arg: ujson.Value): String =
+    val myStartRead: myStart = read[myStart](arg)
+    val result = "OK " + myStartRead.add(2,3).toString()
     result
 
   @cask.postJson("/jsonast")
-  def jsonEndpointAst(argast: ujson.Value) =
-    val myAstInstance = read[startup.Expression[Int]](argast)
-    val result = startup.Expression.evaluate(myAstInstance)
-    result
+  def jsonEndpointAst(argast: ujson.Value): Int =
+    val intExpressionRead: Expression[Int] = read[Expression[Int]](argast)
+    val intExpressionEvaluated: Int = Expression.evaluate(intExpressionRead)
+    intExpressionEvaluated
+
+  @cask.postJson("/jsonastdf")
+  def jsonEndpointAstDf(argast: ujson.Value): String =
+    val dfExpressionRead: Expression[Dataset[Row]] = read[Expression[Dataset[Row]]](argast)
+    val dfExpressionEvaluated: Dataset[Row] = Expression.evaluate(dfExpressionRead)
+    val dfResultAsExpression: Expression[Dataset[Row]] = Num(dfExpressionEvaluated)
+    val dfResultJson: String = write(dfResultAsExpression)
+    dfResultJson
 
   initialize()
 

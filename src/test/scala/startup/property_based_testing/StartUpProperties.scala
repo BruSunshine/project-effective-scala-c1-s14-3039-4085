@@ -1,6 +1,6 @@
 package startup.property_based_testing
 
-import startup.myStart
+import startup.ast.myStart
 
 import org.scalacheck.Prop.forAll
 import org.scalacheck.Gen

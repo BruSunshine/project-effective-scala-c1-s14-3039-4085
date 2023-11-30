@@ -1,12 +1,5 @@
-package sparkdata
 /*
-import org.apache.spark.{SparkSession, DataFrame}
-
-
-val spark: SparkSession = SparkSession.builder()
-  .appName("Spark Parquet Example")
-  .getOrCreate()
- */
+package sparkdata.dataframeapi
 
 /* SimpleApp.scala */
 import org.apache.spark.sql.SparkSession
@@ -31,4 +24,4 @@ object SimpleApp {
     spark.stop()
   }
 }
-
+*/

@@ -14,12 +14,13 @@ libraryDependencies ++= Seq(
   ("org.apache.spark" %% "spark-sql" % "3.5.0" % "provided").cross(CrossVersion.for3Use2_13)
 )
 
-//"org.scalameta" %% "munit" % "0.7.26" % Test,
-//"org.scalacheck" %% "scalacheck" % "1.15.4" % Test
+scalacOptions ++= Seq(
+  //"-sourceroot", "startup", // source root path
+  "-Wunused:imports" // show warnings during compilation
+)
 
-//scalacOptions ++= Seq(
-//  "-coverage-out", "coverage", // destination for measurement files
-//  "-sourceroot", "startup" // source root path
-//)
+scalacOptions in Test ++= Seq(
+  "-coverage-out", "coverage", // destination for measurement files
+)
 
 unmanagedSourceDirectories in Compile += baseDirectory.value / "worksheets"

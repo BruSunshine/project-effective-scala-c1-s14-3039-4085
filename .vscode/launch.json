@@ -5,13 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-          "type": "scala",
-          "name": "Debug",
-          "request": "launch",
-          "mainClass": "startup.run",
-          "args": [],
-          "jvmOptions": ["-Xmx2G"],
-          "env": {},
+          //"type": "scala",
+          //"name": "Debug",
+          //"request": "launch",
+          //"mainClass": "startup.run",
+          //"args": [],
+          //"jvmOptions": ["-Xmx2G"],
+          //"env": {},
+          
           //"sourceDirs": ["${workspaceFolder}/src/main/scala"],
           //"classpath": ["${workspaceFolder}/lib/*"],
           //"javaHome": "${env:JAVA_HOME}",

@@ -1,13 +1,20 @@
 package startup.integration_testing
 
 import munit.FunSuite
-import upickle.default.{write}
+import upickle.default.{write, read}
 import io.undertow.Undertow
-import startup.{Plus, Mult, Num, Expression, ArgAst, myStart, Arg, myexpr}
-import org.apache.spark.sql.{DataFrame, Dataset, Row}
-import upickle.default.{Reader, Writer, reader, writer}
-
-
+import startup.ast.{
+  myStart,
+  Arg,
+  ExpressionToSerialize,
+  Expression,
+  Plus,
+  Mult,
+  Num
+}
+import startup.dataframe.{dfExpression, schema, data}
+import startup.ast.DataFrameName.given
+import org.apache.spark.sql.{Dataset, Row}
 
 trait IntegrationSuite extends munit.FunSuite
 
@@ -25,6 +32,7 @@ class httpServerSuite extends IntegrationSuite:
         try f("http://localhost:8082")
         finally server.stop()
       res
+
   test("test1") {
     assert(
       this.withServer("MinimalApplication", app.MinimalRoutesMain)(
@@ -35,6 +43,7 @@ class httpServerSuite extends IntegrationSuite:
       )
     )
   }
+
 
   test("test2") {
     assert(
@@ -55,6 +64,7 @@ class httpServerSuite extends IntegrationSuite:
     )
   }
 
+
   test("test3") {
     assert(
       this.withServer("MinimalApplication", app.MinimalRoutesMain)(
@@ -66,6 +76,7 @@ class httpServerSuite extends IntegrationSuite:
     )
   }
 
+/*
 //  test("test4: issue with server closing the connection too early") {
 //    assert(
 //      this.withServer("MinimalApplication", app.MinimalRoutesMain)(
@@ -75,6 +86,7 @@ class httpServerSuite extends IntegrationSuite:
 //      )
 //    )
 //  }
+*/
 
   test("test5") {
     assert(
@@ -87,37 +99,66 @@ class httpServerSuite extends IntegrationSuite:
     )
   }
 
+
   test("test6") {
     assert(
       this.withServer("MinimalApplication", app.MinimalRoutesMain)(
         { host =>
-          val myAstInstance: Expression[Int] = Mult(Plus(Num(3), Num(4)), Num(5))
-          val argAstInstance = ArgAst(myAstInstance)
-          val jsonArgAstString = write(argAstInstance)
+          
+          // preparing expression to process
+          val IntExpression: Expression[Int] =
+            Mult(Plus(Num(3), Num(4)), Num(5))
+          val IntExpressionToSerialize = ExpressionToSerialize(IntExpression)
+          val IntExpressionJson = write(IntExpressionToSerialize)
+          
+          // Sending expression to server for evaluation and further processing
           val test6 = requests.post(
             s"$host/jsonast",
-            data = jsonArgAstString
+            data = IntExpressionJson,
+            connectTimeout = 20000,
+            readTimeout = 20000
           )
+          
+          // Retrieving and reading the processed expression from server
+          // Asserting test validity
           test6.text().toInt == 35
         }
       )
     )
   }
-/*  
-  test("test7") {
+
+  test(
+    "test7: Serialize and deserialize expression with dataframe processed through http server"
+  ) {
     assert(
       this.withServer("MinimalApplication", app.MinimalRoutesMain)(
         { host =>
-          val myAstInstance: Expression[Dataset[Row]] = myexpr
-          val argAstInstance = ArgAst(myAstInstance)
-          val jsonArgAstString = write(argAstInstance)
-          val test6 = requests.post(
-            s"$host/jsonast",
-            data = jsonArgAstString
+
+          // preparing expression to process
+          val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =
+            ExpressionToSerialize(dfExpression)
+          val dfExpressionJson: String = write(dfExpressionToSerialize)
+
+          // Sending expression to server for evaluation and further processing
+          val test7 = requests.post(
+            s"$host/jsonastdf",
+            data = dfExpressionJson,
+            connectTimeout = 80000000,
+            readTimeout = 80000000
           )
-          test7.text().toInt == 35
+
+          // Retrieving and reading the processed expression from server
+          val dfExpressionJsonReceived: String = ujson.read(test7.text()).str
+          val dfExpressionRead: Expression[Dataset[Row]] =
+            read[Expression[Dataset[Row]]](dfExpressionJsonReceived)
+          val dfExpressionEvaluated: Dataset[Row] =
+            Expression.evaluate(dfExpressionRead)
+
+          // Asserting test validity
+          dfExpressionEvaluated.show()
+          dfExpressionEvaluated.schema == schema
+          dfExpressionEvaluated.count() == data.length
         }
       )
     )
   }
-  */
