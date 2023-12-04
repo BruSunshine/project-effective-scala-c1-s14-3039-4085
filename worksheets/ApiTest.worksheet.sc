@@ -111,7 +111,7 @@ println(response4.body)
 
 
 // Testing the serialization and deserialization of the AST with dataframes
-
+/*
 import org.apache.spark.sql.{SparkSession, DataFrame, Dataset, Row}
 import org.apache.spark.sql._
 import org.apache.spark.sql.types._
@@ -159,4 +159,15 @@ val response5 = basicRequest
   .send(backend)
 
 println(response5.body)
+*/
 
+import sparkjobs.SparkJob.{makeDummyDf, MakeExpression, runMakeDummyDf, runConvertDummyDfAsString}
+
+val df = makeDummyDf()
+df.show()
+
+MakeExpression(df)
+
+runMakeDummyDf()
+
+runConvertDummyDfAsString()

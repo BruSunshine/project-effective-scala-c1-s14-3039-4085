@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-          //"type": "scala",
-          //"name": "Debug",
-          //"request": "launch",
-          //"mainClass": "startup.run",
+          "type": "scala",
+          "name": "Debug",
+          "request": "launch",
+          "mainClass": "MyApp.run",
           //"args": [],
           //"jvmOptions": ["-Xmx2G"],
           //"env": {},

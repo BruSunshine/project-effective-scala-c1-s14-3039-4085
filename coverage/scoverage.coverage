@@ -19,14 +19,14 @@
 # '' sign
 # ------------------------------------------
 0
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-611
-730
+581
+700
 25
 build
 Apply
@@ -36,14 +36,14 @@ false
 Undertow.builder\n        .addHttpListener(8082, "localhost")\n        .setHandler(example.defaultHandler)\n        .build
 
 1
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-611
-715
+581
+685
 27
 setHandler
 Apply
@@ -53,14 +53,14 @@ false
 Undertow.builder\n        .addHttpListener(8082, "localhost")\n        .setHandler(example.defaultHandler)
 
 2
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-611
-671
+581
+641
 26
 addHttpListener
 Apply
@@ -70,14 +70,14 @@ false
 Undertow.builder\n        .addHttpListener(8082, "localhost")
 
 3
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-611
-627
+581
+597
 25
 builder
 Apply
@@ -87,14 +87,14 @@ false
 Undertow.builder
 
 4
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-692
-714
+662
+684
 27
 defaultHandler
 Select
@@ -104,14 +104,14 @@ false
 example.defaultHandler
 
 5
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-737
-751
+707
+721
 29
 start
 Apply
@@ -121,14 +121,14 @@ false
 server.start()
 
 6
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-780
-806
+750
+776
 31
 apply
 Apply
@@ -138,14 +138,14 @@ false
 f("http://localhost:8082")
 
 7
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-780
-806
+750
+776
 31
 apply
 Apply
@@ -155,14 +155,14 @@ false
 f("http://localhost:8082")
 
 8
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-823
-836
+793
+806
 32
 stop
 Apply
@@ -172,14 +172,14 @@ false
 server.stop()
 
 9
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-823
-836
+793
+806
 32
 stop
 Apply
@@ -189,14 +189,14 @@ false
 server.stop()
 
 10
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 withServer
-491
-505
+461
+475
 22
 withServer
 DefDef
@@ -206,65 +206,65 @@ false
 def withServer
 
 11
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-850
-1166
+820
+1125
 35
 test
 Apply
 false
 0
 false
-test("test1") {\n    assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test1 = requests.get(host)\n          test1.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42"\n        }\n      )\n    )\n  }
+test("test1") {\n    assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test1 = requests.get(host)\n          test1.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42"\n        }\n      )\n    )\n  }
 
 12
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-870
-1162
+840
+1121
 36
 assert
 Apply
 false
 0
 false
-assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test1 = requests.get(host)\n          test1.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42"\n        }\n      )\n    )
+assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test1 = requests.get(host)\n          test1.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42"\n        }\n      )\n    )
 
 13
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-884
-1156
+854
+1115
 37
 withServer
 Apply
 false
 0
 false
-this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test1 = requests.get(host)\n          test1.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42"\n        }\n      )
+this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test1 = requests.get(host)\n          test1.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42"\n        }\n      )
 
 14
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-1004
+945
+963
 39
 apply
 Apply
@@ -274,14 +274,14 @@ false
 requests.get(host)
 
 15
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$2
 Select
@@ -291,14 +291,14 @@ false
 requests.get
 
 16
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$3
 Select
@@ -308,14 +308,14 @@ false
 requests.get
 
 17
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$4
 Select
@@ -325,14 +325,14 @@ false
 requests.get
 
 18
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$5
 Select
@@ -342,14 +342,14 @@ false
 requests.get
 
 19
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$6
 Select
@@ -359,14 +359,14 @@ false
 requests.get
 
 20
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$7
 Select
@@ -376,14 +376,14 @@ false
 requests.get
 
 21
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$8
 Select
@@ -393,14 +393,14 @@ false
 requests.get
 
 22
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$9
 Select
@@ -410,14 +410,14 @@ false
 requests.get
 
 23
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$10
 Select
@@ -427,14 +427,14 @@ false
 requests.get
 
 24
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$11
 Select
@@ -444,14 +444,14 @@ false
 requests.get
 
 25
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$12
 Select
@@ -461,14 +461,14 @@ false
 requests.get
 
 26
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$13
 Select
@@ -478,14 +478,14 @@ false
 requests.get
 
 27
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$14
 Select
@@ -495,14 +495,14 @@ false
 requests.get
 
 28
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$15
 Select
@@ -512,14 +512,14 @@ false
 requests.get
 
 29
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$16
 Select
@@ -529,14 +529,14 @@ false
 requests.get
 
 30
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$17
 Select
@@ -546,14 +546,14 @@ false
 requests.get
 
 31
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$18
 Select
@@ -563,14 +563,14 @@ false
 requests.get
 
 32
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-986
-998
+945
+957
 39
 apply$default$19
 Select
@@ -580,14 +580,14 @@ false
 requests.get
 
 33
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1015
-1027
+974
+986
 40
 text
 Apply
@@ -597,14 +597,14 @@ false
 test1.text()
 
 34
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-870
-876
+840
+846
 36
 assert$default$2
 Select
@@ -614,65 +614,65 @@ false
 assert
 
 35
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-1171
-1679
+1130
+1627
 47
 test
 Apply
 false
 0
 false
-test("test2") {\n    assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val myint: Int = 123\n          val myDataInstance = myStart(myint)\n          val argInstance = Arg(myDataInstance)\n          val jsonArgString = write(argInstance)\n          val test2 = requests.post(\n            s"$host/json",\n            data = jsonArgString,\n            connectTimeout = 20000\n          )\n          test2.text().toString() == "\\"OK 5\\""\n        }\n      )\n    )\n  }
+test("test2") {\n    assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val myint: Int = 123\n          val myDataInstance = myStart(myint)\n          val argInstance = Arg(myDataInstance)\n          val jsonArgString = write(argInstance)\n          val test2 = requests.post(\n            s"$host/json",\n            data = jsonArgString,\n            connectTimeout = 20000\n          )\n          test2.text().toString() == "\\"OK 5\\""\n        }\n      )\n    )\n  }
 
 36
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-1191
-1675
+1150
+1623
 48
 assert
 Apply
 false
 0
 false
-assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val myint: Int = 123\n          val myDataInstance = myStart(myint)\n          val argInstance = Arg(myDataInstance)\n          val jsonArgString = write(argInstance)\n          val test2 = requests.post(\n            s"$host/json",\n            data = jsonArgString,\n            connectTimeout = 20000\n          )\n          test2.text().toString() == "\\"OK 5\\""\n        }\n      )\n    )
+assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val myint: Int = 123\n          val myDataInstance = myStart(myint)\n          val argInstance = Arg(myDataInstance)\n          val jsonArgString = write(argInstance)\n          val test2 = requests.post(\n            s"$host/json",\n            data = jsonArgString,\n            connectTimeout = 20000\n          )\n          test2.text().toString() == "\\"OK 5\\""\n        }\n      )\n    )
 
 37
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-1205
-1669
+1164
+1617
 49
 withServer
 Apply
 false
 0
 false
-this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val myint: Int = 123\n          val myDataInstance = myStart(myint)\n          val argInstance = Arg(myDataInstance)\n          val jsonArgString = write(argInstance)\n          val test2 = requests.post(\n            s"$host/json",\n            data = jsonArgString,\n            connectTimeout = 20000\n          )\n          test2.text().toString() == "\\"OK 5\\""\n        }\n      )
+this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val myint: Int = 123\n          val myDataInstance = myStart(myint)\n          val argInstance = Arg(myDataInstance)\n          val jsonArgString = write(argInstance)\n          val test2 = requests.post(\n            s"$host/json",\n            data = jsonArgString,\n            connectTimeout = 20000\n          )\n          test2.text().toString() == "\\"OK 5\\""\n        }\n      )
 
 38
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1440
-1458
+1388
+1406
 54
 write
 Apply
@@ -682,14 +682,14 @@ false
 write(argInstance)
 
 39
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1440
-1445
+1388
+1393
 54
 write$default$2
 Select
@@ -699,14 +699,14 @@ false
 write
 
 40
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1440
-1445
+1388
+1393
 54
 write$default$3
 Select
@@ -716,14 +716,14 @@ false
 write
 
 41
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1508
-1521
+1456
+1469
 56
 s
 Apply
@@ -733,14 +733,14 @@ false
 s"$host/json"
 
 42
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1535
-1555
+1483
+1503
 57
 ByteSourceRequestBlob
 Apply
@@ -750,14 +750,14 @@ false
 data = jsonArgString
 
 43
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$2
 Select
@@ -767,14 +767,14 @@ false
 requests.post
 
 44
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$3
 Select
@@ -784,14 +784,14 @@ false
 requests.post
 
 45
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$4
 Select
@@ -801,14 +801,14 @@ false
 requests.post
 
 46
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$6
 Select
@@ -818,14 +818,14 @@ false
 requests.post
 
 47
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$8
 Select
@@ -835,14 +835,14 @@ false
 requests.post
 
 48
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$9
 Select
@@ -852,14 +852,14 @@ false
 requests.post
 
 49
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$10
 Select
@@ -869,14 +869,14 @@ false
 requests.post
 
 50
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$11
 Select
@@ -886,14 +886,14 @@ false
 requests.post
 
 51
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$12
 Select
@@ -903,14 +903,14 @@ false
 requests.post
 
 52
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$13
 Select
@@ -920,14 +920,14 @@ false
 requests.post
 
 53
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$14
 Select
@@ -937,14 +937,14 @@ false
 requests.post
 
 54
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$15
 Select
@@ -954,14 +954,14 @@ false
 requests.post
 
 55
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$16
 Select
@@ -971,14 +971,14 @@ false
 requests.post
 
 56
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$17
 Select
@@ -988,14 +988,14 @@ false
 requests.post
 
 57
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$18
 Select
@@ -1005,14 +1005,14 @@ false
 requests.post
 
 58
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1494
+1429
+1442
 55
 apply$default$19
 Select
@@ -1022,14 +1022,14 @@ false
 requests.post
 
 59
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1481
-1603
+1429
+1551
 55
 apply
 Apply
@@ -1039,14 +1039,14 @@ false
 requests.post(\n            s"$host/json",\n            data = jsonArgString,\n            connectTimeout = 20000\n          )
 
 60
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1614
-1637
+1562
+1585
 60
 toString
 Apply
@@ -1056,14 +1056,14 @@ false
 test2.text().toString()
 
 61
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1614
-1626
+1562
+1574
 60
 text
 Apply
@@ -1073,14 +1073,14 @@ false
 test2.text()
 
 62
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-1191
-1197
+1150
+1156
 48
 assert$default$2
 Select
@@ -1090,65 +1090,65 @@ false
 assert
 
 63
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-1684
-1930
+1632
+1867
 67
 test
 Apply
 false
 0
 false
-test("test3") {\n    assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test3 = requests.post(s"$host/do-thing", data = "hello")\n          test3.text() == "olleh"\n        }\n      )\n    )\n  }
+test("test3") {\n    assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test3 = requests.post(s"$host/do-thing", data = "hello")\n          test3.text() == "olleh"\n        }\n      )\n    )\n  }
 
 64
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-1704
-1926
+1652
+1863
 68
 assert
 Apply
 false
 0
 false
-assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test3 = requests.post(s"$host/do-thing", data = "hello")\n          test3.text() == "olleh"\n        }\n      )\n    )
+assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test3 = requests.post(s"$host/do-thing", data = "hello")\n          test3.text() == "olleh"\n        }\n      )\n    )
 
 65
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-1718
-1920
+1666
+1857
 69
 withServer
 Apply
 false
 0
 false
-this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test3 = requests.post(s"$host/do-thing", data = "hello")\n          test3.text() == "olleh"\n        }\n      )
+this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test3 = requests.post(s"$host/do-thing", data = "hello")\n          test3.text() == "olleh"\n        }\n      )
 
 66
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1834
-1851
+1771
+1788
 71
 s
 Apply
@@ -1158,14 +1158,14 @@ false
 s"$host/do-thing"
 
 67
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1860
-1867
+1797
+1804
 71
 ByteSourceRequestBlob
 Apply
@@ -1175,14 +1175,14 @@ false
 "hello"
 
 68
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$2
 Select
@@ -1192,14 +1192,14 @@ false
 requests.post
 
 69
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$3
 Select
@@ -1209,14 +1209,14 @@ false
 requests.post
 
 70
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$4
 Select
@@ -1226,14 +1226,14 @@ false
 requests.post
 
 71
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$6
 Select
@@ -1243,14 +1243,14 @@ false
 requests.post
 
 72
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$7
 Select
@@ -1260,14 +1260,14 @@ false
 requests.post
 
 73
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$8
 Select
@@ -1277,14 +1277,14 @@ false
 requests.post
 
 74
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$9
 Select
@@ -1294,14 +1294,14 @@ false
 requests.post
 
 75
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$10
 Select
@@ -1311,14 +1311,14 @@ false
 requests.post
 
 76
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$11
 Select
@@ -1328,14 +1328,14 @@ false
 requests.post
 
 77
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$12
 Select
@@ -1345,14 +1345,14 @@ false
 requests.post
 
 78
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$13
 Select
@@ -1362,14 +1362,14 @@ false
 requests.post
 
 79
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$14
 Select
@@ -1379,14 +1379,14 @@ false
 requests.post
 
 80
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$15
 Select
@@ -1396,14 +1396,14 @@ false
 requests.post
 
 81
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$16
 Select
@@ -1413,14 +1413,14 @@ false
 requests.post
 
 82
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$17
 Select
@@ -1430,14 +1430,14 @@ false
 requests.post
 
 83
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$18
 Select
@@ -1447,14 +1447,14 @@ false
 requests.post
 
 84
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1833
+1757
+1770
 71
 apply$default$19
 Select
@@ -1464,14 +1464,14 @@ false
 requests.post
 
 85
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1820
-1868
+1757
+1805
 71
 apply
 Apply
@@ -1481,14 +1481,14 @@ false
 requests.post(s"$host/do-thing", data = "hello")
 
 86
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-1879
-1891
+1816
+1828
 72
 text
 Apply
@@ -1498,14 +1498,14 @@ false
 test3.text()
 
 87
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-1704
-1710
+1652
+1658
 68
 assert$default$2
 Select
@@ -1515,65 +1515,65 @@ false
 assert
 
 88
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-2233
-2481
+2159
+2396
 90
 test
 Apply
 false
 0
 false
-test("test5") {\n    assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test5 = requests.get(s"$host/doesnt-exist", check = false)\n          test5.statusCode == 404\n        }\n      )\n    )\n  }
+test("test5") {\n    assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test5 = requests.get(s"$host/doesnt-exist", check = false)\n          test5.statusCode == 404\n        }\n      )\n    )\n  }
 
 89
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-2253
-2477
+2179
+2392
 91
 assert
 Apply
 false
 0
 false
-assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test5 = requests.get(s"$host/doesnt-exist", check = false)\n          test5.statusCode == 404\n        }\n      )\n    )
+assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test5 = requests.get(s"$host/doesnt-exist", check = false)\n          test5.statusCode == 404\n        }\n      )\n    )
 
 90
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-2267
-2471
+2193
+2386
 92
 withServer
 Apply
 false
 0
 false
-this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          val test5 = requests.get(s"$host/doesnt-exist", check = false)\n          test5.statusCode == 404\n        }\n      )
+this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val test5 = requests.get(s"$host/doesnt-exist", check = false)\n          test5.statusCode == 404\n        }\n      )
 
 91
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2382
-2403
+2297
+2318
 94
 s
 Apply
@@ -1583,14 +1583,14 @@ false
 s"$host/doesnt-exist"
 
 92
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$2
 Select
@@ -1600,14 +1600,14 @@ false
 requests.get
 
 93
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$3
 Select
@@ -1617,14 +1617,14 @@ false
 requests.get
 
 94
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$4
 Select
@@ -1634,14 +1634,14 @@ false
 requests.get
 
 95
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$5
 Select
@@ -1651,14 +1651,14 @@ false
 requests.get
 
 96
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$6
 Select
@@ -1668,14 +1668,14 @@ false
 requests.get
 
 97
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$7
 Select
@@ -1685,14 +1685,14 @@ false
 requests.get
 
 98
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$8
 Select
@@ -1702,14 +1702,14 @@ false
 requests.get
 
 99
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$9
 Select
@@ -1719,14 +1719,14 @@ false
 requests.get
 
 100
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$10
 Select
@@ -1736,14 +1736,14 @@ false
 requests.get
 
 101
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$11
 Select
@@ -1753,14 +1753,14 @@ false
 requests.get
 
 102
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$12
 Select
@@ -1770,14 +1770,14 @@ false
 requests.get
 
 103
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$13
 Select
@@ -1787,14 +1787,14 @@ false
 requests.get
 
 104
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$14
 Select
@@ -1804,14 +1804,14 @@ false
 requests.get
 
 105
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$15
 Select
@@ -1821,14 +1821,14 @@ false
 requests.get
 
 106
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$16
 Select
@@ -1838,14 +1838,14 @@ false
 requests.get
 
 107
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$17
 Select
@@ -1855,14 +1855,14 @@ false
 requests.get
 
 108
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2381
+2284
+2296
 94
 apply$default$19
 Select
@@ -1872,14 +1872,14 @@ false
 requests.get
 
 109
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2369
-2419
+2284
+2334
 94
 apply
 Apply
@@ -1889,14 +1889,14 @@ false
 requests.get(s"$host/doesnt-exist", check = false)
 
 110
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-2253
-2259
+2179
+2185
 91
 assert$default$2
 Select
@@ -1906,65 +1906,65 @@ false
 assert
 
 111
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-2486
-3353
+2401
+3257
 102
 test
 Apply
 false
 0
 false
-test("test6") {\n    assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          \n          // preparing expression to process\n          val IntExpression: Expression[Int] =\n            Mult(Plus(Num(3), Num(4)), Num(5))\n          val IntExpressionToSerialize = ExpressionToSerialize(IntExpression)\n          val IntExpressionJson = write(IntExpressionToSerialize)\n          \n          // Sending expression to server for evaluation and further processing\n          val test6 = requests.post(\n            s"$host/jsonast",\n            data = IntExpressionJson,\n            connectTimeout = 20000,\n            readTimeout = 20000\n          )\n          \n          // Retrieving and reading the processed expression from server\n          // Asserting test validity\n          test6.text().toInt == 35\n        }\n      )\n    )\n  }
+test("test6") {\n    assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          \n          // preparing expression to process\n          val IntExpression: Expression[Int] =\n            Mult(Plus(Num(3), Num(4)), Num(5))\n          val IntExpressionToSerialize = ExpressionToSerialize(IntExpression)\n          val IntExpressionJson = write(IntExpressionToSerialize)\n          \n          // Sending expression to server for evaluation and further processing\n          val test6 = requests.post(\n            s"$host/jsonast",\n            data = IntExpressionJson,\n            connectTimeout = 20000,\n            readTimeout = 20000\n          )\n          \n          // Retrieving and reading the processed expression from server\n          // Asserting test validity\n          test6.text().toInt == 35\n        }\n      )\n    )\n  }
 
 112
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-2506
-3349
+2421
+3253
 103
 assert
 Apply
 false
 0
 false
-assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          \n          // preparing expression to process\n          val IntExpression: Expression[Int] =\n            Mult(Plus(Num(3), Num(4)), Num(5))\n          val IntExpressionToSerialize = ExpressionToSerialize(IntExpression)\n          val IntExpressionJson = write(IntExpressionToSerialize)\n          \n          // Sending expression to server for evaluation and further processing\n          val test6 = requests.post(\n            s"$host/jsonast",\n            data = IntExpressionJson,\n            connectTimeout = 20000,\n            readTimeout = 20000\n          )\n          \n          // Retrieving and reading the processed expression from server\n          // Asserting test validity\n          test6.text().toInt == 35\n        }\n      )\n    )
+assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          \n          // preparing expression to process\n          val IntExpression: Expression[Int] =\n            Mult(Plus(Num(3), Num(4)), Num(5))\n          val IntExpressionToSerialize = ExpressionToSerialize(IntExpression)\n          val IntExpressionJson = write(IntExpressionToSerialize)\n          \n          // Sending expression to server for evaluation and further processing\n          val test6 = requests.post(\n            s"$host/jsonast",\n            data = IntExpressionJson,\n            connectTimeout = 20000,\n            readTimeout = 20000\n          )\n          \n          // Retrieving and reading the processed expression from server\n          // Asserting test validity\n          test6.text().toInt == 35\n        }\n      )\n    )
 
 113
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-2520
-3343
+2435
+3247
 104
 withServer
 Apply
 false
 0
 false
-this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n          \n          // preparing expression to process\n          val IntExpression: Expression[Int] =\n            Mult(Plus(Num(3), Num(4)), Num(5))\n          val IntExpressionToSerialize = ExpressionToSerialize(IntExpression)\n          val IntExpressionJson = write(IntExpressionToSerialize)\n          \n          // Sending expression to server for evaluation and further processing\n          val test6 = requests.post(\n            s"$host/jsonast",\n            data = IntExpressionJson,\n            connectTimeout = 20000,\n            readTimeout = 20000\n          )\n          \n          // Retrieving and reading the processed expression from server\n          // Asserting test validity\n          test6.text().toInt == 35\n        }\n      )
+this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          \n          // preparing expression to process\n          val IntExpression: Expression[Int] =\n            Mult(Plus(Num(3), Num(4)), Num(5))\n          val IntExpressionToSerialize = ExpressionToSerialize(IntExpression)\n          val IntExpressionJson = write(IntExpressionToSerialize)\n          \n          // Sending expression to server for evaluation and further processing\n          val test6 = requests.post(\n            s"$host/jsonast",\n            data = IntExpressionJson,\n            connectTimeout = 20000,\n            readTimeout = 20000\n          )\n          \n          // Retrieving and reading the processed expression from server\n          // Asserting test validity\n          test6.text().toInt == 35\n        }\n      )
 
 114
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2862
-2893
+2766
+2797
 111
 write
 Apply
@@ -1974,14 +1974,14 @@ false
 write(IntExpressionToSerialize)
 
 115
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2862
-2867
+2766
+2771
 111
 write$default$2
 Select
@@ -1991,14 +1991,14 @@ false
 write
 
 116
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-2862
-2867
+2766
+2771
 111
 write$default$3
 Select
@@ -2008,14 +2008,14 @@ false
 write
 
 117
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3034
-3050
+2938
+2954
 115
 s
 Apply
@@ -2025,14 +2025,14 @@ false
 s"$host/jsonast"
 
 118
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3071
-3088
+2975
+2992
 116
 ByteSourceRequestBlob
 Apply
@@ -2042,14 +2042,14 @@ false
 IntExpressionJson
 
 119
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$2
 Select
@@ -2059,14 +2059,14 @@ false
 requests.post
 
 120
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$3
 Select
@@ -2076,14 +2076,14 @@ false
 requests.post
 
 121
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$4
 Select
@@ -2093,14 +2093,14 @@ false
 requests.post
 
 122
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$8
 Select
@@ -2110,14 +2110,14 @@ false
 requests.post
 
 123
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$9
 Select
@@ -2127,14 +2127,14 @@ false
 requests.post
 
 124
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$10
 Select
@@ -2144,14 +2144,14 @@ false
 requests.post
 
 125
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$11
 Select
@@ -2161,14 +2161,14 @@ false
 requests.post
 
 126
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$12
 Select
@@ -2178,14 +2178,14 @@ false
 requests.post
 
 127
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$13
 Select
@@ -2195,14 +2195,14 @@ false
 requests.post
 
 128
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$14
 Select
@@ -2212,14 +2212,14 @@ false
 requests.post
 
 129
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$15
 Select
@@ -2229,14 +2229,14 @@ false
 requests.post
 
 130
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$16
 Select
@@ -2246,14 +2246,14 @@ false
 requests.post
 
 131
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$17
 Select
@@ -2263,14 +2263,14 @@ false
 requests.post
 
 132
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$18
 Select
@@ -2280,14 +2280,14 @@ false
 requests.post
 
 133
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3020
+2911
+2924
 114
 apply$default$19
 Select
@@ -2297,14 +2297,14 @@ false
 requests.post
 
 134
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3007
-3169
+2911
+3073
 114
 apply
 Apply
@@ -2314,14 +2314,14 @@ false
 requests.post(\n            s"$host/jsonast",\n            data = IntExpressionJson,\n            connectTimeout = 20000,\n            readTimeout = 20000\n          )
 
 135
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3301
-3313
+3205
+3217
 123
 augmentString
 Apply
@@ -2331,14 +2331,14 @@ false
 test6.text()
 
 136
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3301
-3313
+3205
+3217
 123
 text
 Apply
@@ -2348,14 +2348,14 @@ false
 test6.text()
 
 137
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 $anonfun
-3301
-3319
+3205
+3223
 123
 toInt
 Select
@@ -2365,14 +2365,14 @@ false
 test6.text().toInt
 
 138
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
+src/test/scala/app/IntegrationSuite.scala
+app
 httpServerSuite
 Class
-startup.integration_testing.httpServerSuite
+app.httpServerSuite
 <init>
-2506
-2512
+2421
+2427
 103
 assert$default$2
 Select
@@ -2382,151 +2382,1290 @@ false
 assert
 
 139
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
 Class
-startup.integration_testing.httpServerSuite
+startup.property_based_testing.StartUpPropertiesSuite
 <init>
-3357
-4668
-129
+233
+252
+9
+choose
+Apply
+false
+0
+false
+Gen.choose(-10, 50)
+
+140
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+254
+273
+9
+choose
+Apply
+false
+0
+false
+Gen.choose(-10, 50)
+
+141
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+278
+454
+11
+property
+Apply
+false
+0
+false
+property("all add numbers are positiv") {\n    forAll(addDomain(0).suchThat(x => x > 0), addDomain(1).suchThat(x => x > 0)) { (a: Int, b: Int) => myStart(0).add(a, b) >= 0 }\n  }
+
+142
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+324
+450
+12
+forAll
+Apply
+false
+0
+false
+forAll(addDomain(0).suchThat(x => x > 0), addDomain(1).suchThat(x => x > 0)) { (a: Int, b: Int) => myStart(0).add(a, b) >= 0 }
+
+143
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+331
+364
+12
+suchThat
+Apply
+false
+0
+false
+addDomain(0).suchThat(x => x > 0)
+
+144
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+331
+343
+12
+apply
+Apply
+false
+0
+false
+addDomain(0)
+
+145
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+366
+399
+12
+suchThat
+Apply
+false
+0
+false
+addDomain(1).suchThat(x => x > 0)
+
+146
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+<init>
+366
+378
+12
+apply
+Apply
+false
+0
+false
+addDomain(1)
+
+147
+src/test/scala/startup/property_based_testing/StartUpProperties.scala
+startup.property_based_testing
+StartUpPropertiesSuite
+Class
+startup.property_based_testing.StartUpPropertiesSuite
+$anonfun
+423
+443
+12
+add
+Apply
+false
+0
+false
+myStart(0).add(a, b)
+
+148
+src/test/scala/startup/unit_testing/ComputationSuite.scala
+startup.unit_testing
+ComputationSuite
+Class
+startup.unit_testing.ComputationSuite
+<init>
+150
+301
+8
 test
 Apply
 false
 0
 false
-test(\n    "test7: Serialize and deserialize expression with dataframe processed through http server"\n  ) {\n    assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n\n          // preparing expression to process\n          val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =\n            ExpressionToSerialize(dfExpression)\n          val dfExpressionJson: String = write(dfExpressionToSerialize)\n\n          // Sending expression to server for evaluation and further processing\n          val test7 = requests.post(\n            s"$host/jsonastdf",\n            data = dfExpressionJson,\n            connectTimeout = 80000000,\n            readTimeout = 80000000\n          )\n\n          // Retrieving and reading the processed expression from server\n          val dfExpressionJsonReceived: String = ujson.read(test7.text()).str\n          val dfExpressionRead: Expression[Dataset[Row]] =\n            read[Expression[Dataset[Row]]](dfExpressionJsonReceived)\n          val dfExpressionEvaluated: Dataset[Row] =\n            Expression.evaluate(dfExpressionRead)\n\n          // Asserting test validity\n          dfExpressionEvaluated.show()\n          dfExpressionEvaluated.schema == schema\n          dfExpressionEvaluated.count() == data.length\n        }\n      )\n    )\n  }
+test("testing main should return the main result"){\n        val obtained: String = runComputation()\n        assert(obtained.isInstanceOf[String])\n    }
 
-140
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+149
+src/test/scala/startup/unit_testing/ComputationSuite.scala
+startup.unit_testing
+ComputationSuite
 Class
-startup.integration_testing.httpServerSuite
+startup.unit_testing.ComputationSuite
 <init>
-3468
-4664
-132
+233
+249
+9
+runComputation
+Apply
+false
+0
+false
+runComputation()
+
+150
+src/test/scala/startup/unit_testing/ComputationSuite.scala
+startup.unit_testing
+ComputationSuite
+Class
+startup.unit_testing.ComputationSuite
+<init>
+258
+295
+10
 assert
 Apply
 false
 0
 false
-assert(\n      this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n\n          // preparing expression to process\n          val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =\n            ExpressionToSerialize(dfExpression)\n          val dfExpressionJson: String = write(dfExpressionToSerialize)\n\n          // Sending expression to server for evaluation and further processing\n          val test7 = requests.post(\n            s"$host/jsonastdf",\n            data = dfExpressionJson,\n            connectTimeout = 80000000,\n            readTimeout = 80000000\n          )\n\n          // Retrieving and reading the processed expression from server\n          val dfExpressionJsonReceived: String = ujson.read(test7.text()).str\n          val dfExpressionRead: Expression[Dataset[Row]] =\n            read[Expression[Dataset[Row]]](dfExpressionJsonReceived)\n          val dfExpressionEvaluated: Dataset[Row] =\n            Expression.evaluate(dfExpressionRead)\n\n          // Asserting test validity\n          dfExpressionEvaluated.show()\n          dfExpressionEvaluated.schema == schema\n          dfExpressionEvaluated.count() == data.length\n        }\n      )\n    )
+assert(obtained.isInstanceOf[String])
 
-141
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+151
+src/test/scala/startup/unit_testing/ComputationSuite.scala
+startup.unit_testing
+ComputationSuite
 Class
-startup.integration_testing.httpServerSuite
+startup.unit_testing.ComputationSuite
 <init>
-3482
-4658
-133
+258
+264
+10
+assert$default$2
+Select
+false
+0
+false
+assert
+
+152
+src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+126
+278
+7
+test
+Apply
+false
+0
+false
+test("add result in correct addition") {\n    val obtained: Int = myStart(0).add(1, 1)\n    val expected: Int = 2\n    assertEquals(obtained, expected)\n  }
+
+153
+src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+191
+211
+8
+add
+Apply
+false
+0
+false
+myStart(0).add(1, 1)
+
+154
+src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+242
+274
+10
+assertEquals
+Apply
+false
+0
+false
+assertEquals(obtained, expected)
+
+155
+src/test/scala/startup/unit_testing/StartUpSuite.scala
+startup.unit_testing
+StartUpSuite
+Class
+startup.unit_testing.StartUpSuite
+<init>
+242
+254
+10
+assertEquals$default$3
+Select
+false
+0
+false
+assertEquals
+
+156
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+284
+403
+11
+build
+Apply
+false
+0
+false
+Undertow.builder\n        .addHttpListener(8081, "localhost")\n        .setHandler(example.defaultHandler)\n        .build
+
+157
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+284
+388
+13
+setHandler
+Apply
+false
+0
+false
+Undertow.builder\n        .addHttpListener(8081, "localhost")\n        .setHandler(example.defaultHandler)
+
+158
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+284
+344
+12
+addHttpListener
+Apply
+false
+0
+false
+Undertow.builder\n        .addHttpListener(8081, "localhost")
+
+159
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+284
+300
+11
+builder
+Apply
+false
+0
+false
+Undertow.builder
+
+160
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+365
+387
+13
+defaultHandler
+Select
+false
+0
+false
+example.defaultHandler
+
+161
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+410
+424
+15
+start
+Apply
+false
+0
+false
+server.start()
+
+162
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+453
+479
+17
+apply
+Apply
+false
+0
+false
+f("http://localhost:8081")
+
+163
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+453
+479
+17
+apply
+Apply
+true
+0
+false
+f("http://localhost:8081")
+
+164
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+496
+509
+18
+stop
+Apply
+false
+0
+false
+server.stop()
+
+165
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+496
+509
+18
+stop
+Apply
+true
+0
+false
+server.stop()
+
+166
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+withServer
+164
+178
+8
+withServer
+DefDef
+false
+0
+false
+def withServer
+
+167
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+<init>
+523
+1242
+21
+test
+Apply
+false
+0
+false
+test("MinimalApplication") {\n    assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val success = requests.get(host)\n          val conditions = List(\n            success.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42",\n            success.statusCode == 200,\n            requests\n              .get(s"$host/doesnt-exist", check = false)\n              .statusCode == 404,\n            requests.post(s"$host/do-thing", data = "hello").text() == "olleh",\n            requests.delete(s"$host/do-thing", check = false).statusCode == 405\n          )\n          conditions.forall(identity)\n        }\n      )\n    )\n  }
+
+168
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+<init>
+556
+1238
+22
+assert
+Apply
+false
+0
+false
+assert(\n      this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val success = requests.get(host)\n          val conditions = List(\n            success.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42",\n            success.statusCode == 200,\n            requests\n              .get(s"$host/doesnt-exist", check = false)\n              .statusCode == 404,\n            requests.post(s"$host/do-thing", data = "hello").text() == "olleh",\n            requests.delete(s"$host/do-thing", check = false).statusCode == 405\n          )\n          conditions.forall(identity)\n        }\n      )\n    )
+
+169
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+<init>
+570
+1232
+23
 withServer
 Apply
 false
 0
 false
-this.withServer("MinimalApplication", app.MinimalRoutesMain)(\n        { host =>\n\n          // preparing expression to process\n          val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =\n            ExpressionToSerialize(dfExpression)\n          val dfExpressionJson: String = write(dfExpressionToSerialize)\n\n          // Sending expression to server for evaluation and further processing\n          val test7 = requests.post(\n            s"$host/jsonastdf",\n            data = dfExpressionJson,\n            connectTimeout = 80000000,\n            readTimeout = 80000000\n          )\n\n          // Retrieving and reading the processed expression from server\n          val dfExpressionJsonReceived: String = ujson.read(test7.text()).str\n          val dfExpressionRead: Expression[Dataset[Row]] =\n            read[Expression[Dataset[Row]]](dfExpressionJsonReceived)\n          val dfExpressionEvaluated: Dataset[Row] =\n            Expression.evaluate(dfExpressionRead)\n\n          // Asserting test validity\n          dfExpressionEvaluated.show()\n          dfExpressionEvaluated.schema == schema\n          dfExpressionEvaluated.count() == data.length\n        }\n      )
+this.withServer("MinimalApplication", RoutesMain)(\n        { host =>\n          val success = requests.get(host)\n          val conditions = List(\n            success.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42",\n            success.statusCode == 200,\n            requests\n              .get(s"$host/doesnt-exist", check = false)\n              .statusCode == 404,\n            requests.post(s"$host/do-thing", data = "hello").text() == "olleh",\n            requests.delete(s"$host/do-thing", check = false).statusCode == 405\n          )\n          conditions.forall(identity)\n        }\n      )
 
-142
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+170
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3774
-3804
-139
-write
+663
+681
+25
+apply
 Apply
 false
 0
 false
-write(dfExpressionToSerialize)
+requests.get(host)
 
-143
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+171
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3774
-3779
-139
-write$default$2
+663
+675
+25
+apply$default$2
 Select
 false
 0
 false
-write
+requests.get
 
-144
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+172
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3774
-3779
-139
-write$default$3
+663
+675
+25
+apply$default$3
 Select
 false
 0
 false
-write
+requests.get
 
-145
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+173
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3935
-3953
-143
+663
+675
+25
+apply$default$4
+Select
+false
+0
+false
+requests.get
+
+174
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$5
+Select
+false
+0
+false
+requests.get
+
+175
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$6
+Select
+false
+0
+false
+requests.get
+
+176
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$7
+Select
+false
+0
+false
+requests.get
+
+177
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$8
+Select
+false
+0
+false
+requests.get
+
+178
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$9
+Select
+false
+0
+false
+requests.get
+
+179
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$10
+Select
+false
+0
+false
+requests.get
+
+180
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$11
+Select
+false
+0
+false
+requests.get
+
+181
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$12
+Select
+false
+0
+false
+requests.get
+
+182
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$13
+Select
+false
+0
+false
+requests.get
+
+183
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$14
+Select
+false
+0
+false
+requests.get
+
+184
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$15
+Select
+false
+0
+false
+requests.get
+
+185
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$16
+Select
+false
+0
+false
+requests.get
+
+186
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$17
+Select
+false
+0
+false
+requests.get
+
+187
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$18
+Select
+false
+0
+false
+requests.get
+
+188
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+663
+675
+25
+apply$default$19
+Select
+false
+0
+false
+requests.get
+
+189
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+709
+1176
+26
+apply
+Apply
+false
+0
+false
+List(\n            success.text() == "Hello World!evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42",\n            success.statusCode == 200,\n            requests\n              .get(s"$host/doesnt-exist", check = false)\n              .statusCode == 404,\n            requests.post(s"$host/do-thing", data = "hello").text() == "olleh",\n            requests.delete(s"$host/do-thing", check = false).statusCode == 405\n          )
+
+190
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+709
+713
+26
+List
+Ident
+false
+0
+false
+List
+
+191
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+727
+741
+27
+text
+Apply
+false
+0
+false
+success.text()
+
+192
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+933
+954
+30
 s
 Apply
 false
 0
 false
-s"$host/jsonastdf"
+s"$host/doesnt-exist"
 
-146
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+193
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3974
-3990
-144
+905
+932
+29
+apply$default$2
+Select
+false
+0
+false
+requests\n              .get
+
+194
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$3
+Select
+false
+0
+false
+requests\n              .get
+
+195
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$4
+Select
+false
+0
+false
+requests\n              .get
+
+196
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$5
+Select
+false
+0
+false
+requests\n              .get
+
+197
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$6
+Select
+false
+0
+false
+requests\n              .get
+
+198
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$7
+Select
+false
+0
+false
+requests\n              .get
+
+199
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$8
+Select
+false
+0
+false
+requests\n              .get
+
+200
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$9
+Select
+false
+0
+false
+requests\n              .get
+
+201
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$10
+Select
+false
+0
+false
+requests\n              .get
+
+202
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$11
+Select
+false
+0
+false
+requests\n              .get
+
+203
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$12
+Select
+false
+0
+false
+requests\n              .get
+
+204
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$13
+Select
+false
+0
+false
+requests\n              .get
+
+205
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$14
+Select
+false
+0
+false
+requests\n              .get
+
+206
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$15
+Select
+false
+0
+false
+requests\n              .get
+
+207
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$16
+Select
+false
+0
+false
+requests\n              .get
+
+208
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$17
+Select
+false
+0
+false
+requests\n              .get
+
+209
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+932
+29
+apply$default$19
+Select
+false
+0
+false
+requests\n              .get
+
+210
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+905
+970
+30
+apply
+Apply
+false
+0
+false
+requests\n              .get(s"$host/doesnt-exist", check = false)
+
+211
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1017
+1072
+32
+text
+Apply
+false
+0
+false
+requests.post(s"$host/do-thing", data = "hello").text()
+
+212
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1031
+1048
+32
+s
+Apply
+false
+0
+false
+s"$host/do-thing"
+
+213
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1057
+1064
+32
 ByteSourceRequestBlob
 Apply
 false
 0
 false
-dfExpressionJson
+"hello"
 
-147
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+214
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$2
 Select
 false
@@ -2534,16 +3673,16 @@ false
 false
 requests.post
 
-148
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+215
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$3
 Select
 false
@@ -2551,16 +3690,16 @@ false
 false
 requests.post
 
-149
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+216
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$4
 Select
 false
@@ -2568,16 +3707,50 @@ false
 false
 requests.post
 
-150
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+217
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
+apply$default$6
+Select
+false
+0
+false
+requests.post
+
+218
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1017
+1030
+32
+apply$default$7
+Select
+false
+0
+false
+requests.post
+
+219
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1017
+1030
+32
 apply$default$8
 Select
 false
@@ -2585,16 +3758,16 @@ false
 false
 requests.post
 
-151
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+220
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$9
 Select
 false
@@ -2602,16 +3775,16 @@ false
 false
 requests.post
 
-152
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+221
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$10
 Select
 false
@@ -2619,16 +3792,16 @@ false
 false
 requests.post
 
-153
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+222
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$11
 Select
 false
@@ -2636,16 +3809,16 @@ false
 false
 requests.post
 
-154
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+223
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$12
 Select
 false
@@ -2653,16 +3826,16 @@ false
 false
 requests.post
 
-155
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+224
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$13
 Select
 false
@@ -2670,16 +3843,16 @@ false
 false
 requests.post
 
-156
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+225
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$14
 Select
 false
@@ -2687,16 +3860,16 @@ false
 false
 requests.post
 
-157
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+226
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$15
 Select
 false
@@ -2704,16 +3877,16 @@ false
 false
 requests.post
 
-158
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+227
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$16
 Select
 false
@@ -2721,16 +3894,16 @@ false
 false
 requests.post
 
-159
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+228
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$17
 Select
 false
@@ -2738,16 +3911,16 @@ false
 false
 requests.post
 
-160
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+229
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$18
 Select
 false
@@ -2755,16 +3928,16 @@ false
 false
 requests.post
 
-161
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+230
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-3921
-142
+1017
+1030
+32
 apply$default$19
 Select
 false
@@ -2772,254 +3945,390 @@ false
 false
 requests.post
 
-162
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+231
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-3908
-4077
-142
+1017
+1065
+32
 apply
 Apply
 false
 0
 false
-requests.post(\n            s"$host/jsonastdf",\n            data = dfExpressionJson,\n            connectTimeout = 80000000,\n            readTimeout = 80000000\n          )
+requests.post(s"$host/do-thing", data = "hello")
 
-163
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+232
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-4201
-4225
-150
-read
+1113
+1130
+33
+s
 Apply
 false
 0
 false
-ujson.read(test7.text())
+s"$host/do-thing"
 
-164
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+233
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-4212
-4224
-150
-fromString
-Apply
-false
-0
-false
-test7.text()
-
-165
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
-Class
-startup.integration_testing.httpServerSuite
-$anonfun
-4212
-4224
-150
-text
-Apply
-false
-0
-false
-test7.text()
-
-166
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
-Class
-startup.integration_testing.httpServerSuite
-$anonfun
-4201
-4211
-150
-read$default$2
+1097
+1112
+33
+apply$default$2
 Select
 false
 0
 false
-ujson.read
+requests.delete
 
-167
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+234
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-4201
-4229
-150
-str
+1097
+1112
+33
+apply$default$3
 Select
 false
 0
 false
-ujson.read(test7.text()).str
+requests.delete
 
-168
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+235
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-4301
-4357
-152
-read
-Apply
-false
-0
-false
-read[Expression[Dataset[Row]]](dfExpressionJsonReceived)
-
-169
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
-Class
-startup.integration_testing.httpServerSuite
-$anonfun
-4332
-4356
-152
-fromString
-Apply
-false
-0
-false
-dfExpressionJsonReceived
-
-170
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
-Class
-startup.integration_testing.httpServerSuite
-$anonfun
-4301
-4331
-152
-read$default$2
+1097
+1112
+33
+apply$default$4
 Select
 false
 0
 false
-read[Expression[Dataset[Row]]]
+requests.delete
 
-171
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+236
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-4422
-4459
-154
-evaluate
-Apply
-false
-0
-false
-Expression.evaluate(dfExpressionRead)
-
-172
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
-Class
-startup.integration_testing.httpServerSuite
-$anonfun
-4508
-4536
-157
-show
-Apply
-false
-0
-false
-dfExpressionEvaluated.show()
-
-173
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
-Class
-startup.integration_testing.httpServerSuite
-$anonfun
-4547
-4575
-158
-schema
+1097
+1112
+33
+apply$default$5
 Select
 false
 0
 false
-dfExpressionEvaluated.schema
+requests.delete
 
-174
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+237
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
 $anonfun
-4596
-4625
-159
-count
-Apply
-false
-0
-false
-dfExpressionEvaluated.count()
-
-175
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
-Class
-startup.integration_testing.httpServerSuite
-$anonfun
-4629
-4640
-159
-length
+1097
+1112
+33
+apply$default$6
 Select
 false
 0
 false
-data.length
+requests.delete
 
-176
-src/test/scala/startup/integration_testing/IntegrationSuite.scala
-startup.integration_testing
-httpServerSuite
+238
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
 Class
-startup.integration_testing.httpServerSuite
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$7
+Select
+false
+0
+false
+requests.delete
+
+239
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$8
+Select
+false
+0
+false
+requests.delete
+
+240
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$9
+Select
+false
+0
+false
+requests.delete
+
+241
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$10
+Select
+false
+0
+false
+requests.delete
+
+242
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$11
+Select
+false
+0
+false
+requests.delete
+
+243
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$12
+Select
+false
+0
+false
+requests.delete
+
+244
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$13
+Select
+false
+0
+false
+requests.delete
+
+245
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$14
+Select
+false
+0
+false
+requests.delete
+
+246
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$15
+Select
+false
+0
+false
+requests.delete
+
+247
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$16
+Select
+false
+0
+false
+requests.delete
+
+248
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$17
+Select
+false
+0
+false
+requests.delete
+
+249
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1112
+33
+apply$default$19
+Select
+false
+0
+false
+requests.delete
+
+250
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1097
+1146
+33
+apply
+Apply
+false
+0
+false
+requests.delete(s"$host/do-thing", check = false)
+
+251
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1187
+1214
+35
+forall
+Apply
+false
+0
+false
+conditions.forall(identity)
+
+252
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
+$anonfun
+1205
+1213
+35
+identity
+Apply
+false
+0
+false
+identity
+
+253
+src/test/scala/web/WebServerSuite.scala
+web
+WebServerSuite
+Class
+web.WebServerSuite
 <init>
-3468
-3474
-132
+556
+562
+22
 assert$default$2
 Select
 false

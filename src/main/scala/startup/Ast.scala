@@ -31,7 +31,7 @@ package startup.ast
   * This package is part of the `startup` application.
   */
 
-import startup.dataframe.SparkJob.spark
+import app.SparkMain.{sparkSession}// => spark}
 import java.nio.file.{Paths, Files}
 
 import upickle.default.{
@@ -276,7 +276,7 @@ object DataFrameName:
     */
     def readAsDataFrame: Dataset[Row] =
       val path = s"./dataframes/${name.name}.parquet"
-      spark.read.parquet(path)
+      sparkSession.read.parquet(path)
 
   /** Provides an implicit `Writer[Dataset[Row]]` instance.
     *
