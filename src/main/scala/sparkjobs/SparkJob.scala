@@ -2,11 +2,9 @@ package sparkjobs
 
 import scala.concurrent.{Future, ExecutionContext}
 import ExecutionContext.Implicits.global
-//import org.apache.log4j.Logger
 import startup.ast.{Expression, Mult, Plus, Num}
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{SparkSession, Dataset, Row, DataFrame}
-import org.apache.spark.sql.types._
 
 extension(df: Dataset[Row])
   def dfToString: String =
@@ -21,7 +19,6 @@ extension(expression: Expression[Dataset[Row]])
     //dfString
 
 object Session:    
-  //val logger = Logger.getLogger(getClass.getName)
   
   val conf = new SparkConf().setAppName("sparkApp").setMaster("local[*]")
 
@@ -31,17 +28,14 @@ object Session:
       .builder()
       .config(conf)
       .appName("Spark dataframes for processing in startup.ast")
-      .master("local[*]")
+      .master("local[2]")
       .config("spark.executor.memory", "1g")
-      .config("spark.executor.cores", "1")
-      .config("spark.log.level", "INFO")
+      .config("spark.log.level", "WARN")
       .getOrCreate()
     catch
       case e: Exception =>
         val trace = e.printStackTrace()
         throw e
-  
-  //logger.info("SparkSession created")
 
   def stopSparkSession(): Unit =
     spark.stop()

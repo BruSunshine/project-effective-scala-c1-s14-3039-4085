@@ -31,7 +31,7 @@ package startup.ast
   * This package is part of the `startup` application.
   */
 
-import app.SparkMain.{sparkSession}// => spark}
+import app.SparkMain.{sparkSession}
 import java.nio.file.{Paths, Files}
 
 import upickle.default.{
@@ -183,6 +183,17 @@ object Expression:
     macroRW[Plus[T]],
     macroRW[Mult[T]]
   )
+
+  def validateExpression[T](expression: Expression[T]): Either[String, Expression[T]] =
+    expression match
+    case Num(n) => Right(expression) 
+    case Mult(a, b) => (validateExpression(a), validateExpression(b)) match
+        case (Right(_), Right(_)) => Right(expression)
+        case _ => Left("Invalid multiplication expression")
+    case Plus(a, b) => (validateExpression(a), validateExpression(b)) match
+        case (Right(_), Right(_)) => Right(expression)
+        case _ => Left("Invalid addition expression")
+
 end Expression
 
 /** A case class that wraps an `Expression[T]` instance.
@@ -194,7 +205,7 @@ end Expression
   * @tparam T
   *   The type of the values in the expression.
   */
-case class ExpressionToSerialize[T](argast: Expression[T])
+case class ExpressionToSerialize[T](argast: Either[String, Expression[T]])//Expression[T])
 
 /** Companion object for `ExpressionToSerialize` that provides an implicit
   * `ReadWriter` instance.
@@ -213,6 +224,40 @@ object ExpressionToSerialize:
     */
   given [T](using RW[T]): RW[ExpressionToSerialize[T]] =
     macroRW[ExpressionToSerialize[T]]
+
+  // Additional given instance for Either[String, ExpressionToSerialize[T]]
+  /*
+  given [T](using rwT: RW[T])(using rwExT: RW[ExpressionToSerialize[T]]): RW[Either[String, ExpressionToSerialize[T]]] =
+    RW.merge(
+      //summon[rwT]
+      rwT.bimap[Either[String, ExpressionToSerialize[T]]]({
+        case Left(x) => write(x)
+        case Right(_) => throw new IllegalStateException("Attempted to serialize Right as Left")},
+        Left(_)),
+      //summon[rwExT]
+      rwExt.bimap[Either[String, ExpressionToSerialize[T]]]({
+        case Right(exp) => exp
+        case Left(_) => throw new IllegalStateException("Attempted to serialize Left as Right")},
+        Right(_))
+    )
+  */
+  given [T](using rws: RW[String], rwt: RW[T])(using rwExT: RW[ExpressionToSerialize[T]]): RW[Either[String, ExpressionToSerialize[T]]] =
+    RW.merge(
+      rws.bimap[Either[String, ExpressionToSerialize[T]]](
+      {
+        case Left(str) => str
+        case Right(_) => throw new Exception("Not a Left value")
+      },
+      str => Left(str)
+      ),
+      rwExT.bimap[Either[String, ExpressionToSerialize[T]]](
+        {
+          case Right(expr) => expr
+          case Left(_) => throw new Exception("Not a Right value")
+        },
+        expr => Right(expr)
+      )
+    )
 
 /** A case class that represents the name of a DataFrame.
   *
@@ -296,3 +341,4 @@ object DataFrameName:
   given Reader[Dataset[Row]] =
     macroRW[DataFrameName]
     .map(_.readAsDataFrame)
+end DataFrameName

@@ -33,9 +33,9 @@ end DataFramesExemples
  
 object ExpressionsExemples:
   // Test validated expressions
-  val dfExpression1 = runMakeExpression0(sparkSession)
+  val dfExpression0 = runMakeExpression0(sparkSession)
 
   // Test simple expressions
-  val dfExpression = runMakeExpression1(sparkSession)
+  val dfExpression1 = runMakeExpression1(sparkSession)
 
 end ExpressionsExemples

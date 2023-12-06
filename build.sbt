@@ -26,4 +26,5 @@ scalacOptions ++= Seq(
 //  "-coverage-out", "coverage", // destination for measurement files
 //)
 
-unmanagedSourceDirectories in Compile += baseDirectory.value / "worksheets"
+Compile / unmanagedSourceDirectories += baseDirectory.value / "worksheets"
+//Compile / unmanagedResourceDirectories += baseDirectory.value / "src" / "main" / "resources"
