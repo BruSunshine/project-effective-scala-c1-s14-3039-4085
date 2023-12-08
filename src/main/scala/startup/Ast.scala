@@ -34,14 +34,10 @@ package startup.ast
 import app.SparkMain.{sparkSession}
 import java.nio.file.{Paths, Files}
 
-import upickle.default.{
-  ReadWriter => RW,
-  macroRW,
-  Reader,
-  Writer,
-}
+import upickle.default.{ReadWriter => RW, macroRW, Reader, Writer}
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions.{col, concat}
+
 
 /** A dummy class to test project setup */
 case class myStart(param: Int):
@@ -59,6 +55,7 @@ object myStart:
 case class Arg(arg: myStart)
 object Arg:
   given argRW: RW[Arg] = macroRW
+
 
 /** A type class that defines arithmetic operations for a type `T`.
   */
@@ -92,8 +89,8 @@ object ArithmeticOperation:
     */
   given DfOps: ArithmeticOperation[Dataset[Row]] with
     def add(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
-      dfx.show()
-      dfy.show()
+      //dfx.show()
+      //dfy.show()
       val resultDf =
         dfx
           .alias("dfx")
@@ -105,13 +102,13 @@ object ArithmeticOperation:
               .as("stringField"),
             (col("dfx.intField") + col("dfy.intField")).as("intField")
           )
-      resultDf.show()
+      //resultDf.show()
       resultDf
 
     def mul(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
-      dfx.show()
-      dfy.show()
-      println("ready")
+      //dfx.show()
+      //dfy.show()
+      //println("ready")
       val resultDf =
         dfx
           .alias("dfx")
@@ -123,8 +120,8 @@ object ArithmeticOperation:
               .as("stringField"),
             (col("dfx.intField") * col("dfy.intField")).as("intField")
           )
-      resultDf.show()
-      println("see results")
+      //resultDf.show()
+      //println("see results")
       resultDf
 
 /** A sealed trait representing an arithmetic expression.

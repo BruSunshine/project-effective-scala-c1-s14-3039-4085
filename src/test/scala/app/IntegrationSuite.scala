@@ -143,7 +143,7 @@ class httpServerSuite extends IntegrationSuite:
     )
   }
 */
-/*
+
   test("test66") {
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
@@ -173,7 +173,7 @@ class httpServerSuite extends IntegrationSuite:
       )
     )
   }
-*/
+
 /*
   test(
     "test7: Serialize and deserialize expression with dataframe processed through http server"
@@ -251,8 +251,8 @@ class httpServerSuite extends IntegrationSuite:
 
           // Asserting test validity
           dfExpressionEvaluated.show()
-          dfExpressionEvaluated.schema == DataFramesExemples.schema
-          dfExpressionEvaluated.count() == DataFramesExemples.data.length
+          dfExpressionEvaluated.schema == DataFramesExemples.schema1
+          dfExpressionEvaluated.count() == DataFramesExemples.data1.length
         }
       )
     )

@@ -3,7 +3,7 @@ package web
 import startup.computation.{runComputation2}
 import startup.ast.{myStart, Expression, Num}
 import startup.ast.DataFrameName.given
-import sparkjobs.SparkJob
+import sparkjobs.{SparkJob, DataFramesExemples}
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions._
 import cask.model.Request
@@ -13,7 +13,6 @@ import concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.{Future, Await}
 import scala.concurrent.duration._
 import app.SparkMain.sparkSession
-import scala.io.Source
 
 object ResultsHolder:
   //var lastResult: String = ""
@@ -65,7 +64,7 @@ object MinimalRoutes extends cask.Routes:
   def showDf(): cask.Response[String] =
     val sparkJobResult: Future[cask.Response[String]] =
       Future {
-          val dfstring = SparkJob.convertDummyDfAsString1(sparkSession)
+          val dfstring = SparkJob.convertDummyDfValidatedToString(sparkSession, DataFramesExemples.schema1, DataFramesExemples.data1)
             dfstring match
               case Right(result) =>
                 cask.Response(data=result, statusCode = StatusCodes.ACCEPTED)

@@ -1,7 +1,4 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
@@ -9,16 +6,6 @@
           "name": "Debug",
           "request": "launch",
           "mainClass": "app.RoutesMain",
-          //"args": [],
-          //"jvmOptions": ["-Xmx2G"],
-          //"env": {},
-          
-          //"sourceDirs": ["${workspaceFolder}/src/main/scala"],
-          //"classpath": ["${workspaceFolder}/lib/*"],
-          //"javaHome": "${env:JAVA_HOME}",
-          //"outputCapture": "std",
-          //"stopOnEntry": false,
-          //"showDebugOutput": true
       }
     ]
 }
