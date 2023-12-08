@@ -38,7 +38,7 @@ import upickle.default.{ReadWriter => RW, macroRW, Reader, Writer}
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions.{col, concat}
 
-
+/*
 /** A dummy class to test project setup */
 case class myStart(param: Int):
 
@@ -55,7 +55,7 @@ object myStart:
 case class Arg(arg: myStart)
 object Arg:
   given argRW: RW[Arg] = macroRW
-
+*/
 
 /** A type class that defines arithmetic operations for a type `T`.
   */

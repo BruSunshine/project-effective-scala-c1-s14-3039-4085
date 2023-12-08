@@ -1,7 +1,6 @@
 package web
 
-import startup.computation.{runComputation2}
-import startup.ast.{myStart, Expression, Num}
+import startup.ast.{Expression, Num}//myStart
 import startup.ast.DataFrameName.given
 import sparkjobs.{SparkJob, DataFramesExemples}
 import org.apache.spark.sql.{Dataset, Row}
@@ -16,49 +15,38 @@ import app.SparkMain.sparkSession
 
 object ResultsHolder:
   //var lastResult: String = ""
-  var sharedx: Option[Int] = None
-  var sharedy: Option[Int] = None
-  var sharedz: Option[Int] = None
-  var shareJsonString: Option[String] = None
+  //var sharedx: Option[Int] = None
+  //var sharedy: Option[Int] = None
+  //var sharedz: Option[Int] = None
+  //var shareJsonString: Option[String] = None
   var shareintExpressionEvaluated: Option[Int] = None
   var sharedfExpressionEvaluated: Option[String] = None
 
 object MinimalRoutes extends cask.Routes:
   
-  //@cask.get("/")
-  //def root() =
-  //  //java.nio.file.Paths.get("src/main/resources/static/toc.html")
-  //  val tocHtml = Source.fromResource("static/toc.html").mkString
-  //  cask.Response(tocHtml, headers = Seq("Content-Type" -> "text/html"))
+
 
   // Testing get routes
-  
-  @cask.get("/results")
-  def hello() =
-   "Hello, this is the result of the computation: " + runComputation2(ResultsHolder.sharedx, ResultsHolder.sharedy, ResultsHolder.sharedz)
 
-  //@cask.get("/resultsstring")
-  //def hellojson() =
-  //  s"Hello, this is the result string ${ResultsHolder.shareJsonString}"
   @cask.get("/resultsstring1")
   def hellojson1() =
-    s"Hello, this is the result string ${ResultsHolder.shareintExpressionEvaluated}"
+    s"This is the result the the ast evaluation on numbers ${ResultsHolder.shareintExpressionEvaluated}"
 
   @cask.get("/resultsstring2")
   def hellojson2() =
-    s"Hello, this is the result string ${ResultsHolder.sharedfExpressionEvaluated}"
+    s"This is the result the the ast evaluation on dataframes ${ResultsHolder.sharedfExpressionEvaluated}"
 
-  @cask.get("/comp")
-  def comp(): cask.Response[String] =
-    val futureResponse: Future[cask.Response[String]] =
-      Future {
-      val result = 
-        Thread.sleep(5000)
-        "I just slept 5 seconds. I was a future response with await time 6 seconds. This is why you see me."
-      cask.Response(result.toString)
-    }
-    val response: cask.Response[String] = Await.result(futureResponse, 6.seconds)
-    response
+//  @cask.get("/comp")
+//  def comp(): cask.Response[String] =
+//    val futureResponse: Future[cask.Response[String]] =
+//      Future {
+//      val result = 
+//        Thread.sleep(5000)
+//        "I just slept 5 seconds. I was a future response with await time 6 seconds. This is why you see me."
+//      cask.Response(result.toString)
+//    }
+//    val response: cask.Response[String] = Await.result(futureResponse, 6.seconds)
+//    response
 
   @cask.get("/comp1")
   def showDf(): cask.Response[String] =
@@ -76,13 +64,13 @@ object MinimalRoutes extends cask.Routes:
   
   // Testing post routes
 
-  @cask.post("/do-thing")
-  def doThing(request: cask.Request) =
-    request.text().reverse
+//  @cask.post("/do-thing")
+//  def doThing(request: cask.Request) =
+//    request.text().reverse
 
-  @cask.post("/do-parse")
-  def doParse(request: cask.Request) =
-    request.text().reverse
+//  @cask.post("/do-parse")
+//  def doParse(request: cask.Request) =
+//    request.text().reverse
 
   initialize()
 
@@ -100,25 +88,25 @@ object StaticFiles extends cask.Routes:
 
 end StaticFiles
 
-object FormPost extends cask.Routes:
+//object FormPost extends cask.Routes:
 
-  @cask.postForm("/evaluate")
-  def evaluate(
-      value1: cask.FormValue,
-      value2: cask.FormValue,
-      value3: cask.FormValue,
-      value4: cask.FormValue
-  ): String =
-    val operation: String = value1.value
-    val a: Int = value2.value.toInt
-    val b: Int = value3.value.toInt
-    val c: Int = value4.value.toInt
+//  @cask.postForm("/evaluate")
+//  def evaluate(
+//      value1: cask.FormValue,
+//      value2: cask.FormValue,
+//      value3: cask.FormValue,
+//      value4: cask.FormValue
+//  ): String =
+//    val operation: String = value1.value
+//    val a: Int = value2.value.toInt
+//    val b: Int = value3.value.toInt
+//    val c: Int = value4.value.toInt
     
-    ResultsHolder.sharedx = Some(a)
-    ResultsHolder.sharedy = Some(b)
-    ResultsHolder.sharedz = Some(c)
+//    ResultsHolder.sharedx = Some(a)
+//    ResultsHolder.sharedy = Some(b)
+//    ResultsHolder.sharedz = Some(c)
     
-    s"ok $operation with $a and $b"
+//    s"ok $operation with $a and $b"
 
   //@cask.postForm("/evaluate1")
   //def evaluate1(request: cask.Request): String =//ujson.Value =
@@ -134,13 +122,13 @@ object FormPost extends cask.Routes:
   //  jsonStr
 
 
-  initialize()
+//  initialize()
 
-end FormPost
+//end FormPost
 
 // Testing serializing objects and posting them to server as json for evaluation
 object JsonPost extends cask.Routes:
-
+/*
   @cask.postJson("/json")
   def jsonEndpoint(arg: ujson.Value): String =
     val myStartRead: myStart = read[myStart](arg)
@@ -188,10 +176,10 @@ object JsonPost extends cask.Routes:
         val dfResultJson: String = write(dfResultAsExpression)
         dfResultJson
       case Left(error) => throw new Exception(s"Invalid input: $error")
-  
+*/  
   @cask.postJson("/evaluate1")
   def evaluate1(argast: ujson.Value): ujson.Obj =
-    println(argast)
+    //println(argast)
     val eitherExpression: Either[String, Expression[Int]] = read[Either[String, Expression[Int]]](argast)
     eitherExpression match
     case Right(expression) => 
@@ -205,7 +193,7 @@ object JsonPost extends cask.Routes:
 
   @cask.postJson("/evaluate2")
   def evaluate2(argast: ujson.Value): ujson.Obj =
-    println(argast)
+    //println(argast)
     val eitherExpression: Either[String, Expression[Dataset[Row]]] =
       read[Either[String, Expression[Dataset[Row]]]](argast)
     eitherExpression match
