@@ -4006,3 +4006,199 @@ Caused by: java.util.ServiceConfigurationError: scalafix.v1.Rule: scalafix.inter
 	at scala.meta.internal.metals.ScalafixProvider.$anonfun$runScalafixRules$1(ScalafixProvider.scala:132)
 	... 4 more
 
+2023.12.08 10:54:03 INFO  Disconnecting from Bloop session...[0m
+2023.12.08 10:54:03 INFO  Shut down connection with build server.[0m
+2023.12.08 10:54:03 INFO  Shut down connection with build server.[0m
+2023.12.08 10:54:03 INFO  Deleted directories inside .bloop[0m
+2023.12.08 10:54:03 INFO  Attempting to connect to the build server...[0m
+2023.12.08 10:54:03 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.12.08 10:54:04 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.12.08 10:54:04 INFO  Attempting to connect to the build server...[0m
+2023.12.08 10:54:04 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.12.08 10:54:04 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/project/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.12.08 10:54:04 INFO  time: Connected to build server in 1.16s[0m
+2023.12.08 10:54:04 INFO  Connected to Build server: Bloop v1.5.11[0m
+2023.12.08 10:54:05 INFO  time: indexed workspace in 1.32s[0m
+2023.12.08 10:54:05 INFO  compiling project-effective-scala-c1-s14-3039-4085 (7 scala sources)[0m
+2023.12.08 10:54:11 INFO  compiling project-effective-scala-c1-s14-3039-4085-test (6 scala sources)[0m
+2023.12.08 10:54:11 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 5.98s[0m
+2023.12.08 10:54:12 INFO  time: compiled project-effective-scala-c1-s14-3039-4085-test in 1.15s[0m
+Dec 08, 2023 10:56:05 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "git:/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/sparkjobs/DataframesAndExpressions.scala?%7B%22path%22%3A%22%2Fhome%2Fbsoleille%2Fgitea%2Fproject-effective-scala-c1-s14-3039-4085%2Fsrc%2Fmain%2Fscala%2Fsparkjobs%2FDataframesAndExpressions.scala%22%2C%22ref%22%3A%22%22%7D"
+  ]
+}
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "git" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:97)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:131)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:187)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:645)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:642)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:608)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:43)
+	... 16 more
+
+2023.12.08 10:59:31 INFO  Disconnecting from Bloop session...[0m
+2023.12.08 10:59:31 INFO  Shut down connection with build server.[0m
+2023.12.08 10:59:31 INFO  Shut down connection with build server.[0m
+2023.12.08 10:59:31 INFO  Deleted directories inside .bloop[0m
+2023.12.08 10:59:31 INFO  Attempting to connect to the build server...[0m
+2023.12.08 10:59:31 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.12.08 10:59:32 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.12.08 10:59:32 INFO  Attempting to connect to the build server...[0m
+2023.12.08 10:59:32 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.12.08 10:59:32 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/project/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.12.08 10:59:32 INFO  time: Connected to build server in 1.08s[0m
+2023.12.08 10:59:32 INFO  Connected to Build server: Bloop v1.5.11[0m
+2023.12.08 10:59:33 INFO  time: indexed workspace in 1.38s[0m
+2023.12.08 10:59:34 INFO  compiling project-effective-scala-c1-s14-3039-4085 (7 scala sources)[0m
+2023.12.08 10:59:40 INFO  compiling project-effective-scala-c1-s14-3039-4085-test (6 scala sources)[0m
+2023.12.08 10:59:40 INFO  time: compiled project-effective-scala-c1-s14-3039-4085 in 6.32s[0m
+2023.12.08 10:59:41 INFO  time: compiled project-effective-scala-c1-s14-3039-4085-test in 1.22s[0m
+2023.12.08 11:00:25 ERROR Unable to run scalafix, please check logs for more info.
+java.util.ServiceConfigurationError: scalafix.v1.Rule: scalafix.internal.rule.DisableSyntax not a subtype
+	at java.util.ServiceLoader.fail(ServiceLoader.java:589)
+	at java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService(ServiceLoader.java:1237)
+	at java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext(ServiceLoader.java:1265)
+	at java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1300)
+	at java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1385)
+	at scala.collection.convert.JavaCollectionWrappers$JIteratorWrapper.hasNext(JavaCollectionWrappers.scala:46)
+	at scala.collection.immutable.List.prependedAll(List.scala:152)
+	at scala.collection.IterableOnceOps.toList(IterableOnce.scala:1315)
+	at scala.collection.IterableOnceOps.toList$(IterableOnce.scala:1315)
+	at scala.collection.AbstractIterator.toList(Iterator.scala:1300)
+	at scalafix.internal.v1.Rules$.all(Rules.scala:104)
+	at scalafix.v1.RuleDecoder$$anon$1.<init>(RuleDecoder.scala:106)
+	at scalafix.v1.RuleDecoder$.decoder(RuleDecoder.scala:105)
+	at scalafix.internal.v1.Args.ruleDecoder(Args.scala:253)
+	at scalafix.internal.v1.Args.configuredRules(Args.scala:287)
+	at scalafix.internal.v1.Args.$anonfun$validate$1(Args.scala:419)
+	at metaconfig.Configured.andThen(Configured.scala:45)
+	at scalafix.internal.v1.Args.validate(Args.scala:415)
+	at scalafix.internal.interfaces.ScalafixArgumentsImpl.evaluate(ScalafixArgumentsImpl.scala:43)
+	at scala.meta.internal.metals.ScalafixProvider.$anonfun$scalafixEvaluate$6(ScalafixProvider.scala:402)
+	at scala.util.Success.map(Try.scala:262)
+	at scala.meta.internal.metals.ScalafixProvider.$anonfun$scalafixEvaluate$5(ScalafixProvider.scala:374)
+	at scala.util.Success.flatMap(Try.scala:258)
+	at scala.meta.internal.metals.ScalafixProvider.scalafixEvaluate(ScalafixProvider.scala:373)
+	at scala.meta.internal.metals.ScalafixProvider.$anonfun$runScalafixRules$1(ScalafixProvider.scala:132)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.lang.Thread.run(Thread.java:829)
+[0m
+Dec 08, 2023 11:00:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: java.util.concurrent.ExecutionException: Boxed Exception
+java.util.concurrent.CompletionException: java.util.concurrent.ExecutionException: Boxed Exception
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:331)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:346)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:704)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:506)
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2088)
+	at scala.meta.internal.metals.CancelTokens$.$anonfun$future$1(CancelTokens.scala:40)
+	at scala.meta.internal.metals.CancelTokens$.$anonfun$future$1$adapted(CancelTokens.scala:38)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:484)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.util.concurrent.ExecutionException: Boxed Exception
+	at scala.concurrent.impl.Promise$.scala$concurrent$impl$Promise$$resolve(Promise.scala:99)
+	at scala.concurrent.impl.Promise$DefaultPromise.<init>(Promise.scala:108)
+	at scala.concurrent.Promise$.failed(Promise.scala:147)
+	at scala.concurrent.Future$.failed(Future.scala:651)
+	at scala.meta.internal.metals.ScalafixProvider.$anonfun$runScalafixRules$1(ScalafixProvider.scala:141)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:470)
+	... 3 more
+Caused by: java.util.ServiceConfigurationError: scalafix.v1.Rule: scalafix.internal.rule.DisableSyntax not a subtype
+	at java.base/java.util.ServiceLoader.fail(ServiceLoader.java:589)
+	at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService(ServiceLoader.java:1237)
+	at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext(ServiceLoader.java:1265)
+	at java.base/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1300)
+	at java.base/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1385)
+	at scala.collection.convert.JavaCollectionWrappers$JIteratorWrapper.hasNext(JavaCollectionWrappers.scala:46)
+	at scala.collection.immutable.List.prependedAll(List.scala:152)
+	at scala.collection.IterableOnceOps.toList(IterableOnce.scala:1315)
+	at scala.collection.IterableOnceOps.toList$(IterableOnce.scala:1315)
+	at scala.collection.AbstractIterator.toList(Iterator.scala:1300)
+	at scalafix.internal.v1.Rules$.all(Rules.scala:104)
+	at scalafix.v1.RuleDecoder$$anon$1.<init>(RuleDecoder.scala:106)
+	at scalafix.v1.RuleDecoder$.decoder(RuleDecoder.scala:105)
+	at scalafix.internal.v1.Args.ruleDecoder(Args.scala:253)
+	at scalafix.internal.v1.Args.configuredRules(Args.scala:287)
+	at scalafix.internal.v1.Args.$anonfun$validate$1(Args.scala:419)
+	at metaconfig.Configured.andThen(Configured.scala:45)
+	at scalafix.internal.v1.Args.validate(Args.scala:415)
+	at scalafix.internal.interfaces.ScalafixArgumentsImpl.evaluate(ScalafixArgumentsImpl.scala:43)
+	at scala.meta.internal.metals.ScalafixProvider.$anonfun$scalafixEvaluate$6(ScalafixProvider.scala:402)
+	at scala.util.Success.map(Try.scala:262)
+	at scala.meta.internal.metals.ScalafixProvider.$anonfun$scalafixEvaluate$5(ScalafixProvider.scala:374)
+	at scala.util.Success.flatMap(Try.scala:258)
+	at scala.meta.internal.metals.ScalafixProvider.scalafixEvaluate(ScalafixProvider.scala:373)
+	at scala.meta.internal.metals.ScalafixProvider.$anonfun$runScalafixRules$1(ScalafixProvider.scala:132)
+	... 4 more
+
+2023.12.08 11:00:43 INFO  Shutting down server[0m
+2023.12.08 11:00:43 INFO  shutting down Metals[0m
+2023.12.08 11:00:43 INFO  Shut down connection with build server.[0m
+2023.12.08 11:00:43 INFO  Shut down connection with build server.[0m
+2023.12.08 11:00:43 INFO  Exiting server[0m
+2023.12.08 11:00:48 INFO  Started: Metals version 1.1.0 in folders '/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085' for client Visual Studio Code 1.85.0.[0m
+2023.12.08 11:00:48 INFO  Attempting to connect to the build server...[0m
+2023.12.08 11:00:48 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.12.08 11:00:48 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.12.08 11:00:48 INFO  Attempting to connect to the build server...[0m
+2023.12.08 11:00:48 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.12.08 11:00:48 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/project/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.12.08 11:00:48 INFO  time: Connected to build server in 0.38s[0m
+2023.12.08 11:00:48 INFO  Connected to Build server: Bloop v1.5.11[0m
+2023.12.08 11:00:51 INFO  running '/home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /tmp/metals899145560250096137/sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'[0m
+2023.12.08 11:00:52 INFO  [info] welcome to sbt 1.9.6 (Eclipse Adoptium Java 11.0.20)[0m
+2023.12.08 11:00:52 INFO  [info] loading settings for project project-effective-scala-c1-s14-3039-4085-build-build from metals.sbt ...[0m
+2023.12.08 11:00:53 INFO  [info] loading project definition from /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/project/project[0m
+2023.12.08 11:00:54 INFO  time: indexed workspace in 5.45s[0m
+2023.12.08 11:00:53 INFO  [info] loading settings for project project-effective-scala-c1-s14-3039-4085-build from metals.sbt ...[0m
+2023.12.08 11:00:53 INFO  [info] loading project definition from /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/project[0m
+2023.12.08 11:00:56 INFO  [success] Generated .bloop/project-effective-scala-c1-s14-3039-4085-build.json[0m
+2023.12.08 11:00:56 INFO  [success] Total time: 1 s, completed Dec 8, 2023, 11:00:56 AM[0m
+2023.12.08 11:00:56 INFO  [info] loading settings for project project-effective-scala-c1-s14-3039-4085 from build.sbt ...[0m
+2023.12.08 11:00:56 INFO  [info] set current project to myScala3Project (in build file:/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/)[0m
+2023.12.08 11:00:57 INFO  [success] Generated .bloop/project-effective-scala-c1-s14-3039-4085.json[0m
+2023.12.08 11:00:57 INFO  [success] Generated .bloop/project-effective-scala-c1-s14-3039-4085-test.json[0m
+2023.12.08 11:00:57 INFO  [success] Total time: 1 s, completed Dec 8, 2023, 11:00:57 AM[0m
+2023.12.08 11:00:57 INFO  time: ran 'sbt bloopInstall' in 6.16s[0m
+2023.12.08 11:00:57 INFO  Disconnecting from Bloop session...[0m
+2023.12.08 11:00:57 INFO  Shut down connection with build server.[0m
+2023.12.08 11:00:57 INFO  Shut down connection with build server.[0m
+2023.12.08 11:00:57 INFO  Attempting to connect to the build server...[0m
+2023.12.08 11:00:57 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.12.08 11:00:57 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.12.08 11:00:57 INFO  Attempting to connect to the build server...[0m
+2023.12.08 11:00:57 INFO  Bloop uses /home/bsoleille/.cache/coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.20%252B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.20_8.tar.gz/jdk-11.0.20+8 defined at /home/bsoleille/.bloop/bloop.json[0m
+2023.12.08 11:00:57 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/project/.metals/bsp.trace.json or /home/bsoleille/.cache/metals/bsp.trace.json[0m
+2023.12.08 11:00:57 INFO  time: Connected to build server in 0.12s[0m
+2023.12.08 11:00:57 INFO  Connected to Build server: Bloop v1.5.11[0m
+2023.12.08 11:00:59 INFO  time: indexed workspace in 1.48s[0m

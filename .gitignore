@@ -1,3 +1,60 @@
-# Exclude files produced by sbt
+# SBT specific
 .bsp/
 target/
+project/target/
+project/project/
+.lib/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+# IntelliJ IDEA specific
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse specific
+.classpath
+.project
+.settings/
+bin/
+
+# VSCode with Metals
+.metals/
+.bloop/
+.vscode/
+
+# Spark specific
+spark-warehouse/
+
+# Logs
+logs/
+*.log
+
+# Compiled source #
+*.com
+*.class
+
+# Packages #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Others
+.Derby.log
+derby.log
