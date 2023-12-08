@@ -3,10 +3,7 @@ package sparkjobs
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{Row}
 import app.SparkMain.sparkSession
-import SparkJob.{
-  makeDummyDfNonValidated,
-  runMakeExpressionNonValidatedMix
-}
+import SparkJob.{makeDummyDfNonValidated, runMakeExpressionNonValidatedMix}
 
 object DataFramesExemples:
 
@@ -16,6 +13,15 @@ object DataFramesExemples:
       StructField("doubleField", DoubleType, nullable = false),
       StructField("stringField", StringType, nullable = false),
       StructField("intField", IntegerType, nullable = false)
+    )
+  )
+  
+  val schema3: StructType = StructType(
+    Array(
+      StructField("index", IntegerType, nullable = true),
+      StructField("doubleField", DoubleType, nullable = true),
+      StructField("stringField", StringType, nullable = true),
+      StructField("intField", IntegerType, nullable = true)
     )
   )
 
@@ -45,7 +51,7 @@ object DataFramesExemples:
 
   val df1 = makeDummyDfNonValidated(sparkSession, schema1, data1)
   val df2 = makeDummyDfNonValidated(sparkSession, schema1, data2)
-  val df3 = makeDummyDfNonValidated(sparkSession, schema1, data3)
+  val df3 = makeDummyDfNonValidated(sparkSession, schema3, data3)
 
 end DataFramesExemples
 

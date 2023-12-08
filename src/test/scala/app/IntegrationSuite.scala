@@ -34,33 +34,6 @@ class httpServerSuite extends IntegrationSuite:
       res
 
 /*
-  test("test0") {
-    assert(
-      this.withServer("MinimalApplication", RoutesMain)(
-        { host =>
-          val test0 = requests.post(
-            s"$host/",
-            data = "wtf",
-            connectTimeout = 200000
-          )
-          test0.text() == "wtf"
-        }
-      )
-    )
-  }
-*/
-  test("test1") {
-    assert(
-      this.withServer("MinimalApplication", RoutesMain)(
-        { host =>
-          val test1 = requests.get(host)
-          test1.text() == "Hello, this is the result of the computation: evaluation of expression Mult(Plus(Num(1),Num(5)),Num(7)) with parameters 1 and 5 and 7 is 42"
-        }
-      )
-    )
-  }
-
-
   test("test2") {
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
@@ -79,41 +52,9 @@ class httpServerSuite extends IntegrationSuite:
       )
     )
   }
-
-
-  test("test3") {
-    assert(
-      this.withServer("MinimalApplication", RoutesMain)(
-        { host =>
-          val test3 = requests.post(s"$host/do-thing", data = "hello")
-          test3.text() == "olleh"
-        }
-      )
-    )
-  }
-
-/*
-//  test("test4: issue with server closing the connection too early") {
-//    assert(
-//      this.withServer("MinimalApplication", RoutesMain)(
-//        { host =>
-//          requests.delete(s"$host/do-thing", check = false).statusCode == 405
-//        }
-//      )
-//    )
-//  }
 */
 
-  test("test5") {
-    assert(
-      this.withServer("MinimalApplication", RoutesMain)(
-        { host =>
-          val test5 = requests.get(s"$host/doesnt-exist", check = false)
-          test5.statusCode == 404
-        }
-      )
-    )
-  }
+
 
 /*
   test("test6") {

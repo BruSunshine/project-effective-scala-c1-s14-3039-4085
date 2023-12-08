@@ -1,7 +1,7 @@
 package app
 
 import cask.Main
-import web.{MinimalRoutes, StaticFiles, JsonPost}//FormPost
+import web.{MinimalRoutes, StaticFiles, JsonPost}
 import sparkjobs.Session
 
 trait MyApp
@@ -12,5 +12,5 @@ object SparkMain extends MyApp:
     sparkSession.stop()
 
 object RoutesMain extends cask.Main with MyApp:
-  val allRoutes = Seq(MinimalRoutes, StaticFiles, JsonPost)//FormPost
+  val allRoutes = Seq(MinimalRoutes, StaticFiles, JsonPost)
   SparkMain.sparkSession

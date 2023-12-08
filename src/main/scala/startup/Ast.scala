@@ -1,3 +1,5 @@
+//backup
+/*
 package startup.ast
 
 /** Package `startup.ast` contains classes and objects that represent the
@@ -33,29 +35,9 @@ package startup.ast
 
 import app.SparkMain.{sparkSession}
 import java.nio.file.{Paths, Files}
-
 import upickle.default.{ReadWriter => RW, macroRW, Reader, Writer}
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions.{col, concat}
-
-/*
-/** A dummy class to test project setup */
-case class myStart(param: Int):
-
-  /** A dummy value */
-  val startvalue: String = "test"
-
-  /** @param two integers to add */
-  /** @return the addition of the 2 inputs */
-  def add(x: Int, y: Int): Int = x + y
-
-object myStart:
-  given rw: RW[myStart] = macroRW
-
-case class Arg(arg: myStart)
-object Arg:
-  given argRW: RW[Arg] = macroRW
-*/
 
 /** A type class that defines arithmetic operations for a type `T`.
   */
@@ -89,8 +71,6 @@ object ArithmeticOperation:
     */
   given DfOps: ArithmeticOperation[Dataset[Row]] with
     def add(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
-      //dfx.show()
-      //dfy.show()
       val resultDf =
         dfx
           .alias("dfx")
@@ -102,13 +82,9 @@ object ArithmeticOperation:
               .as("stringField"),
             (col("dfx.intField") + col("dfy.intField")).as("intField")
           )
-      //resultDf.show()
       resultDf
 
     def mul(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
-      //dfx.show()
-      //dfy.show()
-      //println("ready")
       val resultDf =
         dfx
           .alias("dfx")
@@ -116,12 +92,15 @@ object ArithmeticOperation:
           .select(
             (col("dfx.index")).as("index"),
             (col("dfx.doubleField") * col("dfy.doubleField")).as("doubleField"),
-            concat(col("dfx.stringField"),col("dfx.stringField"),col("dfy.stringField"),col("dfy.stringField"))
+            concat(
+              col("dfx.stringField"),
+              col("dfx.stringField"),
+              col("dfy.stringField"),
+              col("dfy.stringField")
+            )
               .as("stringField"),
             (col("dfx.intField") * col("dfy.intField")).as("intField")
           )
-      //resultDf.show()
-      //println("see results")
       resultDf
 
 /** A sealed trait representing an arithmetic expression.
@@ -158,9 +137,9 @@ object Expression:
       ops: ArithmeticOperation[T]
   ): T =
     expression match
-      case Num[T](num)                      => num
-      case Mult[T](a, b)                    => ops.mul(evaluate(a), evaluate(b))
-      case Plus[T](a, b)                    => ops.add(evaluate(a), evaluate(b))
+      case Num[T](num)   => num
+      case Mult[T](a, b) => ops.mul(evaluate(a), evaluate(b))
+      case Plus[T](a, b) => ops.add(evaluate(a), evaluate(b))
   end evaluate
 
   /** Provides an implicit `ReadWriter[Expression[T]]` instance for any type `T`
@@ -181,15 +160,19 @@ object Expression:
     macroRW[Mult[T]]
   )
 
-  def validateExpression[T](expression: Expression[T]): Either[String, Expression[T]] =
+  def validateExpression[T](
+      expression: Expression[T]
+  ): Either[String, Expression[T]] =
     expression match
-    case Num(n) => Right(expression) 
-    case Mult(a, b) => (validateExpression(a), validateExpression(b)) match
-        case (Right(_), Right(_)) => Right(expression)
-        case _ => Left("Invalid multiplication expression")
-    case Plus(a, b) => (validateExpression(a), validateExpression(b)) match
-        case (Right(_), Right(_)) => Right(expression)
-        case _ => Left("Invalid addition expression")
+      case Num(n) => Right(expression)
+      case Mult(a, b) =>
+        (validateExpression(a), validateExpression(b)) match
+          case (Right(_), Right(_)) => Right(expression)
+          case _                    => Left("Invalid multiplication expression")
+      case Plus(a, b) =>
+        (validateExpression(a), validateExpression(b)) match
+          case (Right(_), Right(_)) => Right(expression)
+          case _                    => Left("Invalid addition expression")
 
 end Expression
 
@@ -202,7 +185,9 @@ end Expression
   * @tparam T
   *   The type of the values in the expression.
   */
-case class ExpressionToSerialize[T](argast: Either[String, Expression[T]])//Expression[T])
+case class ExpressionToSerialize[T](
+    argast: Either[String, Expression[T]]
+) //Expression[T])
 
 /** Companion object for `ExpressionToSerialize` that provides an implicit
   * `ReadWriter` instance.
@@ -237,20 +222,22 @@ object ExpressionToSerialize:
         case Left(_) => throw new IllegalStateException("Attempted to serialize Left as Right")},
         Right(_))
     )
-  */
-  given [T](using rws: RW[String], rwt: RW[T])(using rwExT: RW[ExpressionToSerialize[T]]): RW[Either[String, ExpressionToSerialize[T]]] =
+   */
+  given [T](using rws: RW[String], rwt: RW[T])(using
+      rwExT: RW[ExpressionToSerialize[T]]
+  ): RW[Either[String, ExpressionToSerialize[T]]] =
     RW.merge(
       rws.bimap[Either[String, ExpressionToSerialize[T]]](
-      {
-        case Left(str) => str
-        case Right(_) => throw new Exception("Not a Left value")
-      },
-      str => Left(str)
+        {
+          case Left(str) => str
+          case Right(_)  => throw new Exception("Not a Left value")
+        },
+        str => Left(str)
       ),
       rwExT.bimap[Either[String, ExpressionToSerialize[T]]](
         {
           case Right(expr) => expr
-          case Left(_) => throw new Exception("Not a Right value")
+          case Left(_)     => throw new Exception("Not a Right value")
         },
         expr => Right(expr)
       )
@@ -288,13 +275,16 @@ object DataFrameName:
       val name = DataFrameName(dfId)
       name.writeAsParquet(df)
       name
-    
+
     def contentHash: String =
       val firstColumnName = df.columns(0)
       val sortedDf = df.sort(firstColumnName)
       val contentString = sortedDf.collect().mkString
       val md = java.security.MessageDigest.getInstance("SHA-256")
-      val hash = md.digest(contentString.getBytes("UTF-8")).map("%02x".format(_)).mkString
+      val hash = md
+        .digest(contentString.getBytes("UTF-8"))
+        .map("%02x".format(_))
+        .mkString
       hash
 
   extension (name: DataFrameName)
@@ -304,18 +294,18 @@ object DataFrameName:
       if (!Files.exists(Paths.get(path))) then
         df.coalesce(1).write.mode("overwrite").parquet(path)
 
-  /** Provides an extension method for `DataFrameName` to read the Parquet file
-    * as a `Dataset[Row]`.
-    *
-    * The method uses the name of the `DataFrameName` instance as the path to
-    * the Parquet file.
-    *
-    * @param name
-    *   The `DataFrameName` instance that represents the path to the Parquet
-    *   file.
-    * @return
-    *   The dataset read from the Parquet file.
-    */
+    /** Provides an extension method for `DataFrameName` to read the Parquet
+      * file as a `Dataset[Row]`.
+      *
+      * The method uses the name of the `DataFrameName` instance as the path to
+      * the Parquet file.
+      *
+      * @param name
+      *   The `DataFrameName` instance that represents the path to the Parquet
+      *   file.
+      * @return
+      *   The dataset read from the Parquet file.
+      */
     def readAsDataFrame: Dataset[Row] =
       val path = s"./dataframes/${name.name}.parquet"
       sparkSession.read.parquet(path)
@@ -327,8 +317,7 @@ object DataFrameName:
     */
   given Writer[Dataset[Row]] =
     macroRW[DataFrameName]
-    .comap(_.toDataFrameName)
-
+      .comap(_.toDataFrameName)
 
   /** Provides an implicit `Reader[Dataset[Row]]` instance.
     *
@@ -337,5 +326,6 @@ object DataFrameName:
     */
   given Reader[Dataset[Row]] =
     macroRW[DataFrameName]
-    .map(_.readAsDataFrame)
+      .map(_.readAsDataFrame)
 end DataFrameName
+*/

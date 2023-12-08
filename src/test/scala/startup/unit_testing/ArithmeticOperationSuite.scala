@@ -7,7 +7,7 @@ import org.apache.spark.sql.{Dataset, Row}
 import sparkjobs.DataFramesExemples
 import startup.ast.DataFrameName.contentHash
 
-class StartUpSuite extends munit.FunSuite:
+class ArithmeticOperationSuite extends munit.FunSuite:
 
   test("Evaluation of integer number expression is correct") {
     val ObtainedEvalIntExpressionNum: Int = Expression.evaluate(Num(3))
@@ -115,4 +115,4 @@ class StartUpSuite extends munit.FunSuite:
     )
   }
 
-end StartUpSuite
+end ArithmeticOperationSuite
