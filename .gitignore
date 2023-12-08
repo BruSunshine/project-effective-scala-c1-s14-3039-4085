@@ -58,3 +58,6 @@ Thumbs.db
 # Others
 .Derby.log
 derby.log
+
+# ammonite
+.ammonite/
