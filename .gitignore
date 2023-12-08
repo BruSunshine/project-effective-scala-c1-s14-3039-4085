@@ -30,8 +30,8 @@ bin/
 spark-warehouse/
 
 # Logs
-logs/
-*.log
+#logs/
+#.log
 
 # Compiled source #
 *.com
