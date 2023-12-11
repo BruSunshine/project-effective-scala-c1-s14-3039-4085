@@ -55,7 +55,7 @@ class DataFrameNameSuite extends munit.FunSuite:
   test("Writer[Dataset[Row]] instance should correctly writes a Dataset[Row] as JSON") {
     val df: Dataset[Row] = DataFramesExemples.df3
     val dfName = df.toDataFrameName
-    val json = write(df)
+    val json = write[Dataset[Row]](df)
     assert(json.nonEmpty)
     assert(json.contains(dfName.name))
   }
@@ -63,7 +63,7 @@ class DataFrameNameSuite extends munit.FunSuite:
   test("Reader[Dataset[Row]] instance should correctly reads a Dataset[Row] from JSON") {
     val df: Dataset[Row] = DataFramesExemples.df3
     val dfName = df.toDataFrameName
-    val json = write(df)
+    val json = write[Dataset[Row]](df)
     val readDf = read[Dataset[Row]](json)
     assert(df.schema == readDf.schema)
     assert(df.count == readDf.count)

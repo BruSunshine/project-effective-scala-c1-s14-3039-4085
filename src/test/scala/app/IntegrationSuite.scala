@@ -97,7 +97,7 @@ class httpServerSuite extends IntegrationSuite:
           val ValidIntExpression: Either[String, Expression[Int]] =
             Expression.validateExpression(IntExpression)
           val ValidIntExpressionToSerialize = ExpressionToSerialize(ValidIntExpression)
-          val ValidIntExpressionJson = write(ValidIntExpressionToSerialize)
+          val ValidIntExpressionJson = write[ExpressionToSerialize[Int]](ValidIntExpressionToSerialize)
           
           // Sending expression to server for evaluation and further processing
           val test66 = requests.post(
@@ -167,7 +167,7 @@ class httpServerSuite extends IntegrationSuite:
             Expression.validateExpression(dfExpressionToProcess)
           val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =
             ExpressionToSerialize(dfExpressionToProcessValidated)
-          val dfExpressionJson: String = write(dfExpressionToSerialize)
+          val dfExpressionJson: String = write[ExpressionToSerialize[Dataset[Row]]](dfExpressionToSerialize)
 
           // Sending expression to server for evaluation and further processing
           val test77 = requests.post(

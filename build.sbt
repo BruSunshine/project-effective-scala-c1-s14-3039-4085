@@ -19,9 +19,10 @@ libraryDependencies ++= Seq(
 
 scalacOptions ++= Seq(
   //"-sourceroot", "startup", // source root path
-  "-Wunused:imports" // show warnings during compilation
-)
-
+  "-Wunused:imports", // show warnings during compilation
+  "-Ylog:typer"
+  )
+ 
 //scalacOptions in Test ++= Seq(
 //  "-coverage-out", "coverage", // destination for measurement files
 //)

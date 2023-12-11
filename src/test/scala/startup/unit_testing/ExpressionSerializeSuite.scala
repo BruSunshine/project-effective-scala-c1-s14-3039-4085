@@ -2,38 +2,52 @@ package startup.unit_testing
 
 import munit.FunSuite
 import startup.ast.ArithmeticOperation
-import startup.ast.{ExpressionToSerialize, Expression, Num, Plus, Mult}
+import startup.ast.{ExpressionToSerialize, Expression, Num}
 import org.apache.spark.sql.{Dataset, Row}
 import sparkjobs.DataFramesExemples
 import startup.ast.DataFrameName.contentHash
 import upickle.default.{read, write}
 import startup.ast.ExpressionToSerialize.given
-import startup.ast.Expression.given
 import startup.ast.DataFrameName.given
 import startup.ast.ArithmeticOperation.given
-
+import startup.ast.DataFrameName.{toDataFrameName}
 
 class ExpressionSerializeSuite extends munit.FunSuite:
 
-  test("ReadWriter[ExpressionToSerialize[T]] should correctly serialize and deserialize ExpressionToSerialize[T]") {
-    val expr = ExpressionToSerialize(Right(Num(3)))
-    val json = write(expr)
-    val readExpr = read[ExpressionToSerialize[String]](json)
+  test(
+    "ReadWriter[ExpressionToSerialize[Int]] should correctly serialize and deserialize ExpressionToSerialize[Int]"
+  ) {
+    val expr: ExpressionToSerialize[Int] = ExpressionToSerialize(Right(Num(3)))
+    val jsonExpr = write[ExpressionToSerialize[Int]](expr)
+    val readExpr = read[ExpressionToSerialize[Int]](jsonExpr)
     assert(expr == readExpr)
   }
-/*
-  test("ReadWriter[Either[String, ExpressionToSerialize[T]]] should correctly serialize and deserialize Either[String, ExpressionToSerialize[T]]") {
-    // Create an Either[String, ExpressionToSerialize[T]] instance
-    val either = Left("test")
 
-    // Serialize the Either instance to JSON
-    val json = write(either)
-
-    // Deserialize the JSON string back to an Either instance
-    val readEither = read[Either[String, ExpressionToSerialize[String]]](json)
-
-    // Check that the deserialized Either instance is the same as the original
-    assert(either == readEither)
+  test(
+    "ReadWriter[ExpressionToSerialize[Double]] should correctly serialize and deserialize ExpressionToSerialize[Double]"
+  ) {
+    val expr: ExpressionToSerialize[Double] =
+      ExpressionToSerialize(Right(Num(3.8)))
+    val jsonExpr = write[ExpressionToSerialize[Double]](expr)
+    val readExpr = read[ExpressionToSerialize[Double]](jsonExpr)
+    assert(expr == readExpr)
   }
-end ExpressionSerializeSuite
-*/
+
+  test(
+    "ReadWriter[ExpressionToSerialize[Dataset[Row]]] should correctly serialize and deserialize ExpressionToSerialize[Dataset[Row]]"
+  ) {
+    val df: Dataset[Row] = DataFramesExemples.df3
+    val dfName = df.toDataFrameName
+    val expr: ExpressionToSerialize[Dataset[Row]] =
+      ExpressionToSerialize(Expression.validateExpression(Num(df)))    
+    val jsonExpr: String = write[ExpressionToSerialize[Dataset[Row]]](expr)
+    val readExpr: ExpressionToSerialize[Dataset[Row]] =
+      read[ExpressionToSerialize[Dataset[Row]]](jsonExpr)
+    for
+      x <- expr.argast
+      y <- readExpr.argast
+    yield
+      val xeval = Expression.evaluate(x).contentHash
+      val yeval = Expression.evaluate(y).contentHash
+      assert(xeval == yeval)
+  }

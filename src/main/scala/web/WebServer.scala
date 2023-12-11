@@ -2,6 +2,7 @@ package web
 
 import startup.ast.{Expression, Num}
 import startup.ast.DataFrameName.given
+import startup.ast.Expression.given
 import sparkjobs.{SparkJob, DataFramesExemples, dfToString}
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions._

@@ -49,6 +49,8 @@ object ArithmeticOperation:
       resultDf
 
     def mul(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
+      require(!dfx.isEmpty, "dataframes used in multiplication should be non-empty")
+      require(!dfy.isEmpty, "dataframes used in multiplication should be non-empty")
       val resultDf =
         dfx
           .alias("dfx")
