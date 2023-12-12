@@ -3,17 +3,25 @@ package startup.ast
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions.{col, concat}
 
-/*
+
 trait OperationValidator[T]:
-  def validate(t: T): Boolean
+  def validate(t1: T, t2: T, op: String): Boolean
 object OperationValidator:
   given OperationValidator[Int] with
-    def validate(x: Int): Boolean = x >= 0
+    def validate(x: Int, y:Int, op: String): Boolean =
+      op match 
+        case "add" => (x < 800) && (y < 800)
+        case "mul" => (x < 40) && (y < 40)
+        case _ => false
   given OperationValidator[Double] with
-    def validate(x: Double): Boolean = x >= 0
+    def validate(x: Double, y: Double, op: String): Boolean =
+      true
   given OperationValidator[Dataset[Row]] with
-    def validate(df: Dataset[Row]): Boolean = df.count < 1000
-*/
+    def validate(df1: Dataset[Row], df2: Dataset[Row], op: String): Boolean =
+      op match 
+        case "add" => (df1.schema == df2.schema) && !df1.isEmpty && !df2.isEmpty
+        case "mul" => (df1.schema == df2.schema) && !df1.isEmpty && !df2.isEmpty
+        case _ => false
 
 /** A type class that defines arithmetic operations for a type `T`.
   */
@@ -35,7 +43,7 @@ object ArithmeticOperation:
     */
   given IntOps: ArithmeticOperation[Int] with
     def add(x: Int, y: Int): Int =
-      require((x < 50) && (y < 50), "Integers arguments are > threshold in add arithmetic operation")
+      //require((x < 50) && (y < 50), "Integers arguments are > threshold in add arithmetic operation")
       x + y
     def mul(x: Int, y: Int): Int = x * y
 
@@ -63,8 +71,8 @@ object ArithmeticOperation:
       resultDf
 
     def mul(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
-      require(!dfx.isEmpty, "dataframes used in multiplication should be non-empty")
-      require(!dfy.isEmpty, "dataframes used in multiplication should be non-empty")
+      //require(!dfx.isEmpty, "dataframes used in multiplication should be non-empty")
+      //require(!dfy.isEmpty, "dataframes used in multiplication should be non-empty")
       val resultDf =
         dfx
           .alias("dfx")

@@ -60,6 +60,7 @@ object Expression:
     * @return
     *   The result of the evaluation.
     */
+  
   def evaluate[T](expression: Expression[T])(using
       ops: ArithmeticOperation[T]
   ): T =
@@ -68,6 +69,38 @@ object Expression:
       case Mult[T](a, b) => ops.mul(evaluate(a), evaluate(b))
       case Plus[T](a, b) => ops.add(evaluate(a), evaluate(b))
   end evaluate
+  
+  def evaluate1[T: OperationValidator](expression: Either[List[String], Expression[T]])(using
+      ops: ArithmeticOperation[T]
+  ): Either[List[String], T] =
+    try
+      expression match
+        case Right(exp) =>
+          exp match
+            case Num[T](num)   => Right(num)
+            case Mult[T](a, b) =>
+              for
+                A <- evaluate1(Right(a))
+                B <- evaluate1(Right(b))
+              yield
+                if summon[OperationValidator[T]].validate(A, B, "mul") then
+                  ops.mul(A, B)
+                else
+                  throw new Exception("Invalid mul operation")
+            case Plus[T](a, b) =>
+              for
+                A <- evaluate1(Right(a))
+                B <- evaluate1(Right(b))
+              yield
+                if summon[OperationValidator[T]].validate(A, B, "add") then
+                  ops.add(A, B)
+                else
+                  throw new Exception("Invalid plus operation")
+        case Left(errors) => Left(errors)
+    catch
+      case error => Left(List(s"$error"))
+  end evaluate1
+
 
   /** Provides an implicit `ReadWriter[Expression[T]]` instance for any type `T`
     * that has a `ReadWriter[T]` instance.
