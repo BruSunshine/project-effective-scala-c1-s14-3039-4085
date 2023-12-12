@@ -36,7 +36,7 @@ object MinimalRoutes extends cask.Routes:
   def showDf(): cask.Response[String] =
     val sparkJobResult: Future[cask.Response[String]] =
       Future {
-        val dfstring: Either[String, String] =
+        val dfstring: Either[List[String], String] =
           SparkJob.convertDummyDfValidatedToString(
             sparkSession,
             DataFramesExemples.schema1,
@@ -80,8 +80,8 @@ object JsonPost extends cask.Routes:
   def evaluate1(argast: ujson.Value): ujson.Obj =
     def eval1(argast: ujson.Value): Try[ujson.Obj] =
       Try {
-        val eitherExpression: Either[String, Expression[Int]] =
-          read[Either[String, Expression[Int]]](argast)
+        val eitherExpression: Either[List[String], Expression[Int]] =
+          read[Either[List[String], Expression[Int]]](argast)
         eitherExpression match
           case Right(expression) =>
             val intExpressionEvaluated: Int = Expression.evaluate(expression)
@@ -102,14 +102,14 @@ object JsonPost extends cask.Routes:
   def evaluate2(argast: ujson.Value): ujson.Obj =
     def eval2(argast: ujson.Value): Try[ujson.Obj] =
       Try {
-        val eitherExpression: Either[String, Expression[Dataset[Row]]] =
-          read[Either[String, Expression[Dataset[Row]]]](argast)
+        val eitherExpression: Either[List[String], Expression[Dataset[Row]]] =
+          read[Either[List[String], Expression[Dataset[Row]]]](argast)
         eitherExpression match
           case Right(expression) =>
             val dfExpressionEvaluated: Dataset[Row] =
               Expression.evaluate(expression)
-            val dfResultAsExpression: Either[String, Expression[Dataset[Row]]] =
-              Expression.validateExpression(Num(dfExpressionEvaluated))
+            val dfResultAsExpression: Either[List[String], Expression[Dataset[Row]]] =
+              Expression.validateExpression1(Num(dfExpressionEvaluated))
             val dfResultJson: String = write(dfResultAsExpression)
             val result = dfExpressionEvaluated.dfToString
             ResultsHolder.sharedfExpressionEvaluated =

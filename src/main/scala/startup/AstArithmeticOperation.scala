@@ -3,6 +3,18 @@ package startup.ast
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions.{col, concat}
 
+/*
+trait OperationValidator[T]:
+  def validate(t: T): Boolean
+object OperationValidator:
+  given OperationValidator[Int] with
+    def validate(x: Int): Boolean = x >= 0
+  given OperationValidator[Double] with
+    def validate(x: Double): Boolean = x >= 0
+  given OperationValidator[Dataset[Row]] with
+    def validate(df: Dataset[Row]): Boolean = df.count < 1000
+*/
+
 /** A type class that defines arithmetic operations for a type `T`.
   */
 trait ArithmeticOperation[T]:
@@ -22,7 +34,9 @@ object ArithmeticOperation:
   /** Given instance of `ArithmeticOperation` for `Int`.
     */
   given IntOps: ArithmeticOperation[Int] with
-    def add(x: Int, y: Int): Int = x + y
+    def add(x: Int, y: Int): Int =
+      require((x < 50) && (y < 50), "Integers arguments are > threshold in add arithmetic operation")
+      x + y
     def mul(x: Int, y: Int): Int = x * y
 
   /** Given instance of `ArithmeticOperation` for `Double`.

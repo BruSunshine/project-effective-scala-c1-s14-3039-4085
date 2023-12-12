@@ -39,7 +39,7 @@ class ExpressionSerializeSuite extends munit.FunSuite:
     val df: Dataset[Row] = DataFramesExemples.df3
     val dfName = df.toDataFrameName
     val expr: ExpressionToSerialize[Dataset[Row]] =
-      ExpressionToSerialize(Expression.validateExpression(Num(df)))    
+      ExpressionToSerialize(Expression.validateExpression1(Num(df)))    
     val jsonExpr: String = write[ExpressionToSerialize[Dataset[Row]]](expr)
     val readExpr: ExpressionToSerialize[Dataset[Row]] =
       read[ExpressionToSerialize[Dataset[Row]]](jsonExpr)

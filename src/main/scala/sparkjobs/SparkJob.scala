@@ -49,19 +49,19 @@ object SparkJob:
       session: SparkSession,
       schema: StructType,
       data: Seq[Row]
-  ): Either[String, DataFrame] =
+  ): Either[List[String], DataFrame] =
     try
-      val validatedDf: Either[String, DataFrame] = Right(
+      val validatedDf: Either[List[String], DataFrame] = Right(
         makeDummyDfNonValidated(session, schema, data)
       )
       validatedDf
-    catch case e: Exception => Left(s"Error processing data: ${e.getMessage}")
+    catch case e: Exception => Left(List(s"Error processing data: ${e.getMessage}"))
 
   def convertDummyDfValidatedToString(
       session: SparkSession,
       schema: StructType,
       data: Seq[Row]
-  ): Either[String, String] =
+  ): Either[List[String], String] =
     val result = makeDummyDfValidated(session, schema, data).map(validatedDf =>
       validatedDf.dfToString.replace(",", "|")
     )

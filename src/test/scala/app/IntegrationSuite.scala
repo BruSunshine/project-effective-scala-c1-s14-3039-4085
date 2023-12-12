@@ -94,8 +94,8 @@ class httpServerSuite extends IntegrationSuite:
           val IntExpression: Expression[Int] =
             Num(3)
             //Mult(Plus(Num(3), Num(4)), Num(5))
-          val ValidIntExpression: Either[String, Expression[Int]] =
-            Expression.validateExpression(IntExpression)
+          val ValidIntExpression: Either[List[String], Expression[Int]] =
+            Expression.validateExpression1(IntExpression)
           val ValidIntExpressionToSerialize = ExpressionToSerialize(ValidIntExpression)
           val ValidIntExpressionJson = write[ExpressionToSerialize[Int]](ValidIntExpressionToSerialize)
           
@@ -163,8 +163,8 @@ class httpServerSuite extends IntegrationSuite:
           // preparing expression to process
           val dfExpressionToProcess: Expression[Dataset[Row]] =
             ExpressionsExemples.dfExpression0
-          val dfExpressionToProcessValidated: Either[String, Expression[Dataset[Row]]] =
-            Expression.validateExpression(dfExpressionToProcess)
+          val dfExpressionToProcessValidated: Either[List[String], Expression[Dataset[Row]]] =
+            Expression.validateExpression1(dfExpressionToProcess)
           val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =
             ExpressionToSerialize(dfExpressionToProcessValidated)
           val dfExpressionJson: String = write[ExpressionToSerialize[Dataset[Row]]](dfExpressionToSerialize)
@@ -180,8 +180,8 @@ class httpServerSuite extends IntegrationSuite:
           // Retrieving and reading the processed expression from server
           val dfExpressionJsonReceived: String = ujson.read(test77.text()).str
           
-          val eitherExpression: Either[String, Expression[Dataset[Row]]] =
-            read[Either[String, Expression[Dataset[Row]]]](dfExpressionJsonReceived)
+          val eitherExpression: Either[List[String], Expression[Dataset[Row]]] =
+            read[Either[List[String], Expression[Dataset[Row]]]](dfExpressionJsonReceived)
           
           val dfExpressionEvaluated = 
             eitherExpression match

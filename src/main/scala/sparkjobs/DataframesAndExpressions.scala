@@ -48,10 +48,15 @@ object DataFramesExemples:
     Row(4, 8.0, "dd", 8),
     Row(5, 10.0, "ee", 10)
   )
+  
+  val data4 = Seq(
+    Row(1, 2.0, "aa", 2),
+  )
 
   val df1 = makeDummyDfNonValidated(sparkSession, schema1, data1)
   val df2 = makeDummyDfNonValidated(sparkSession, schema1, data2)
   val df3 = makeDummyDfNonValidated(sparkSession, schema3, data3)
+  val df4 = makeDummyDfNonValidated(sparkSession, schema3, data4)
 
 end DataFramesExemples
 

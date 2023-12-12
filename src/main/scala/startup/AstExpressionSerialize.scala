@@ -14,7 +14,7 @@ import startup.ast.Expression.given
   *   The type of the values in the expression.
   */
 case class ExpressionToSerialize[T](
-    argast: Either[String, Expression[T]]
+    argast: Either[List[String], Expression[T]]
 )
 
 /** Companion object for `ExpressionToSerialize` that provides an implicit
