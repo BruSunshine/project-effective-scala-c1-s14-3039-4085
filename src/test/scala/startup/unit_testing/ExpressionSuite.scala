@@ -27,7 +27,10 @@ class ExpressionSuite extends munit.FunSuite:
   }
 
   test("validateExpression should validate a valid dataframe expression") {
-    val expr = Plus(Num(DataFramesExemples.df1), Mult(Num(DataFramesExemples.df2), Num(DataFramesExemples.df3)))
+    val expr = Plus(
+      Num(DataFramesExemples.df1),
+      Mult(Num(DataFramesExemples.df2), Num(DataFramesExemples.df3))
+    )
     assert(Expression.validateExpression(expr).isRight)
   }
 
@@ -39,22 +42,25 @@ class ExpressionSuite extends munit.FunSuite:
   test("evaluateExpression should evaluate a valid int operation") {
     val validOperation = Plus(Num(6), Mult(Num(30), Num(7)))
     val validOperationValidated = Expression.validateExpression(validOperation)
-    val validOperationEvaluated = Expression.evaluateValidExpression(validOperationValidated)
+    val validOperationEvaluated =
+      Expression.evaluateValidExpression(validOperationValidated)
     assert(validOperationEvaluated.isRight)
   }
 
   test("evaluateExpression should invalidate an invalid int operation") {
     val validOperation = Plus(Num(600), Mult(Num(43), Num(7)))
     val validOperationValidated = Expression.validateExpression(validOperation)
-    val validOperationEvaluated = Expression.evaluateValidExpression(validOperationValidated)
+    val validOperationEvaluated =
+      Expression.evaluateValidExpression(validOperationValidated)
     assert(validOperationEvaluated.left.get.length == 1)
   }
-  
+
   test("evaluateExpression should evaluate a valid dataframe operation") {
     val df = DataFramesExemples.df1
     val validOperation = Plus(Num(df), Mult(Num(df), Num(df)))
     val validOperationValidated = Expression.validateExpression(validOperation)
-    val validOperationEvaluated = Expression.evaluateValidExpression(validOperationValidated)
+    val validOperationEvaluated =
+      Expression.evaluateValidExpression(validOperationValidated)
     assert(validOperationEvaluated.isRight)
   }
 
@@ -63,7 +69,8 @@ class ExpressionSuite extends munit.FunSuite:
     val dfb = DataFramesExemples.df3
     val validOperation = Plus(Num(dfa), Mult(Num(dfa), Num(dfb)))
     val validOperationValidated = Expression.validateExpression(validOperation)
-    val validOperationEvaluated = Expression.evaluateValidExpression(validOperationValidated)
+    val validOperationEvaluated =
+      Expression.evaluateValidExpression(validOperationValidated)
     assert(validOperationEvaluated.left.get.length == 1)
   }
 end ExpressionSuite

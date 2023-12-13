@@ -10,11 +10,9 @@ libraryDependencies ++= Seq(
   "com.lihaoyi" %% "requests" % "0.8.0",
   "com.lihaoyi" %% "upickle" % "3.1.3",
   "com.lihaoyi" %% "os-lib" % "0.9.2",
-  //"org.apache.logging.log4j" %% "log4j-api-scala" % "13.0.0",
-  //"org.apache.logging.log4j" % "log4j-api" % "2.11.2",
   "org.apache.logging.log4j" % "log4j-core" % "2.20.0",
-  ("org.apache.spark" %% "spark-core" % "3.5.0").cross(CrossVersion.for3Use2_13),// % "provided"
-  ("org.apache.spark" %% "spark-sql" % "3.5.0").cross(CrossVersion.for3Use2_13)// % "provided"
+  ("org.apache.spark" %% "spark-core" % "3.5.0").cross(CrossVersion.for3Use2_13),
+  ("org.apache.spark" %% "spark-sql" % "3.5.0").cross(CrossVersion.for3Use2_13)
 )
 
 scalacOptions ++= Seq(
@@ -28,4 +26,3 @@ scalacOptions ++= Seq(
 //)
 
 Compile / unmanagedSourceDirectories += baseDirectory.value / "worksheets"
-//Compile / unmanagedResourceDirectories += baseDirectory.value / "src" / "main" / "resources"

@@ -35,7 +35,7 @@ object Session:
 end Session
 
 object SparkJob:
-  
+
   def makeEmptyDfNonValidated(
       session: SparkSession,
       schema: StructType
@@ -91,7 +91,10 @@ object SparkJob:
     )
     result
 
-  def makeInvalidDfExpression(df1: DataFrame, df2: DataFrame): Expression[DataFrame] =
+  def makeInvalidDfExpression(
+      df1: DataFrame,
+      df2: DataFrame
+  ): Expression[DataFrame] =
     val dfExpression: Expression[DataFrame] =
       Mult(Plus(Num(df1), Num(df1)), Num(df2))
     dfExpression

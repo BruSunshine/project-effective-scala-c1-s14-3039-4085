@@ -8,7 +8,7 @@ trait MyApp
 
 object SparkMain extends MyApp:
   val sparkSession = Session.spark
-  def stopSpark():Unit =
+  def stopSpark(): Unit =
     sparkSession.stop()
 
 object RoutesMain extends cask.Main with MyApp:

@@ -83,7 +83,6 @@ object JsonPost extends cask.Routes:
   @cask.postJson("/evaluate1")
   def evaluate1(argast: ujson.Value): ujson.Obj =
     def tryeval1(argast: ujson.Value): Try[ujson.Obj] =
-      val ret = 9
       Try {
         val eitherExpression: Either[List[String], Expression[Int]] =
           read[Either[List[String], Expression[Int]]](argast)
@@ -107,47 +106,16 @@ object JsonPost extends cask.Routes:
                 ResultsHolder.shareintExpressionEvaluated =
                   Right(None)
             ujson.Obj("result" -> intResultJson)
-            val stpa = 0
-            //val intExpressionEvaluated = Expression.evaluateValidExpression(
-            //  Expression.validateExpression(expression)
-            //)
-            //ResultsHolder.shareintExpressionEvaluated =
-            //  intExpressionEvaluated.map(x => Some(x))
-              // Some(intExpressionEvaluated)
-            ujson.Obj("result" -> intResultJson)//intExpressionEvaluated.right.get)
           case Left(error) =>
             val dfErrorJson: String = write(eitherExpression)
-            ujson.Obj("error" -> dfErrorJson)//s"Invalid input: $error")
+            ujson.Obj("error" -> dfErrorJson)
       }
     end tryeval1
     val result: Try[ujson.Obj] = tryeval1(argast)
     result match
       case Success(value) => value
-        //ujson.Obj("result" -> value.toString)
       case Failure(exception) =>
         ujson.Obj("error" -> exception.getMessage)
-  /*
-  def evaluate1(argast: ujson.Value): ujson.Obj =
-    def eval1(argast: ujson.Value): Try[ujson.Obj] =
-      Try {
-        val eitherExpression: Either[List[String], Expression[Int]] =
-          read[Either[List[String], Expression[Int]]](argast)
-        eitherExpression match
-          case Right(expression) =>
-            val intExpressionEvaluated: Int = Expression.evaluate(expression)
-            ResultsHolder.shareintExpressionEvaluated =
-              Some(intExpressionEvaluated)
-            ujson.Obj("result" -> intExpressionEvaluated)
-          case Left(error) =>
-            ujson.Obj("error" -> s"Invalid input: $error")
-      }
-    val result: Try[ujson.Obj] = eval1(argast)
-    result match
-      case Success(value) =>
-        ujson.Obj("result" -> value.toString)
-      case Failure(exception) =>
-        ujson.Obj("error" -> exception.getMessage)
-   */
 
   @cask.postJson("/evaluate2")
   def evaluate2(argast: ujson.Value): ujson.Obj =
@@ -176,19 +144,10 @@ object JsonPost extends cask.Routes:
               case Left(_) => 
                 ResultsHolder.sharedfExpressionEvaluated =
                   Right(None)
-            
-            //val result = Expression
-            //  .evaluateValidExpression(dfResultAsExpression)
-            //  .right
-            //  .get
-            //  .dfToString
-            //ResultsHolder.sharedfExpressionEvaluated =
-            //  Right(Some(dfResultJson + result))
-            
             ujson.Obj("result" -> dfResultJson)
           case Left(error) =>
             val dfErrorJson: String = write(eitherExpression)
-            ujson.Obj("error" -> dfErrorJson)//s"Invalid input: $error")//error)//s"Invalid input: $error")
+            ujson.Obj("error" -> dfErrorJson)
       }
     end tryeval2
     val result: Try[ujson.Obj] = tryeval2(argast)
@@ -196,33 +155,7 @@ object JsonPost extends cask.Routes:
       case Success(value) => value
       case Failure(exception) =>
         ujson.Obj("error" -> exception.getMessage)
-  /*
-  def evaluate2(argast: ujson.Value): ujson.Obj =
-    def eval2(argast: ujson.Value): Try[ujson.Obj] =
-      Try {
-        val eitherExpression: Either[List[String], Expression[Dataset[Row]]] =
-          read[Either[List[String], Expression[Dataset[Row]]]](argast)
-        eitherExpression match
-          case Right(expression) =>
-            val dfExpressionEvaluated: Dataset[Row] =
-              Expression.evaluate(expression)
-            val dfResultAsExpression: Either[List[String], Expression[Dataset[Row]]] =
-              Expression.validateExpression1(Num(dfExpressionEvaluated))
-            val dfResultJson: String = write(dfResultAsExpression)
-            val result = dfExpressionEvaluated.dfToString
-            ResultsHolder.sharedfExpressionEvaluated =
-              Some(dfResultJson + result)
-            ujson.Obj("result" -> dfResultJson)
-          case Left(error) =>
-            ujson.Obj("error" -> s"Invalid input: $error")
-      }
-    val result: Try[ujson.Obj] = eval2(argast)
-    result match
-      case Success(value) =>
-        ujson.Obj("result" -> value.toString)
-      case Failure(exception) =>
-        ujson.Obj("error" -> exception.getMessage)
-   */
+
   initialize()
 
 end JsonPost

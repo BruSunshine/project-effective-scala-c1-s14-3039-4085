@@ -40,7 +40,7 @@ class WebServerSuite extends munit.FunSuite:
         { host =>
           val test = requests.get(s"$host/showdfstring", check = false)
           val testtext = test.text()
-          val expectedString = 
+          val expectedString =
             """1| 1.0| a| 1
               |2| 2.0| b| 2
               |3| 3.0| c| 3
@@ -74,8 +74,7 @@ class WebServerSuite extends munit.FunSuite:
           val test = requests.get(s"$host/resultsstring1")
           test.statusCode == 200 && test
             .text() == """|This is the result the ast evaluation 
-                          |on numbers None"""
-                          .stripMargin
+                          |on numbers None""".stripMargin
         }
       )
     )
@@ -90,8 +89,7 @@ class WebServerSuite extends munit.FunSuite:
           val test = requests.get(s"$host/resultsstring2")
           test.statusCode == 200 && test
             .text() == """|This is the result the ast evaluation 
-                          |on dataframes None"""
-                          .stripMargin
+                          |on dataframes None""".stripMargin
         }
       )
     )
@@ -100,7 +98,10 @@ class WebServerSuite extends munit.FunSuite:
     assert(
       this.withServer("StaticFiles", RoutesMain)(
         { host =>
-          val responseA = requests.get(s"$host/static/dataAcquisitionForm.html", check = false)
+          val responseA = requests.get(
+            s"$host/static/dataAcquisitionForm.html",
+            check = false
+          )
           val responseB = requests.get(s"$host/static/toc.html", check = false)
           responseA.statusCode == 200 && responseB.statusCode == 200
         }
@@ -112,7 +113,7 @@ class WebServerSuite extends munit.FunSuite:
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
         { host =>
-          val validJson1 = 
+          val validJson1 =
             """|{
               |"argast":[
               |  1,
@@ -136,7 +137,8 @@ class WebServerSuite extends munit.FunSuite:
               |  }
               |]
               |}""".stripMargin
-          val response = requests.post(s"$host/evaluate1", data = validJson1, check = false)
+          val response =
+            requests.post(s"$host/evaluate1", data = validJson1, check = false)
           response.statusCode == 200
         }
       )
@@ -147,7 +149,7 @@ class WebServerSuite extends munit.FunSuite:
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
         { host =>
-          val invalidJson1 = 
+          val invalidJson1 =
             """|{
               |"argast":[
               |  1,
@@ -159,7 +161,11 @@ class WebServerSuite extends munit.FunSuite:
               |  }
               |]
               |}""".stripMargin
-          val response = requests.post(s"$host/evaluate1", data = invalidJson1, check = false)
+          val response = requests.post(
+            s"$host/evaluate1",
+            data = invalidJson1,
+            check = false
+          )
           val responseBody = response.text()
           val jsonResponse = ujson.read(responseBody)
           jsonResponse.obj.get("error").isDefined
@@ -172,7 +178,7 @@ class WebServerSuite extends munit.FunSuite:
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
         { host =>
-          val validJson2 = 
+          val validJson2 =
             """|{
               |"argast":[
               |  1,
@@ -196,7 +202,8 @@ class WebServerSuite extends munit.FunSuite:
               |  }
               |]
               |}""".stripMargin
-          val response = requests.post(s"$host/evaluate2", data = validJson2, check = false)
+          val response =
+            requests.post(s"$host/evaluate2", data = validJson2, check = false)
           response.statusCode == 200
         }
       )
@@ -207,7 +214,7 @@ class WebServerSuite extends munit.FunSuite:
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
         { host =>
-          val invalidJson2 = 
+          val invalidJson2 =
             """|{
               |"argast":[
               |  1,
@@ -219,7 +226,11 @@ class WebServerSuite extends munit.FunSuite:
               |  }
               |]
               |}""".stripMargin
-          val response = requests.post(s"$host/evaluate2", data = invalidJson2, check = false)
+          val response = requests.post(
+            s"$host/evaluate2",
+            data = invalidJson2,
+            check = false
+          )
           val responseBody = response.text()
           val jsonResponse = ujson.read(responseBody)
           jsonResponse.obj.get("error").isDefined

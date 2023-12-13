@@ -9,10 +9,11 @@ import startup.ast.DataFrameName
 import startup.ast.DataFrameName.given
 import upickle.default.{read, write}
 
-
 class DataFrameNameSuite extends munit.FunSuite:
 
-  test("toDataFrameName should correctly generates a DataFrameName and writes the dataset as a Parquet file") {
+  test(
+    "toDataFrameName should correctly generates a DataFrameName and writes the dataset as a Parquet file"
+  ) {
     val df: Dataset[Row] = DataFramesExemples.df3
     val dfName = df.toDataFrameName
     assert(dfName.isInstanceOf[DataFrameName])
@@ -34,7 +35,9 @@ class DataFrameNameSuite extends munit.FunSuite:
     assert(Files.exists(Paths.get(path)))
   }
 
-  test("readAsDataFrame should correctly reads a Parquet file writen from a df with nullable schema as a dataset") {
+  test(
+    "readAsDataFrame should correctly reads a Parquet file writen from a df with nullable schema as a dataset"
+  ) {
     val df: Dataset[Row] = DataFramesExemples.df3
     val dfName = df.toDataFrameName
     val path = s"./dataframes/${dfName.name}.parquet"
@@ -43,7 +46,9 @@ class DataFrameNameSuite extends munit.FunSuite:
     assert(df.count == readDf.count)
   }
 
-  test("readAsDataFrame can not recover schema reading a Parquet file written from df with non nullable schema as a dataset") {
+  test(
+    "readAsDataFrame can not recover schema reading a Parquet file written from df with non nullable schema as a dataset"
+  ) {
     val df: Dataset[Row] = DataFramesExemples.df2
     val dfName = df.toDataFrameName
     val path = s"./dataframes/${dfName.name}.parquet"
@@ -51,16 +56,20 @@ class DataFrameNameSuite extends munit.FunSuite:
     assert(df.schema != readDf.schema)
     assert(df.count == readDf.count)
   }
-  
-  test("Writer[Dataset[Row]] instance should correctly writes a Dataset[Row] as JSON") {
+
+  test(
+    "Writer[Dataset[Row]] instance should correctly writes a Dataset[Row] as JSON"
+  ) {
     val df: Dataset[Row] = DataFramesExemples.df3
     val dfName = df.toDataFrameName
     val json = write[Dataset[Row]](df)
     assert(json.nonEmpty)
     assert(json.contains(dfName.name))
   }
-  
-  test("Reader[Dataset[Row]] instance should correctly reads a Dataset[Row] from JSON") {
+
+  test(
+    "Reader[Dataset[Row]] instance should correctly reads a Dataset[Row] from JSON"
+  ) {
     val df: Dataset[Row] = DataFramesExemples.df3
     val dfName = df.toDataFrameName
     val json = write[Dataset[Row]](df)

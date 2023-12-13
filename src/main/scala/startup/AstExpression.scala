@@ -1,11 +1,6 @@
 package startup.ast
 
-import upickle.default.{
-  ReadWriter => RW,
-  macroRW,
-  Reader,
-  Writer
-}
+import upickle.default.{ReadWriter => RW, macroRW, Reader, Writer}
 import org.apache.spark.sql.{Dataset, Row}
 
 trait ArgumentValidator[T]:
@@ -26,15 +21,6 @@ sealed trait Expression[T]
 
 /** A case class representing a number in an arithmetic expression.
   */
-//case class Num[T: Validator](n: T) extends Expression[T]:
-//  require(summon[Validator[T]].validate(n), "Validation failed for the given type")
-/*
-case class Num[T] private (n: T) extends Expression[T]
-object Num:
-  def apply[T: Validator](n: T): Num[T] =
-    require(summon[Validator[T]].validate(n), "Validation failed for the given type")
-    new Num(n)
- */
 case class Num[T](n: T) extends Expression[T]
 
 /** A case class representing a multiplication operation in an arithmetic
@@ -59,15 +45,6 @@ object Expression:
     * @return
     *   The result of the evaluation.
     */
-  //implementation without validation
-  //def evaluate[T](expression: Expression[T])(using
-  //    ops: ArithmeticOperation[T]
-  //): T =
-  //  expression match
-  //    case Num[T](num)   => num
-  //    case Mult[T](a, b) => ops.mul(evaluate(a), evaluate(b))
-  //    case Plus[T](a, b) => ops.add(evaluate(a), evaluate(b))
-  //end evaluate
 
   def evaluateValidExpression[T: OperationValidator](
       expression: Either[List[String], Expression[T]]
@@ -117,41 +94,7 @@ object Expression:
       macroRW[Plus[T]],
       macroRW[Mult[T]]
     )
-  /*
-  given [T: Reader: Validator]: Reader[Num[T]] with
-    def read(value: String): Num[T] =
-      val numt = read(value)
-      require(summon[Validator[T]].validate(numt.n), "Validation failed for the given type")
-      numt
 
-  given [T: Reader: Validator]: Reader[Plus[T]] with
-    def read(value: String): Plus[T] = read(value)
-  given [T: Reader: Validator]: Reader[Mult[T]] with
-    def read(value: String): Mult[T] = read(value)
-
-  given [T: Reader: Validator]: Reader[Expression[T]] =
-    Reader.merge[Expression[T]](
-      reader[Num[T]],
-      reader[Plus[T]],
-      reader[Mult[T]]
-    )
-
-  given [T: Writer: Validator]: Writer[Num[T]] with
-    def write(numt: Num[T]): String = write(numt)
-
-  given [T: Writer: Validator]: Writer[Plus[T]] with
-    def write(plust: Plus[T]): String = write(plust)
-
-  given [T: Writer: Validator]: Writer[Mult[T]] with
-    def write(mult: Mult[T]): String = write(mult)
-
-  given [T: Writer: Validator]: Writer[Expression[T]] =
-    Writer.merge[Expression[T]](
-      writer[Num[T]],
-      writer[Plus[T]],
-      writer[Mult[T]]
-    )
-   */
   def validateExpression[T: ArgumentValidator](
       expression: Expression[T]
   ): Either[List[String], Expression[T]] =
@@ -199,20 +142,5 @@ object Expression:
     end valExpIntern
     valExpIntern(expression, List.empty[String])
   end validateExpression
-/*
-  def validateExpression[T](
-      expression: Expression[T]
-  ): Either[String, Expression[T]] =
-    expression match
-      case Num(n) => Right(expression)
-      case Mult(a, b) =>
-        (validateExpression(a), validateExpression(b)) match
-          case (Right(_), Right(_)) => Right(expression)
-          case _                    => Left("Invalid multiplication expression")
-      case Plus(a, b) =>
-        (validateExpression(a), validateExpression(b)) match
-          case (Right(_), Right(_)) => Right(expression)
-          case _                    => Left("Invalid addition expression")
-      case null => Left("this is a null expression")
- */
+
 end Expression

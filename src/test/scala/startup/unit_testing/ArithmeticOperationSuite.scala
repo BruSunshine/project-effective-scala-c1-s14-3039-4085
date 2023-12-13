@@ -34,16 +34,20 @@ class ArithmeticOperationSuite extends munit.FunSuite:
     val ExpectedEvalIntExpressionPlus = Right(22)
     assertEquals(ObtainedEvalIntExpressionPlus, ExpectedEvalIntExpressionPlus)
   }
-  
+
   test("Evaluation of complex integer invalid operation is invalidated") {
     val ObtainedInvalidIntOpMix =
       Expression.validateExpression(Mult(Plus(Num(850), Num(6)), Num(50)))
     val ObtainedEvalIntExpressionMix =
       Expression.evaluateValidExpression(ObtainedInvalidIntOpMix)
-    val ExpectedEvalIntExpressionMix = List("java.lang.Exception: Invalid plus operation")
-    assertEquals(ObtainedEvalIntExpressionMix.left.get, ExpectedEvalIntExpressionMix)
+    val ExpectedEvalIntExpressionMix =
+      List("java.lang.Exception: Invalid plus operation")
+    assertEquals(
+      ObtainedEvalIntExpressionMix.left.get,
+      ExpectedEvalIntExpressionMix
+    )
   }
-  
+
   test("Evaluation of double number expression is correct") {
     val ObtainedValidatedDoubleExpressionNum =
       Expression.validateExpression(Num(3.6))
@@ -64,27 +68,27 @@ class ArithmeticOperationSuite extends munit.FunSuite:
     val ObtainedEvalDoubleExpressionMix =
       Expression.evaluateValidExpression(ObtainedValidatedDoubleExpressionMix)
     val ExpectedEvalDoubleExpressionMix = Right(48.97)
-    // val delta: Double = 0.00000000000001
     val precision = 2
     val roundedObtained =
-      ObtainedEvalDoubleExpressionMix.map(x =>
-      BigDecimal(x).setScale(precision, BigDecimal.RoundingMode.HALF_UP)
-      .toDouble).right.get
-      //BigDecimal(ObtainedEvalDoubleExpressionMix)
-      //.setScale(precision, BigDecimal.RoundingMode.HALF_UP)
-      //.toDouble
-    val roundedExpected = ExpectedEvalDoubleExpressionMix.map(x=>
-      BigDecimal(x).setScale(precision, BigDecimal.RoundingMode.HALF_UP)
-      .toDouble).right.get
-      //BigDecimal(ExpectedEvalDoubleExpressionMix)
-      //.setScale(precision, BigDecimal.RoundingMode.HALF_UP)
-      //.toDouble
+      ObtainedEvalDoubleExpressionMix
+        .map(x =>
+          BigDecimal(x)
+            .setScale(precision, BigDecimal.RoundingMode.HALF_UP)
+            .toDouble
+        )
+        .right
+        .get
+    val roundedExpected = ExpectedEvalDoubleExpressionMix
+      .map(x =>
+        BigDecimal(x)
+          .setScale(precision, BigDecimal.RoundingMode.HALF_UP)
+          .toDouble
+      )
+      .right
+      .get
     assertEquals(
       roundedObtained,
       roundedExpected
-      // ObtainedEvalDoubleExpressionMix,
-      // ExpectedEvalDoubleExpressionMix,
-      // delta
     )
   }
 
@@ -109,10 +113,8 @@ class ArithmeticOperationSuite extends munit.FunSuite:
       Expression.evaluateValidExpression(ObtainedValidatedDfExpressionNum)
     val ExpectedEvalDfExpressionNum = Right(DataFramesExemples.df1)
     assertEquals(
-      ObtainedEvalDfExpressionNum.map(x=>x.contentHash),
-      ExpectedEvalDfExpressionNum.map(x=>x.contentHash)
-      //ObtainedEvalDfExpressionNum.contentHash,
-      //ExpectedEvalDfExpressionNum.contentHash
+      ObtainedEvalDfExpressionNum.map(x => x.contentHash),
+      ExpectedEvalDfExpressionNum.map(x => x.contentHash)
     )
   }
 
@@ -128,15 +130,12 @@ class ArithmeticOperationSuite extends munit.FunSuite:
     val ObtainedEvalDfExpressionMix =
       Expression
         .evaluateValidExpression(ObtainedValidatedDfExpressionMix)
-        .map(x=> x.sort("index"))
-        //.sort("index")
-    //ObtainedEvalDfExpressionMix.show()
+        .map(x => x.sort("index"))
     val ExpectedEvalDfExpressionMix =
       Right(DataFramesExemples.df2.sort("index"))
-    //ExpectedEvalDfExpressionMix.show()
     assertEquals(
-      ObtainedEvalDfExpressionMix.map(x=>x.contentHash),
-      ExpectedEvalDfExpressionMix.map(x=>x.contentHash)
+      ObtainedEvalDfExpressionMix.map(x => x.contentHash),
+      ExpectedEvalDfExpressionMix.map(x => x.contentHash)
     )
   }
 
@@ -149,18 +148,27 @@ class ArithmeticOperationSuite extends munit.FunSuite:
       Expression.evaluateValidExpression(ObtainedValidatedDfExpressionPlus)
     val ExpectedEvalDfExpressionPlus = Right(DataFramesExemples.df3)
     assertEquals(
-      ObtainedEvalDfExpressionPlus.map(x=>x.contentHash),
-      ExpectedEvalDfExpressionPlus.map(x=>x.contentHash)
+      ObtainedEvalDfExpressionPlus.map(x => x.contentHash),
+      ExpectedEvalDfExpressionPlus.map(x => x.contentHash)
     )
   }
 
   test("Evaluation of complex dataframe invalid operation is invalidated") {
     val ObtainedInvalidDfOpMix =
-      Expression.validateExpression(Mult(Plus(Num(DataFramesExemples.df1), Num(DataFramesExemples.df2)), Num(DataFramesExemples.df3)))
+      Expression.validateExpression(
+        Mult(
+          Plus(Num(DataFramesExemples.df1), Num(DataFramesExemples.df2)),
+          Num(DataFramesExemples.df3)
+        )
+      )
     val ObtainedEvalDfExpressionMix =
       Expression.evaluateValidExpression(ObtainedInvalidDfOpMix)
-    val ExpectedEvalDfExpressionMix = List("java.lang.Exception: Invalid mul operation")
-    assertEquals(ObtainedEvalDfExpressionMix.left.get, ExpectedEvalDfExpressionMix)
+    val ExpectedEvalDfExpressionMix =
+      List("java.lang.Exception: Invalid mul operation")
+    assertEquals(
+      ObtainedEvalDfExpressionMix.left.get,
+      ExpectedEvalDfExpressionMix
+    )
   }
 
 end ArithmeticOperationSuite
