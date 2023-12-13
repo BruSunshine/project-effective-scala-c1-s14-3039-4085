@@ -39,7 +39,7 @@ class ExpressionSerializeSuite extends munit.FunSuite:
     val df: Dataset[Row] = DataFramesExemples.df3
     val dfName = df.toDataFrameName
     val expr: ExpressionToSerialize[Dataset[Row]] =
-      ExpressionToSerialize(Expression.validateExpression1(Num(df)))    
+      ExpressionToSerialize(Expression.validateExpression(Num(df)))    
     val jsonExpr: String = write[ExpressionToSerialize[Dataset[Row]]](expr)
     val readExpr: ExpressionToSerialize[Dataset[Row]] =
       read[ExpressionToSerialize[Dataset[Row]]](jsonExpr)
@@ -47,7 +47,7 @@ class ExpressionSerializeSuite extends munit.FunSuite:
       x <- expr.argast
       y <- readExpr.argast
     yield
-      val xeval = Expression.evaluate(x).contentHash
-      val yeval = Expression.evaluate(y).contentHash
+      val xeval = Expression.evaluateValidExpression(Right(x)).map(x=> x.contentHash).right.get
+      val yeval = Expression.evaluateValidExpression(Right(y)).map(x=> x.contentHash).right.get
       assert(xeval == yeval)
   }

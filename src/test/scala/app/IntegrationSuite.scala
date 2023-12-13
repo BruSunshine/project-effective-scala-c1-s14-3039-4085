@@ -4,8 +4,8 @@ import munit.FunSuite
 import upickle.default.{write, read}
 import io.undertow.Undertow
 import startup.ast.{
-  //myStart,
-  //Arg,
+  // myStart,
+  // Arg,
   ExpressionToSerialize,
   Expression,
   Plus,
@@ -33,7 +33,7 @@ class httpServerSuite extends IntegrationSuite:
         finally server.stop()
       res
 
-/*
+  /*
   test("test2") {
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
@@ -52,22 +52,20 @@ class httpServerSuite extends IntegrationSuite:
       )
     )
   }
-*/
+   */
 
-
-
-/*
+  /*
   test("test6") {
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
         { host =>
-          
+
           // preparing expression to process
           val IntExpression: Expression[Int] =
             Mult(Plus(Num(3), Num(4)), Num(5))
           val IntExpressionToSerialize = ExpressionToSerialize(IntExpression)
           val IntExpressionJson = write(IntExpressionToSerialize)
-          
+
           // Sending expression to server for evaluation and further processing
           val test6 = requests.post(
             s"$host/jsonast",
@@ -75,7 +73,7 @@ class httpServerSuite extends IntegrationSuite:
             connectTimeout = 20000,
             readTimeout = 20000
           )
-          
+
           // Retrieving and reading the processed expression from server
           // Asserting test validity
           test6.text().toInt == 35
@@ -83,22 +81,22 @@ class httpServerSuite extends IntegrationSuite:
       )
     )
   }
-*/
-
+   */
+  /*
   test("test66") {
     assert(
       this.withServer("MinimalApplication", RoutesMain)(
         { host =>
-          
+
           // preparing expression to process
           val IntExpression: Expression[Int] =
             Num(3)
             //Mult(Plus(Num(3), Num(4)), Num(5))
           val ValidIntExpression: Either[List[String], Expression[Int]] =
-            Expression.validateExpression1(IntExpression)
+            Expression.validateExpression(IntExpression)
           val ValidIntExpressionToSerialize = ExpressionToSerialize(ValidIntExpression)
           val ValidIntExpressionJson = write[ExpressionToSerialize[Int]](ValidIntExpressionToSerialize)
-          
+
           // Sending expression to server for evaluation and further processing
           val test66 = requests.post(
             s"$host/jsonastvalid",
@@ -106,7 +104,7 @@ class httpServerSuite extends IntegrationSuite:
             connectTimeout = 20000,
             readTimeout = 20000
           )
-          
+
           // Retrieving and reading the processed expression from server
           // Asserting test validity
           test66.text().toInt == 3//5
@@ -114,8 +112,8 @@ class httpServerSuite extends IntegrationSuite:
       )
     )
   }
-
-/*
+   */
+  /*
   test(
     "test7: Serialize and deserialize expression with dataframe processed through http server"
   ) {
@@ -151,8 +149,8 @@ class httpServerSuite extends IntegrationSuite:
       )
     )
   }
-*/
-
+   */
+  /*
   test(
     "test77: Serialize and deserialize validated expression with dataframe processed through http server"
   ) {
@@ -164,7 +162,7 @@ class httpServerSuite extends IntegrationSuite:
           val dfExpressionToProcess: Expression[Dataset[Row]] =
             ExpressionsExemples.dfExpression0
           val dfExpressionToProcessValidated: Either[List[String], Expression[Dataset[Row]]] =
-            Expression.validateExpression1(dfExpressionToProcess)
+            Expression.validateExpression(dfExpressionToProcess)
           val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =
             ExpressionToSerialize(dfExpressionToProcessValidated)
           val dfExpressionJson: String = write[ExpressionToSerialize[Dataset[Row]]](dfExpressionToSerialize)
@@ -179,21 +177,115 @@ class httpServerSuite extends IntegrationSuite:
 
           // Retrieving and reading the processed expression from server
           val dfExpressionJsonReceived: String = ujson.read(test77.text()).str
-          
+
           val eitherExpression: Either[List[String], Expression[Dataset[Row]]] =
             read[Either[List[String], Expression[Dataset[Row]]]](dfExpressionJsonReceived)
-          
-          val dfExpressionEvaluated = 
+
+          val dfExpressionEvaluated =
             eitherExpression match
               case Right(expression) =>
-                val result: Dataset[Row] = Expression.evaluate(expression)
+                //val result: Dataset[Row] = Expression.evaluate(expression)
+                //result
+                val result1 = Expression.validateExpression(expression)
+                val result = Expression.evaluateValidExpression(result1).right.get
                 result
               case Left(error) => throw new Exception(s"Invalid input: $error")
 
           // Asserting test validity
-          dfExpressionEvaluated.show()
+          //dfExpressionEvaluated.show()
           dfExpressionEvaluated.schema == DataFramesExemples.schema1
           dfExpressionEvaluated.count() == DataFramesExemples.data1.length
+        }
+      )
+    )
+  }
+   */
+
+  test(
+    "Serialize and deserialize a validated valid expression with dataframe processed through http server"
+  ) {
+    assert(
+      this.withServer("MinimalApplication", RoutesMain)(
+        { host =>
+
+          // preparing expression to process
+          val dfExpressionToProcess: Expression[Dataset[Row]] =
+            ExpressionsExemples.dfExpression0
+          val dfExpressionToProcessValidated
+              : Either[List[String], Expression[Dataset[Row]]] =
+            Expression.validateExpression(dfExpressionToProcess)
+          val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =
+            ExpressionToSerialize(dfExpressionToProcessValidated)
+          val dfExpressionJson: String =
+            write[ExpressionToSerialize[Dataset[Row]]](dfExpressionToSerialize)
+
+          // Sending expression to server for evaluation and further processing
+          val test77 = requests.post(
+            s"$host/evaluate2",
+            data = dfExpressionJson,
+            connectTimeout = 20000,
+            readTimeout = 20000
+          )
+
+          // Retrieving and reading the processed expression from server
+          val parsedJson = ujson.read(test77.text())
+          val dfExpressionJsonReceived: String = parsedJson("result").str
+          val eitherExpression: Either[List[String], Expression[Dataset[Row]]] =
+            read[Either[List[String], Expression[Dataset[Row]]]](
+              dfExpressionJsonReceived
+            )
+          val dfExpressionEvaluated =
+            eitherExpression match
+              case Right(expression) =>
+                val result1 = Expression.validateExpression(expression)
+                val result =
+                  Expression.evaluateValidExpression(result1).right.get
+                result
+              case Left(error) => throw new Exception(s"Invalid input: $error")
+
+          // Asserting test validity
+          dfExpressionEvaluated.schema == DataFramesExemples.schema1
+          dfExpressionEvaluated.count() == DataFramesExemples.data1.length
+        }
+      )
+    )
+  }
+
+  test(
+    "Serialize and deserialize a validated non-valid expression with dataframe processed through http server"
+  ) {
+    assert(
+      this.withServer("MinimalApplication", RoutesMain)(
+        { host =>
+          // preparing expression to process
+          val dfExpressionToProcess: Expression[Dataset[Row]] =
+            ExpressionsExemples.dfExpression1
+          val dfExpressionToProcessValidated
+              : Either[List[String], Expression[Dataset[Row]]] =
+            Expression.validateExpression(dfExpressionToProcess)
+          val dfExpressionToSerialize: ExpressionToSerialize[Dataset[Row]] =
+            ExpressionToSerialize(dfExpressionToProcessValidated)
+          val dfExpressionJson: String =
+            write[ExpressionToSerialize[Dataset[Row]]](dfExpressionToSerialize)
+
+          // Sending expression to server for evaluation and further processing
+          val test77 = requests.post(
+            s"$host/evaluate2",
+            data = dfExpressionJson,
+            connectTimeout = 20000,
+            readTimeout = 20000
+          )
+
+          // Retrieving and reading the processed expression from server
+          val parsedJson = ujson.read(test77.text())
+          val dfExpressionJsonReceived: String = parsedJson("error").str
+          val eitherExpression: Either[List[String], Expression[Dataset[Row]]] =
+            read[Either[List[String], Expression[Dataset[Row]]]](
+              dfExpressionJsonReceived
+            )
+
+          // Asserting test validity
+          eitherExpression.left.get.length == 3
         }
       )
     )

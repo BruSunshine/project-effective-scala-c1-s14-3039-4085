@@ -1,7 +1,7 @@
 import $ivy.`com.softwaremill.sttp.client3::core:3.9.1`
 import $ivy.`com.lihaoyi::upickle:3.1.3`
 
-import startup.ast.{Expression, ArithmeticOperation, Num, Mult, Plus, myStart, Arg, ExpressionToSerialize}
+import startup.ast.{Expression, ArithmeticOperation, Num, Mult, Plus, ExpressionToSerialize}
 import upickle.default.{write, read}
 
 import sttp.client3._
@@ -45,50 +45,7 @@ val response2 = basicRequest
 
 println(response2.body)
 
-
-// Test 3
-
-//val x: Int = 1
-//val y: Int = 5
-//val z: Int = 7
-//val expr: Expression[Int] = Mult(Plus(Num(x), Num(y)), Num(z))
-//implicit val writer: Writer[startup.Expression[Int]] = macroW
-//val jsonString = write(expr)
-
-
-val myint:Int = 123
-val myDataInstance = myStart(myint)
-//myDataInstance.add(1,2).toString()
-//implicit val writer: Writer[startup.myStart] = startup.myStart.rw//
-val jsonString = write(myDataInstance)
-print(jsonString)
-//val jsonObj = ujson.Obj("arg" -> jsonString)
-//print(jsonString)
-//val jsonValue: ujson.Value = writeJs(myDataInstance)
-val argInstance = Arg(myDataInstance)
-val jsonArgString = write(argInstance)
-
-val response3 = basicRequest
-  .post(uri"http://localhost:8080/json")
-  .body(jsonArgString)//.body(jsonValue.toString) jsonString
-  .send(backend)
-
-println(response3.body)
-
-
-val myStartInstance = read[myStart](jsonString)
-myStartInstance.add(1,2)
-
-//jsonString.intern()
-//ujson.Obj("df" -> s"${jsonString.intern()}")
-
-val json: ujson.Value = ujson.read(jsonString)
-
-json.toString
-
-("5").toString()
-
-
+/*
 // Testing the serialization and deserialization of the AST with Integers
 
 
@@ -171,3 +128,4 @@ MakeExpression(df)
 runMakeDummyDf()
 
 runConvertDummyDfAsString()
+*/

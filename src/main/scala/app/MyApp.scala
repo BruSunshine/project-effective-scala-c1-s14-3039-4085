@@ -14,3 +14,8 @@ object SparkMain extends MyApp:
 object RoutesMain extends cask.Main with MyApp:
   val allRoutes = Seq(MinimalRoutes, StaticFiles, JsonPost)
   SparkMain.sparkSession
+
+  sys.addShutdownHook {
+    println("Shutting down Spark session...")
+    SparkMain.stopSpark()
+  }

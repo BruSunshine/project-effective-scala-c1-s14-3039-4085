@@ -35,6 +35,14 @@ object Session:
 end Session
 
 object SparkJob:
+  
+  def makeEmptyDfNonValidated(
+      session: SparkSession,
+      schema: StructType
+  ): Dataset[Row] =
+    val rddEmpty = session.sparkContext.emptyRDD[Row]
+    val dfEmpty = session.createDataFrame(rddEmpty, schema)
+    dfEmpty
 
   def makeDummyDfNonValidated(
       session: SparkSession,
@@ -55,7 +63,8 @@ object SparkJob:
         makeDummyDfNonValidated(session, schema, data)
       )
       validatedDf
-    catch case e: Exception => Left(List(s"Error processing data: ${e.getMessage}"))
+    catch
+      case e: Exception => Left(List(s"Error processing data: ${e.getMessage}"))
 
   def convertDummyDfValidatedToString(
       session: SparkSession,
@@ -79,6 +88,22 @@ object SparkJob:
   ): Expression[DataFrame] =
     val result = makeDfExpressionNonValidatedMix(
       makeDummyDfNonValidated(session, schema, data)
+    )
+    result
+
+  def makeInvalidDfExpression(df1: DataFrame, df2: DataFrame): Expression[DataFrame] =
+    val dfExpression: Expression[DataFrame] =
+      Mult(Plus(Num(df1), Num(df1)), Num(df2))
+    dfExpression
+
+  def runmakeInvalidDfExpression(
+      session: SparkSession,
+      schema: StructType,
+      data: Seq[Row]
+  ): Expression[DataFrame] =
+    val result = makeInvalidDfExpression(
+      makeDummyDfNonValidated(session, schema, data),
+      makeEmptyDfNonValidated(session, schema)
     )
     result
 

@@ -60,47 +60,45 @@ object Expression:
     * @return
     *   The result of the evaluation.
     */
-  
-  def evaluate[T](expression: Expression[T])(using
-      ops: ArithmeticOperation[T]
-  ): T =
-    expression match
-      case Num[T](num)   => num
-      case Mult[T](a, b) => ops.mul(evaluate(a), evaluate(b))
-      case Plus[T](a, b) => ops.add(evaluate(a), evaluate(b))
-  end evaluate
-  
-  def evaluate1[T: OperationValidator](expression: Either[List[String], Expression[T]])(using
+  //implementation without validation
+  //def evaluate[T](expression: Expression[T])(using
+  //    ops: ArithmeticOperation[T]
+  //): T =
+  //  expression match
+  //    case Num[T](num)   => num
+  //    case Mult[T](a, b) => ops.mul(evaluate(a), evaluate(b))
+  //    case Plus[T](a, b) => ops.add(evaluate(a), evaluate(b))
+  //end evaluate
+
+  def evaluateValidExpression[T: OperationValidator](
+      expression: Either[List[String], Expression[T]]
+  )(using
       ops: ArithmeticOperation[T]
   ): Either[List[String], T] =
     try
       expression match
         case Right(exp) =>
           exp match
-            case Num[T](num)   => Right(num)
+            case Num[T](num) => Right(num)
             case Mult[T](a, b) =>
               for
-                A <- evaluate1(Right(a))
-                B <- evaluate1(Right(b))
+                A <- evaluateValidExpression(Right(a))
+                B <- evaluateValidExpression(Right(b))
               yield
                 if summon[OperationValidator[T]].validate(A, B, "mul") then
                   ops.mul(A, B)
-                else
-                  throw new Exception("Invalid mul operation")
+                else throw new Exception("Invalid mul operation")
             case Plus[T](a, b) =>
               for
-                A <- evaluate1(Right(a))
-                B <- evaluate1(Right(b))
+                A <- evaluateValidExpression(Right(a))
+                B <- evaluateValidExpression(Right(b))
               yield
                 if summon[OperationValidator[T]].validate(A, B, "add") then
                   ops.add(A, B)
-                else
-                  throw new Exception("Invalid plus operation")
+                else throw new Exception("Invalid plus operation")
         case Left(errors) => Left(errors)
-    catch
-      case error => Left(List(s"$error"))
-  end evaluate1
-
+    catch case error => Left(List(s"$error"))
+  end evaluateValidExpression
 
   /** Provides an implicit `ReadWriter[Expression[T]]` instance for any type `T`
     * that has a `ReadWriter[T]` instance.
@@ -155,7 +153,7 @@ object Expression:
       writer[Mult[T]]
     )
    */
-  def validateExpression1[T: ArgumentValidator](
+  def validateExpression[T: ArgumentValidator](
       expression: Expression[T]
   ): Either[List[String], Expression[T]] =
     def valExpIntern[T: ArgumentValidator](
@@ -166,10 +164,12 @@ object Expression:
         expression match
           case Num(n) =>
             if summon[ArgumentValidator[T]].validate(n) then Right(expression)
-            else
-              Left(errorsAccumulator :+ s"Invalid Num argument $n")
+            else Left(errorsAccumulator :+ s"Invalid Num argument $n")
           case Mult(a, b) =>
-            (valExpIntern(a, errorsAccumulator), valExpIntern(b, errorsAccumulator)) match
+            (
+              valExpIntern(a, errorsAccumulator),
+              valExpIntern(b, errorsAccumulator)
+            ) match
               case (Right(_), Right(_)) => Right(expression)
               case (Left(error), Right(_)) =>
                 Left(errorsAccumulator ++ error)
@@ -180,7 +180,10 @@ object Expression:
                   errorsAccumulator ++ error1 ++ error2
                 )
           case Plus(a, b) =>
-            (valExpIntern(a, errorsAccumulator), valExpIntern(b, errorsAccumulator)) match
+            (
+              valExpIntern(a, errorsAccumulator),
+              valExpIntern(b, errorsAccumulator)
+            ) match
               case (Right(_), Right(_)) => Right(expression)
               case (Left(error), Right(_)) =>
                 Left(errorsAccumulator ++ error)
@@ -196,7 +199,7 @@ object Expression:
           Left(errorsAccumulator :+ s"error in expression validation: $error")
     end valExpIntern
     valExpIntern(expression, List.empty[String])
-  end validateExpression1
+  end validateExpression
 /*
   def validateExpression[T](
       expression: Expression[T]
@@ -212,5 +215,5 @@ object Expression:
           case (Right(_), Right(_)) => Right(expression)
           case _                    => Left("Invalid addition expression")
       case null => Left("this is a null expression")
-*/
+ */
 end Expression
