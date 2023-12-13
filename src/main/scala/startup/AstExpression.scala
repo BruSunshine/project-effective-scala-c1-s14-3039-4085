@@ -5,9 +5,8 @@ import upickle.default.{
   macroRW,
   Reader,
   Writer
-} //, reader, writer}
+}
 import org.apache.spark.sql.{Dataset, Row}
-import scala.util.control.NonFatal
 
 trait ArgumentValidator[T]:
   def validate(t: T): Boolean

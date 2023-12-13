@@ -3,7 +3,6 @@ package startup.unit_testing
 import munit.FunSuite
 import startup.ast.ArithmeticOperation
 import startup.ast.{Expression, Num, Plus, Mult}
-import org.apache.spark.sql.{Dataset, Row}
 import sparkjobs.DataFramesExemples
 import startup.ast.DataFrameName.contentHash
 
