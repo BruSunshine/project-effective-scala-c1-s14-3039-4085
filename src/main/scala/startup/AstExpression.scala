@@ -3,17 +3,7 @@ package startup.ast
 import upickle.default.{ReadWriter => RW, macroRW, Reader, Writer}
 import org.apache.spark.sql.{Dataset, Row}
 
-trait ArgumentValidator[T]:
-  def validate(t: T): Boolean
-object ArgumentValidator:
-  given ArgumentValidator[Int] with
-    def validate(x: Int): Boolean = x > 3
-  given ArgumentValidator[Double] with
-    def validate(x: Double): Boolean = x > 0
-  given ArgumentValidator[Dataset[Row]] with
-    def validate(df: Dataset[Row]): Boolean =
-      val dfcount: Long = df.count
-      (dfcount > 2) && (dfcount < 1000)
+
 
 /** A sealed trait representing an arithmetic expression.
   */
@@ -144,3 +134,15 @@ object Expression:
   end validateExpression
 
 end Expression
+
+trait ArgumentValidator[T]:
+  def validate(t: T): Boolean
+object ArgumentValidator:
+  given ArgumentValidator[Int] with
+    def validate(x: Int): Boolean = x > 3
+  given ArgumentValidator[Double] with
+    def validate(x: Double): Boolean = x > 0
+  given ArgumentValidator[Dataset[Row]] with
+    def validate(df: Dataset[Row]): Boolean =
+      val dfcount: Long = df.count
+      (dfcount > 2) && (dfcount < 1000)

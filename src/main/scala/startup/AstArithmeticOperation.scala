@@ -3,25 +3,6 @@ package startup.ast
 import org.apache.spark.sql.{Dataset, Row}
 import org.apache.spark.sql.functions.{col, concat}
 
-trait OperationValidator[T]:
-  def validate(t1: T, t2: T, op: String): Boolean
-object OperationValidator:
-  given OperationValidator[Int] with
-    def validate(x: Int, y: Int, op: String): Boolean =
-      op match
-        case "add" => (x < 800) && (y < 800)
-        case "mul" => (x < 40) && (y < 40)
-        case _     => false
-  given OperationValidator[Double] with
-    def validate(x: Double, y: Double, op: String): Boolean =
-      true
-  given OperationValidator[Dataset[Row]] with
-    def validate(df1: Dataset[Row], df2: Dataset[Row], op: String): Boolean =
-      op match
-        case "add" => (df1.schema == df2.schema) && !df1.isEmpty && !df2.isEmpty
-        case "mul" => (df1.schema == df2.schema) && !df1.isEmpty && !df2.isEmpty
-        case _     => false
-
 /** A type class that defines arithmetic operations for a type `T`.
   */
 trait ArithmeticOperation[T]:
@@ -85,3 +66,22 @@ object ArithmeticOperation:
             (col("dfx.intField") * col("dfy.intField")).as("intField")
           )
       resultDf
+
+trait OperationValidator[T]:
+  def validate(t1: T, t2: T, op: String): Boolean
+object OperationValidator:
+  given OperationValidator[Int] with
+    def validate(x: Int, y: Int, op: String): Boolean =
+      op match
+        case "add" => (x < 800) && (y < 800)
+        case "mul" => (x < 40) && (y < 40)
+        case _     => false
+  given OperationValidator[Double] with
+    def validate(x: Double, y: Double, op: String): Boolean =
+      true
+  given OperationValidator[Dataset[Row]] with
+    def validate(df1: Dataset[Row], df2: Dataset[Row], op: String): Boolean =
+      op match
+        case "add" => (df1.schema == df2.schema) && !df1.isEmpty && !df2.isEmpty
+        case "mul" => (df1.schema == df2.schema) && !df1.isEmpty && !df2.isEmpty
+        case _     => false
