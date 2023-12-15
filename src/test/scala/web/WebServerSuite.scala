@@ -73,7 +73,7 @@ class WebServerSuite extends munit.FunSuite:
         { host =>
           val test = requests.get(s"$host/resultsstring1")
           test.statusCode == 200 && test
-            .text() == """|This is the result the ast evaluation 
+            .text() == """|This is a valid result of the ast evaluation 
                           |on numbers None""".stripMargin
         }
       )
@@ -88,7 +88,7 @@ class WebServerSuite extends munit.FunSuite:
         { host =>
           val test = requests.get(s"$host/resultsstring2")
           test.statusCode == 200 && test
-            .text() == """|This is the result the ast evaluation 
+            .text() == """|This is a valid result of the ast evaluation 
                           |on dataframes None""".stripMargin
         }
       )

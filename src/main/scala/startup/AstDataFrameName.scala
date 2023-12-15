@@ -31,13 +31,29 @@ object DataFrameName:
     *   file.
     */
   extension (df: Dataset[Row])
-
+    
+    /** Converts a DataFrame to a DataFrameName by writing it as a Parquet file.
+      *
+      * The method generates a DataFrameName based on the content hash of the DataFrame,
+      * writes the DataFrame to a Parquet file, and returns the DataFrameName.
+      *
+      * @return
+      *   The DataFrameName that represents the DataFrame.
+      */
     def toDataFrameName: DataFrameName =
       val dfId = df.contentHash
       val name = DataFrameName(dfId)
       name.writeAsParquet(df)
       name
-
+    
+    /** Calculates the content hash of a DataFrame.
+      *
+      * The method sorts the DataFrame by the first column, converts it to a string,
+      * and calculates the SHA-256 hash of the string.
+      *
+      * @return
+      *   The content hash of the DataFrame.
+      */
     def contentHash: String =
       val firstColumnName = df.columns(0)
       val sortedDf = df.sort(firstColumnName)
@@ -50,23 +66,26 @@ object DataFrameName:
       hash
 
   extension (name: DataFrameName)
-
+    
+    /** Writes a DataFrame as a Parquet file.
+      *
+      * The method writes the DataFrame to a Parquet file at a path based on the DataFrameName.
+      * If a file already exists at the path, the method does nothing.
+      *
+      * @param df
+      *   The DataFrame to write.
+      */
     def writeAsParquet(df: Dataset[Row]): Unit =
       val path = s"./dataframes/${name.name}.parquet"
       if (!Files.exists(Paths.get(path))) then
         df.coalesce(1).write.mode("overwrite").parquet(path)
 
-    /** Provides an extension method for `DataFrameName` to read the Parquet
-      * file as a `Dataset[Row]`.
+    /** Reads a DataFrame from a Parquet file.
       *
-      * The method uses the name of the `DataFrameName` instance as the path to
-      * the Parquet file.
+      * The method reads a DataFrame from a Parquet file at a path based on the DataFrameName.
       *
-      * @param name
-      *   The `DataFrameName` instance that represents the path to the Parquet
-      *   file.
       * @return
-      *   The dataset read from the Parquet file.
+      *   The DataFrame read from the Parquet file.
       */
     def readAsDataFrame: Dataset[Row] =
       val path = s"./dataframes/${name.name}.parquet"

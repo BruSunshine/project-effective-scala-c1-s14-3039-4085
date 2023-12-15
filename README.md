@@ -5,6 +5,10 @@ Effective Programming in Scala --- Final Project
 
 Checklist to facilitate the evaluation work from the reviewers:
 
+> Prerequisites
+
+- The application needs spark to be installed on the machine.
+
 > Which build tool is used? Give the name of the build tool.
 
 - SBT  

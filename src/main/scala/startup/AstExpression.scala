@@ -3,22 +3,20 @@ package startup.ast
 import upickle.default.{ReadWriter => RW, macroRW, Reader, Writer}
 import org.apache.spark.sql.{Dataset, Row}
 
-
-
 /** A sealed trait representing an arithmetic expression.
   */
 sealed trait Expression[T]
 
-/** A case class representing a number in an arithmetic expression.
+/** A case class representing an operand in an arithmetic expression.
   */
 case class Num[T](n: T) extends Expression[T]
 
-/** A case class representing a multiplication operation in an arithmetic
+/** A case class representing a kind of multiplication operation in an arithmetic
   * expression.
   */
 case class Mult[T](a: Expression[T], b: Expression[T]) extends Expression[T]
 
-/** A case class representing an addition operation in an arithmetic expression.
+/** A case class representing a kind of addition operation in an arithmetic expression.
   */
 case class Plus[T](a: Expression[T], b: Expression[T]) extends Expression[T]
 
@@ -26,6 +24,7 @@ case class Plus[T](a: Expression[T], b: Expression[T]) extends Expression[T]
   * expression.
   */
 object Expression:
+  
   /** Evaluates an arithmetic expression.
     *
     * @param expression
@@ -35,7 +34,6 @@ object Expression:
     * @return
     *   The result of the evaluation.
     */
-
   def evaluateValidExpression[T: OperationValidator](
       expression: Either[List[String], Expression[T]]
   )(using
@@ -84,7 +82,14 @@ object Expression:
       macroRW[Plus[T]],
       macroRW[Mult[T]]
     )
-
+  
+  /** Validates an arithmetic expression.
+    *
+    * @param expression
+    *   The expression to validate.
+    * @return
+    *   The result of the validation.
+    */
   def validateExpression[T: ArgumentValidator](
       expression: Expression[T]
   ): Either[List[String], Expression[T]] =
@@ -135,8 +140,13 @@ object Expression:
 
 end Expression
 
+/** A trait that defines a method to validate an argument.
+  */
 trait ArgumentValidator[T]:
   def validate(t: T): Boolean
+/** Companion object for `ArgumentValidator` that provides given instances for
+  * `Int`, `Double`, and `Dataset[Row]` types.
+  */
 object ArgumentValidator:
   given ArgumentValidator[Int] with
     def validate(x: Int): Boolean = x > 3

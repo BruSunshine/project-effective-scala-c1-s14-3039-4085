@@ -2,7 +2,7 @@ package app
 
 // Importing necessary modules
 import cask.Main
-import web.{MinimalRoutes, StaticFiles, JsonPost}
+import web.{TestRoutes, StaticFiles, JsonPost}
 import sparkjobs.Session
 
 /*
@@ -26,7 +26,7 @@ object SparkMain extends MyApp:
 // RoutesMain is an object that extends cask.Main and MyApp. It is responsible for managing the routes of the application.
 object RoutesMain extends cask.Main with MyApp:
   // allRoutes is a sequence that holds all the routes for the application.
-  val allRoutes = Seq(MinimalRoutes, StaticFiles, JsonPost)
+  val allRoutes = Seq(TestRoutes, StaticFiles, JsonPost)
   // Initializing the Spark session
   SparkMain.sparkSession
   // Adding a shutdown hook to stop the Spark session when the application is shutting down.
