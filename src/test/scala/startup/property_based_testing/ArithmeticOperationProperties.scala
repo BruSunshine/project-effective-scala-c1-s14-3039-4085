@@ -7,7 +7,7 @@ import org.scalacheck.Prop.forAll
 import org.scalacheck.Gen
 import sparkjobs.DataFramesExemples
 
-class StartUpPropertiesSuite extends munit.ScalaCheckSuite:
+class ArithmeticOperationProperties extends munit.ScalaCheckSuite:
 
   val addDomain: (Gen[Int], Gen[Int]) =
     (Gen.choose(-10, 50), Gen.choose(-10, 50))
