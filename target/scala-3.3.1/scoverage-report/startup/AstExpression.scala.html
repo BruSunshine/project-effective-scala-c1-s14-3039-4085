@@ -1,0 +1,5026 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          startup/AstExpression.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>package startup.ast
+</span>2 <span style=''>
+</span>3 <span style=''>import upickle.default.{ReadWriter =&gt; RW, macroRW, Reader, Writer}
+</span>4 <span style=''>import org.apache.spark.sql.{Dataset, Row}
+</span>5 <span style=''>
+</span>6 <span style=''>/** A sealed trait representing an arithmetic expression.
+</span>7 <span style=''>  */
+</span>8 <span style=''>sealed trait Expression[T]
+</span>9 <span style=''>
+</span>10 <span style=''>/** A case class representing an operand in an arithmetic expression.
+</span>11 <span style=''>  */
+</span>12 <span style=''>case class Num[T](n: T) extends Expression[T]
+</span>13 <span style=''>
+</span>14 <span style=''>/** A case class representing a kind of multiplication operation in an
+</span>15 <span style=''>  * arithmetic expression.
+</span>16 <span style=''>  */
+</span>17 <span style=''>case class Mult[T](a: Expression[T], b: Expre</span><span style='background: #AEF1AE'>ssion[T]) </span><span style=''>extends Expression[T]
+</span>18 <span style=''>
+</span>19 <span style=''>/** A case cl</span><span style='background: #AEF1AE'>ass repres</span><span style=''>enting a kind of addition operation in an arithmetic
+</span>20 <span style=''> </span><span style='background: #F0ADAD'> * expression.
+</span>21 <span style=''></span><span style='background: #F0ADAD'>  */</span><span style=''>
+</span>22 <span style=''>case class Plus[T](a: Expression[T], b: Expression[T]) extends Expression[T]
+</span>23 <span style=''>
+</span>24 <span style=''>/** Companion object for `Expression` that provides a method to evaluate an
+</span>25 <span style=''>  * expression.
+</span>26 <span style=''>  */
+</span>27 <span style=''>object Expression:
+</span>28 <span style=''>
+</span>29 <span style=''>  /** Evaluates an arithmetic expression.
+</span>30 <span style=''>    *
+</span>31 <span style=''>    * @param expression
+</span>32 <span style=''>    *   The expression to evaluate.
+</span>33 <span style=''>    * @param ops
+</span>34 <span style=''>    *   The given instance of `ArithmeticOperation` for the type `T`.</span><span style='background: #AEF1AE'>
+</span>35 <span style=''></span><span style='background: #AEF1AE'>    * @return
+</span>36 <span style=''></span><span style='background: #AEF1AE'>  </span><span style=''>  *   The result of the evaluation.
+</span>37 <span style=''>    */
+</span>38 <span style=''>  </span><span style='background: #AEF1AE'>def evaluateValidExpression</span><span style=''>[T: OperationValidator](
+</span>39 <span style=''>      expression: Either[List[String], Expression[T]]
+</span>40 <span style=''>  )(using
+</span>41 <span style=''>      ops: ArithmeticOperation[T]
+</span>42 <span style=''>  ): Either[List[String], T] =
+</span>43 <span style=''>    try
+</span>44 <span style=''>      </span><span style='background: #AEF1AE'>expression match
+</span>45 <span style=''></span><span style='background: #AEF1AE'>        case Right(exp) =&gt;
+</span>46 <span style=''></span><span style='background: #AEF1AE'>          exp match
+</span>47 <span style=''></span><span style='background: #AEF1AE'>            case Num[T](num) =&gt; </span><span style='background: #F0ADAD'>Right</span><span style='background: #AEF1AE'>(num)
+</span>48 <span style=''></span><span style='background: #AEF1AE'>            case Mult[T](a, b) =&gt;
+</span>49 <span style=''></span><span style='background: #AEF1AE'>              for
+</span>50 <span style=''></span><span style='background: #AEF1AE'>                A &lt;- </span><span style='background: #F0ADAD'>evaluateValidExpression(Right(a))</span><span style='background: #AEF1AE'>
+</span>51 <span style=''></span><span style='background: #AEF1AE'>                B &lt;- </span><span style='background: #F0ADAD'>evaluateValidExpression(Right(b))</span><span style='background: #AEF1AE'>
+</span>52 <span style=''></span><span style='background: #AEF1AE'>              yield
+</span>53 <span style=''></span><span style='background: #AEF1AE'>                if summon[OperationValidator[T]].validate(A, B, &quot;mul&quot;) then
+</span>54 <span style=''></span><span style='background: #AEF1AE'>                  ops.mul(A, B)
+</span>55 <span style=''></span><span style='background: #AEF1AE'>                else throw new Exception(&quot;Invalid mul operation&quot;)
+</span>56 <span style=''></span><span style='background: #AEF1AE'>            case Plus[T](a, b) =&gt;
+</span>57 <span style=''></span><span style='background: #AEF1AE'>              for
+</span>58 <span style=''></span><span style='background: #AEF1AE'>                A &lt;- </span><span style='background: #F0ADAD'>evaluateValidExpression(Right(a))</span><span style='background: #AEF1AE'>
+</span>59 <span style=''></span><span style='background: #AEF1AE'>                B &lt;- </span><span style='background: #F0ADAD'>evaluateValidExpression(Right(b))</span><span style='background: #AEF1AE'>
+</span>60 <span style=''></span><span style='background: #AEF1AE'>              yield
+</span>61 <span style=''></span><span style='background: #AEF1AE'>                if summon[OperationValidator[T]].validate(A, B, &quot;add&quot;) then
+</span>62 <span style=''></span><span style='background: #AEF1AE'>                  ops.add(A, B)
+</span>63 <span style=''></span><span style='background: #AEF1AE'>                else throw new Exception(&quot;Invalid plus operation&quot;)
+</span>64 <span style=''></span><span style='background: #AEF1AE'>        case Left(errors) =&gt; </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(errors)</span><span style=''>
+</span>65 <span style=''>    catch </span><span style='background: #AEF1AE'>case error</span><span style=''> =&gt; </span><span style='background: #F0ADAD'>Left</span><span style=''>(</span><span style='background: #F0ADAD'>List</span><span style='background: #AEF1AE'>(s&quot;$error&quot;)</span><span style=''>)
+</span>66 <span style=''>  end evaluateValidExpression
+</span>67 <span style=''>
+</span>68 <span style=''>  /** Provides an implicit `ReadWriter[Expression[T]]` instance for any type `T`
+</span>69 <span style=''>    * that has a `ReadWriter[T]` instance.
+</span>70 <span style=''>    *</span><span style='background: #AEF1AE'>
+</span>71 <span style=''></span><span style='background: #AEF1AE'>    * This instance c</span><span style=''>an read and write `Expression[T]` instances as JSON. It's
+</span>72 <span style=''>    * created b</span><span style='background: #AEF1AE'>y merging the `ReadWrite</span><span style=''>r` instances for `Num[T]`, `Plus[T]`, and
+</span>73 <span style=''> </span><span style='background: #AEF1AE'>   * `Mult[T]`.
+</span>74 <span style=''></span><span style='background: #AEF1AE'>    *
+</span>75 <span style=''></span><span style='background: #AEF1AE'> </span><span style=''>   * @param RW[T]
+</span>76 <span style=''>    *   The given `ReadWriter[T]`</span><span style='background: #F0ADAD'> instance for the type `T</span><span style=''>`.
+</span>77 <span style=''>    * @return
+</span>78 <span style=''>    *   The `ReadWriter[Expression</span><span style='background: #AEF1AE'>[T]]` instance.
+</span>79 <span style=''></span><span style='background: #AEF1AE'>    */
+</span>80 <span style=''></span><span style='background: #AEF1AE'>  given [T](using RW[T]): R</span><span style=''>W[Expression[T]] =
+</span>81 <span style=''>    </span><span style='background: #AEF1AE'>RW.merge(
+</span>82 <span style=''></span><span style='background: #AEF1AE'>      </span><span style='background: #F0ADAD'>macroRW[Num[T]]</span><span style='background: #AEF1AE'>,
+</span>83 <span style=''></span><span style='background: #AEF1AE'>      </span><span style='background: #F0ADAD'>macroRW[Plus[T]]</span><span style='background: #AEF1AE'>,
+</span>84 <span style=''></span><span style='background: #AEF1AE'>      </span><span style='background: #F0ADAD'>macroRW[Mult[T]]</span><span style='background: #AEF1AE'>
+</span>85 <span style=''></span><span style='background: #AEF1AE'>    )</span><span style=''>
+</span>86 <span style=''>
+</span>87 <span style=''>  /** Validates an arithmetic expression.
+</span>88 <span style=''>    *
+</span>89 <span style=''>    * @param expression
+</span>90 <span style=''>    *   The expression to validate.
+</span>91 <span style=''>    * @return
+</span>92 <span style=''>    *   The result of the validation.
+</span>93 <span style=''>    */
+</span>94 <span style=''>  </span><span style='background: #AEF1AE'>def validateExpression</span><span style=''>[T: ArgumentValidator](
+</span>95 <span style=''>      expression: Expression[T]
+</span>96 <span style=''>  ): Either[List[String], Expression[T]] =
+</span>97 <span style=''>    </span><span style='background: #AEF1AE'>def valExpIntern</span><span style=''>[T: ArgumentValidator](
+</span>98 <span style=''>        expression: Expression[T],
+</span>99 <span style=''>        errorsAccumulator: List[String]
+</span>100 <span style=''>    ): Either[List[String], Expression[T]] =
+</span>101 <span style=''>      try
+</span>102 <span style=''>        </span><span style='background: #AEF1AE'>expression match
+</span>103 <span style=''></span><span style='background: #AEF1AE'>          case Num(n) =&gt;
+</span>104 <span style=''></span><span style='background: #AEF1AE'>            if summon[ArgumentValidator[T]].validate(n) then </span><span style='background: #F0ADAD'>Right</span><span style='background: #AEF1AE'>(expression)
+</span>105 <span style=''></span><span style='background: #AEF1AE'>            else </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(errorsAccumulator :+ s&quot;Invalid Num argument $n&quot;)
+</span>106 <span style=''></span><span style='background: #AEF1AE'>          case Mult(a, b) =&gt;
+</span>107 <span style=''></span><span style='background: #AEF1AE'>            (
+</span>108 <span style=''></span><span style='background: #AEF1AE'>              valExpIntern(a, errorsAccumulator),
+</span>109 <span style=''></span><span style='background: #AEF1AE'>              valExpIntern(b, errorsAccumulator)
+</span>110 <span style=''></span><span style='background: #AEF1AE'>            ) match
+</span>111 <span style=''></span><span style='background: #AEF1AE'>              case (Right(_), Right(_)) =&gt; </span><span style='background: #F0ADAD'>Right</span><span style='background: #AEF1AE'>(expression)
+</span>112 <span style=''></span><span style='background: #AEF1AE'>              case (Left(error), Right(_)) =&gt;
+</span>113 <span style=''></span><span style='background: #AEF1AE'>                </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(errorsAccumulator ++ error)
+</span>114 <span style=''></span><span style='background: #AEF1AE'>              case (Right(_), Left(error)) =&gt;
+</span>115 <span style=''></span><span style='background: #AEF1AE'>                </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(errorsAccumulator ++ error)
+</span>116 <span style=''></span><span style='background: #AEF1AE'>              case (Left(error1), Left(error2)) =&gt;
+</span>117 <span style=''></span><span style='background: #AEF1AE'>                </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(
+</span>118 <span style=''></span><span style='background: #AEF1AE'>                  </span><span style='background: #F0ADAD'>errorsAccumulator ++ error1</span><span style='background: #AEF1AE'> ++ error2
+</span>119 <span style=''></span><span style='background: #AEF1AE'>                )
+</span>120 <span style=''></span><span style='background: #AEF1AE'>          case Plus(a, b) =&gt;
+</span>121 <span style=''></span><span style='background: #AEF1AE'>            (
+</span>122 <span style=''></span><span style='background: #AEF1AE'>              valExpIntern(a, errorsAccumulator),
+</span>123 <span style=''></span><span style='background: #AEF1AE'>              valExpIntern(b, errorsAccumulator)
+</span>124 <span style=''></span><span style='background: #AEF1AE'>            ) match
+</span>125 <span style=''></span><span style='background: #AEF1AE'>              case (Right(_), Right(_)) =&gt; </span><span style='background: #F0ADAD'>Right</span><span style='background: #AEF1AE'>(expression)
+</span>126 <span style=''></span><span style='background: #AEF1AE'>              case (Left(error), Right(_)) =&gt;
+</span>127 <span style=''></span><span style='background: #AEF1AE'>                </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(errorsAccumulator ++ error)
+</span>128 <span style=''></span><span style='background: #AEF1AE'>              case (Right(_), Left(error)) =&gt;
+</span>129 <span style=''></span><span style='background: #AEF1AE'>                </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(errorsAccumulator ++ error)
+</span>130 <span style=''></span><span style='background: #AEF1AE'>              case (Left(error1), Left(error2)) =&gt;
+</span>131 <span style=''></span><span style='background: #AEF1AE'>                </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(
+</span>132 <span style=''></span><span style='background: #AEF1AE'>                  </span><span style='background: #F0ADAD'>errorsAccumulator ++ error1</span><span style='background: #AEF1AE'> ++ error2
+</span>133 <span style=''></span><span style='background: #AEF1AE'>                )
+</span>134 <span style=''></span><span style='background: #AEF1AE'>          </span><span style='background: #F0ADAD'>case null</span><span style='background: #AEF1AE'> =&gt; </span><span style='background: #F0ADAD'>Left</span><span style='background: #AEF1AE'>(</span><span style='background: #F0ADAD'>errorsAccumulator ++ List(s&quot;null expression&quot;)</span><span style='background: #AEF1AE'>)</span><span style=''>
+</span>135 <span style=''>      catch
+</span>136 <span style=''>        </span><span style='background: #F0ADAD'>case error</span><span style=''> =&gt;
+</span>137 <span style=''>          </span><span style='background: #F0ADAD'>Left</span><span style=''>(</span><span style='background: #F0ADAD'>errorsAccumulator :+ s&quot;error in expression validation: $error&quot;</span><span style=''>)
+</span>138 <span style=''>    end valExpIntern
+</span>139 <span style=''>    </span><span style='background: #AEF1AE'>valExpIntern(expression, List.empty[String])</span><span style=''>
+</span>140 <span style=''>  end validateExpression
+</span>141 <span style=''>
+</span>142 <span style=''>end Expression
+</span>143 <span style=''>
+</span>144 <span style=''>/** A trait that defines a method to validate an argument.
+</span>145 <span style=''>  */
+</span>146 <span style=''>trait ArgumentValidator[T]:
+</span>147 <span style=''>  def validate(t: T): Boolean
+</span>148 <span style=''>
+</span>149 <span style=''>/** Companion object for `ArgumentValidator` that provides given instances for
+</span>150 <span style=''>  * `Int`, `Double`, and `Dataset[Row]` types.
+</span>151 <span style=''>  */
+</span>152 <span style=''>object ArgumentValidator:
+</span>153 <span style=''>  given ArgumentValidator[Int] with
+</span>154 <span style=''>    </span><span style='background: #AEF1AE'>def validate</span><span style=''>(x: Int): Boolean = x &gt; 3
+</span>155 <span style=''>  given ArgumentValidator[Double] with
+</span>156 <span style=''>    </span><span style='background: #AEF1AE'>def validate</span><span style=''>(x: Double): Boolean = x &gt; 0
+</span>157 <span style=''>  given ArgumentValidator[Dataset[Row]] with
+</span>158 <span style=''>    </span><span style='background: #AEF1AE'>def validate</span><span style=''>(df: Dataset[Row]): Boolean =
+</span>159 <span style=''>      val dfcount: Long = </span><span style='background: #AEF1AE'>df.count</span><span style=''>
+</span>160 <span style=''>      (dfcount &gt; 2) &amp;&amp; (dfcount &lt; 1000)
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Tests</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          298
+        </td>
+        <td>
+          493
+          -
+          503
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          writer
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ssion[T]) 
+        </td>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          372
+        </td>
+        <td>
+          493
+          -
+          503
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          writer
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ssion[T]) 
+        </td>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          335
+        </td>
+        <td>
+          493
+          -
+          503
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          writer
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ssion[T]) 
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          325
+        </td>
+        <td>
+          539
+          -
+          549
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          length
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ass repres
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          292
+        </td>
+        <td>
+          539
+          -
+          549
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          length
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ass repres
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          362
+        </td>
+        <td>
+          539
+          -
+          549
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          length
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ass repres
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          363
+        </td>
+        <td>
+          603
+          -
+          622
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          write0
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+           * expression.\n  */
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          326
+        </td>
+        <td>
+          603
+          -
+          622
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          write0
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+           * expression.\n  */
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          293
+        </td>
+        <td>
+          603
+          -
+          622
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          write0
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+           * expression.\n  */
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          370
+        </td>
+        <td>
+          1012
+          -
+          1029
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          writeToObject
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          \n    * @return\n  
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          333
+        </td>
+        <td>
+          1012
+          -
+          1029
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          writeToObject
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          \n    * @return\n  
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          296
+        </td>
+        <td>
+          1012
+          -
+          1029
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          writeToObject
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          \n    * @return\n  
+        </td>
+      </tr><tr>
+        <td>
+          37
+        </td>
+        <td>
+          272
+        </td>
+        <td>
+          1074
+          -
+          1101
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          evaluateValidExpression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def evaluateValidExpression
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          266
+        </td>
+        <td>
+          1269
+          -
+          2130
+        </td>
+        <td>
+          Match
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          expression match\n        case Right(exp) =&gt;\n          exp match\n            case Num[T](num) =&gt; Right(num)\n            case Mult[T](a, b) =&gt;\n              for\n                A &lt;- evaluateValidExpression(Right(a))\n                B &lt;- evaluateValidExpression(Right(b))\n              yield\n                if summon[OperationValidator[T]].validate(A, B, &quot;mul&quot;) then\n                  ops.mul(A, B)\n                else throw new Exception(&quot;Invalid mul operation&quot;)\n            case Plus[T](a, b) =&gt;\n              for\n                A &lt;- evaluateValidExpression(Right(a))\n                B &lt;- evaluateValidExpression(Right(b))\n              yield\n                if summon[OperationValidator[T]].validate(A, B, &quot;add&quot;) then\n                  ops.add(A, B)\n                else throw new Exception(&quot;Invalid plus operation&quot;)\n        case Left(errors) =&gt; Left(errors)
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          235
+        </td>
+        <td>
+          1294
+          -
+          1309
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case Right(exp)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          236
+        </td>
+        <td>
+          1345
+          -
+          1361
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case Num[T](num)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          237
+        </td>
+        <td>
+          1365
+          -
+          1370
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Right
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Right
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          238
+        </td>
+        <td>
+          1388
+          -
+          1406
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case Mult[T](a, b)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          239
+        </td>
+        <td>
+          1424
+          -
+          1731
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          flatMap
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          for\n                A &lt;- evaluateValidExpression(Right(a))\n                B &lt;- evaluateValidExpression(Right(b))\n              yield\n                if summon[OperationValidator[T]].validate(A, B, &quot;mul&quot;) then\n                  ops.mul(A, B)\n                else throw new Exception(&quot;Invalid mul operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          241
+        </td>
+        <td>
+          1473
+          -
+          1478
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Right
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Right
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          240
+        </td>
+        <td>
+          1449
+          -
+          1482
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          evaluateValidExpression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          evaluateValidExpression(Right(a))
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          244
+        </td>
+        <td>
+          1528
+          -
+          1533
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Right
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Right
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          243
+        </td>
+        <td>
+          1504
+          -
+          1537
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          evaluateValidExpression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          evaluateValidExpression(Right(b))
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          242
+        </td>
+        <td>
+          1499
+          -
+          1731
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          B &lt;- evaluateValidExpression(Right(b))\n              yield\n                if summon[OperationValidator[T]].validate(A, B, &quot;mul&quot;) then\n                  ops.mul(A, B)\n                else throw new Exception(&quot;Invalid mul operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          52
+        </td>
+        <td>
+          245
+        </td>
+        <td>
+          1577
+          -
+          1628
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          summon[OperationValidator[T]].validate(A, B, &quot;mul&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          53
+        </td>
+        <td>
+          247
+        </td>
+        <td>
+          1652
+          -
+          1665
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          mul
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ops.mul(A, B)
+        </td>
+      </tr><tr>
+        <td>
+          53
+        </td>
+        <td>
+          246
+        </td>
+        <td>
+          1652
+          -
+          1665
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          mul
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ops.mul(A, B)
+        </td>
+      </tr><tr>
+        <td>
+          54
+        </td>
+        <td>
+          250
+        </td>
+        <td>
+          1687
+          -
+          1731
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          throw
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          throw new Exception(&quot;Invalid mul operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          54
+        </td>
+        <td>
+          249
+        </td>
+        <td>
+          1693
+          -
+          1731
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          &lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          new Exception(&quot;Invalid mul operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          54
+        </td>
+        <td>
+          248
+        </td>
+        <td>
+          1687
+          -
+          1731
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          throw
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          throw new Exception(&quot;Invalid mul operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          251
+        </td>
+        <td>
+          1744
+          -
+          1762
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case Plus[T](a, b)
+        </td>
+      </tr><tr>
+        <td>
+          56
+        </td>
+        <td>
+          252
+        </td>
+        <td>
+          1780
+          -
+          2088
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          flatMap
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          for\n                A &lt;- evaluateValidExpression(Right(a))\n                B &lt;- evaluateValidExpression(Right(b))\n              yield\n                if summon[OperationValidator[T]].validate(A, B, &quot;add&quot;) then\n                  ops.add(A, B)\n                else throw new Exception(&quot;Invalid plus operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          254
+        </td>
+        <td>
+          1829
+          -
+          1834
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Right
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Right
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          253
+        </td>
+        <td>
+          1805
+          -
+          1838
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          evaluateValidExpression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          evaluateValidExpression(Right(a))
+        </td>
+      </tr><tr>
+        <td>
+          58
+        </td>
+        <td>
+          256
+        </td>
+        <td>
+          1860
+          -
+          1893
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          evaluateValidExpression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          evaluateValidExpression(Right(b))
+        </td>
+      </tr><tr>
+        <td>
+          58
+        </td>
+        <td>
+          255
+        </td>
+        <td>
+          1855
+          -
+          2088
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          B &lt;- evaluateValidExpression(Right(b))\n              yield\n                if summon[OperationValidator[T]].validate(A, B, &quot;add&quot;) then\n                  ops.add(A, B)\n                else throw new Exception(&quot;Invalid plus operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          58
+        </td>
+        <td>
+          257
+        </td>
+        <td>
+          1884
+          -
+          1889
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Right
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Right
+        </td>
+      </tr><tr>
+        <td>
+          60
+        </td>
+        <td>
+          258
+        </td>
+        <td>
+          1933
+          -
+          1984
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          summon[OperationValidator[T]].validate(A, B, &quot;add&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          61
+        </td>
+        <td>
+          259
+        </td>
+        <td>
+          2008
+          -
+          2021
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          add
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ops.add(A, B)
+        </td>
+      </tr><tr>
+        <td>
+          61
+        </td>
+        <td>
+          260
+        </td>
+        <td>
+          2008
+          -
+          2021
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          add
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          ops.add(A, B)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          262
+        </td>
+        <td>
+          2049
+          -
+          2088
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          &lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          new Exception(&quot;Invalid plus operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          261
+        </td>
+        <td>
+          2043
+          -
+          2088
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          throw
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          throw new Exception(&quot;Invalid plus operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          263
+        </td>
+        <td>
+          2043
+          -
+          2088
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          throw
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          throw new Exception(&quot;Invalid plus operation&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          63
+        </td>
+        <td>
+          265
+        </td>
+        <td>
+          2118
+          -
+          2122
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          63
+        </td>
+        <td>
+          264
+        </td>
+        <td>
+          2097
+          -
+          2114
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case Left(errors)
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          271
+        </td>
+        <td>
+          2165
+          -
+          2174
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          s&quot;$error&quot;
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          268
+        </td>
+        <td>
+          2155
+          -
+          2159
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          267
+        </td>
+        <td>
+          2141
+          -
+          2151
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case error
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          270
+        </td>
+        <td>
+          2160
+          -
+          2164
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          List
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          List
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          269
+        </td>
+        <td>
+          2160
+          -
+          2175
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          List(s&quot;$error&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          70
+        </td>
+        <td>
+          345
+        </td>
+        <td>
+          2337
+          -
+          2359
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          visitors0
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          \n    * This instance c
+        </td>
+      </tr><tr>
+        <td>
+          70
+        </td>
+        <td>
+          276
+        </td>
+        <td>
+          2337
+          -
+          2359
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          visitors0
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          \n    * This instance c
+        </td>
+      </tr><tr>
+        <td>
+          70
+        </td>
+        <td>
+          308
+        </td>
+        <td>
+          2337
+          -
+          2359
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          visitors0
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          \n    * This instance c
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          310
+        </td>
+        <td>
+          2432
+          -
+          2456
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          fromProduct
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          y merging the `ReadWrite
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          347
+        </td>
+        <td>
+          2432
+          -
+          2456
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          fromProduct
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          y merging the `ReadWrite
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          278
+        </td>
+        <td>
+          2432
+          -
+          2456
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          fromProduct
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          y merging the `ReadWrite
+        </td>
+      </tr><tr>
+        <td>
+          72
+        </td>
+        <td>
+          351
+        </td>
+        <td>
+          2499
+          -
+          2522
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          keyToIndex
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+             * `Mult[T]`.\n    *\n 
+        </td>
+      </tr><tr>
+        <td>
+          72
+        </td>
+        <td>
+          281
+        </td>
+        <td>
+          2499
+          -
+          2522
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          keyToIndex
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+             * `Mult[T]`.\n    *\n 
+        </td>
+      </tr><tr>
+        <td>
+          72
+        </td>
+        <td>
+          314
+        </td>
+        <td>
+          2499
+          -
+          2522
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          keyToIndex
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+             * `Mult[T]`.\n    *\n 
+        </td>
+      </tr><tr>
+        <td>
+          75
+        </td>
+        <td>
+          358
+        </td>
+        <td>
+          2573
+          -
+          2598
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          allKeysArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+           instance for the type `T
+        </td>
+      </tr><tr>
+        <td>
+          75
+        </td>
+        <td>
+          321
+        </td>
+        <td>
+          2573
+          -
+          2598
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          allKeysArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+           instance for the type `T
+        </td>
+      </tr><tr>
+        <td>
+          75
+        </td>
+        <td>
+          288
+        </td>
+        <td>
+          2573
+          -
+          2598
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          allKeysArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+           instance for the type `T
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          322
+        </td>
+        <td>
+          2649
+          -
+          2675
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          storeDefaults
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          [T]]` instance.\n    */\n  g
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          289
+        </td>
+        <td>
+          2649
+          -
+          2675
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          storeDefaults
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          [T]]` instance.\n    */\n  g
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          359
+        </td>
+        <td>
+          2649
+          -
+          2675
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          storeDefaults
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          [T]]` instance.\n    */\n  g
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          377
+        </td>
+        <td>
+          2674
+          -
+          2699
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          given [T](using RW[T]): R
+        </td>
+      </tr><tr>
+        <td>
+          80
+        </td>
+        <td>
+          273
+        </td>
+        <td>
+          2722
+          -
+          2807
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          merge
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          RW.merge(\n      macroRW[Num[T]],\n      macroRW[Plus[T]],\n      macroRW[Mult[T]]\n    )
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          286
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          _2
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          295
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          objectAttributeKeyWriteMap
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          280
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          301
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          implicitly
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          283
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          274
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          join
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          277
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          fromProduct
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          300
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          writer
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          294
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          writeSnippetMappedName
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          285
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          List
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          297
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          &lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          279
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          282
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          toArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          291
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          annotate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          299
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          annotate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          290
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          &lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          302
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          runtimeClass
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          275
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          cons
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          284
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          287
+        </td>
+        <td>
+          2738
+          -
+          2753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Num[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          304
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          331
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          objectAttributeKeyWriteMap
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          313
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          307
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          cons
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          334
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          &lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          316
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          319
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          _2
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          337
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          writer
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          328
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          objectAttributeKeyWriteMap
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          336
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          annotate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          309
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          fromProduct
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          318
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          List
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          327
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          writeSnippetMappedName
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          312
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          303
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          join
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          330
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          writeSnippetMappedName
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          339
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          runtimeClass
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          306
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          cons
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          324
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          annotate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          315
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          toArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          332
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          323
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          &lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          317
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          338
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          implicitly
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          320
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          329
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          311
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          305
+        </td>
+        <td>
+          2761
+          -
+          2777
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Plus[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          364
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          writeSnippetMappedName
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          373
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          annotate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          346
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          fromProduct
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          355
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          List
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          367
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          writeSnippetMappedName
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          376
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          runtimeClass
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          349
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          340
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          join
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          343
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          cons
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          352
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          toArray
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          361
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          annotate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          369
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          360
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          &lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          354
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          357
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          348
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          375
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          implicitly
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          366
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          342
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          341
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          given_RW_Expression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          368
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          objectAttributeKeyWriteMap
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          350
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          344
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          cons
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          353
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          map
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          371
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          &lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          356
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          _2
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          374
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          writer
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          365
+        </td>
+        <td>
+          2785
+          -
+          2801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          objectAttributeKeyWriteMap
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          macroRW[Mult[T]]
+        </td>
+      </tr><tr>
+        <td>
+          93
+        </td>
+        <td>
+          431
+        </td>
+        <td>
+          2978
+          -
+          3000
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          validateExpression
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def validateExpression
+        </td>
+      </tr><tr>
+        <td>
+          96
+        </td>
+        <td>
+          427
+        </td>
+        <td>
+          3103
+          -
+          3119
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          valExpIntern
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def valExpIntern
+        </td>
+      </tr><tr>
+        <td>
+          101
+        </td>
+        <td>
+          422
+        </td>
+        <td>
+          3281
+          -
+          4667
+        </td>
+        <td>
+          Match
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          expression match\n          case Num(n) =&gt;\n            if summon[ArgumentValidator[T]].validate(n) then Right(expression)\n            else Left(errorsAccumulator :+ s&quot;Invalid Num argument $n&quot;)\n          case Mult(a, b) =&gt;\n            (\n              valExpIntern(a, errorsAccumulator),\n              valExpIntern(b, errorsAccumulator)\n            ) match\n              case (Right(_), Right(_)) =&gt; Right(expression)\n              case (Left(error), Right(_)) =&gt;\n                Left(errorsAccumulator ++ error)\n              case (Right(_), Left(error)) =&gt;\n                Left(errorsAccumulator ++ error)\n              case (Left(error1), Left(error2)) =&gt;\n                Left(\n                  errorsAccumulator ++ error1 ++ error2\n                )\n          case Plus(a, b) =&gt;\n            (\n              valExpIntern(a, errorsAccumulator),\n              valExpIntern(b, errorsAccumulator)\n            ) match\n              case (Right(_), Right(_)) =&gt; Right(expression)\n              case (Left(error), Right(_)) =&gt;\n                Left(errorsAccumulator ++ error)\n              case (Right(_), Left(error)) =&gt;\n                Left(errorsAccumulator ++ error)\n              case (Left(error1), Left(error2)) =&gt;\n                Left(\n                  errorsAccumulator ++ error1 ++ error2\n                )\n          case null =&gt; Left(errorsAccumulator ++ List(s&quot;null expression&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          102
+        </td>
+        <td>
+          378
+        </td>
+        <td>
+          3308
+          -
+          3319
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case Num(n)
+        </td>
+      </tr><tr>
+        <td>
+          103
+        </td>
+        <td>
+          379
+        </td>
+        <td>
+          3338
+          -
+          3378
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          summon[ArgumentValidator[T]].validate(n)
+        </td>
+      </tr><tr>
+        <td>
+          103
+        </td>
+        <td>
+          381
+        </td>
+        <td>
+          3384
+          -
+          3401
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Right(expression)
+        </td>
+      </tr><tr>
+        <td>
+          103
+        </td>
+        <td>
+          380
+        </td>
+        <td>
+          3384
+          -
+          3389
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Right
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Right
+        </td>
+      </tr><tr>
+        <td>
+          104
+        </td>
+        <td>
+          382
+        </td>
+        <td>
+          3419
+          -
+          3423
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          104
+        </td>
+        <td>
+          385
+        </td>
+        <td>
+          3419
+          -
+          3472
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Left(errorsAccumulator :+ s&quot;Invalid Num argument $n&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          104
+        </td>
+        <td>
+          384
+        </td>
+        <td>
+          3445
+          -
+          3471
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          s&quot;Invalid Num argument $n&quot;
+        </td>
+      </tr><tr>
+        <td>
+          104
+        </td>
+        <td>
+          383
+        </td>
+        <td>
+          3424
+          -
+          3471
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          :+
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          errorsAccumulator :+ s&quot;Invalid Num argument $n&quot;
+        </td>
+      </tr><tr>
+        <td>
+          105
+        </td>
+        <td>
+          386
+        </td>
+        <td>
+          3483
+          -
+          3498
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case Mult(a, b)
+        </td>
+      </tr><tr>
+        <td>
+          107
+        </td>
+        <td>
+          387
+        </td>
+        <td>
+          3530
+          -
+          3564
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          valExpIntern
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          valExpIntern(a, errorsAccumulator)
+        </td>
+      </tr><tr>
+        <td>
+          108
+        </td>
+        <td>
+          388
+        </td>
+        <td>
+          3580
+          -
+          3614
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          valExpIntern
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          valExpIntern(b, errorsAccumulator)
+        </td>
+      </tr><tr>
+        <td>
+          110
+        </td>
+        <td>
+          390
+        </td>
+        <td>
+          3678
+          -
+          3683
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Right
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Right
+        </td>
+      </tr><tr>
+        <td>
+          110
+        </td>
+        <td>
+          389
+        </td>
+        <td>
+          3649
+          -
+          3674
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case (Right(_), Right(_))
+        </td>
+      </tr><tr>
+        <td>
+          111
+        </td>
+        <td>
+          391
+        </td>
+        <td>
+          3710
+          -
+          3738
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case (Left(error), Right(_))
+        </td>
+      </tr><tr>
+        <td>
+          112
+        </td>
+        <td>
+          393
+        </td>
+        <td>
+          3763
+          -
+          3789
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          errorsAccumulator ++ error
+        </td>
+      </tr><tr>
+        <td>
+          112
+        </td>
+        <td>
+          392
+        </td>
+        <td>
+          3758
+          -
+          3762
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          113
+        </td>
+        <td>
+          394
+        </td>
+        <td>
+          3805
+          -
+          3833
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case (Right(_), Left(error))
+        </td>
+      </tr><tr>
+        <td>
+          114
+        </td>
+        <td>
+          396
+        </td>
+        <td>
+          3858
+          -
+          3884
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          errorsAccumulator ++ error
+        </td>
+      </tr><tr>
+        <td>
+          114
+        </td>
+        <td>
+          395
+        </td>
+        <td>
+          3853
+          -
+          3857
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          115
+        </td>
+        <td>
+          397
+        </td>
+        <td>
+          3900
+          -
+          3933
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case (Left(error1), Left(error2))
+        </td>
+      </tr><tr>
+        <td>
+          116
+        </td>
+        <td>
+          398
+        </td>
+        <td>
+          3953
+          -
+          3957
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          117
+        </td>
+        <td>
+          400
+        </td>
+        <td>
+          3977
+          -
+          4004
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          errorsAccumulator ++ error1
+        </td>
+      </tr><tr>
+        <td>
+          117
+        </td>
+        <td>
+          399
+        </td>
+        <td>
+          3977
+          -
+          4014
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          errorsAccumulator ++ error1 ++ error2
+        </td>
+      </tr><tr>
+        <td>
+          119
+        </td>
+        <td>
+          401
+        </td>
+        <td>
+          4043
+          -
+          4058
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case Plus(a, b)
+        </td>
+      </tr><tr>
+        <td>
+          121
+        </td>
+        <td>
+          402
+        </td>
+        <td>
+          4090
+          -
+          4124
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          valExpIntern
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          valExpIntern(a, errorsAccumulator)
+        </td>
+      </tr><tr>
+        <td>
+          122
+        </td>
+        <td>
+          403
+        </td>
+        <td>
+          4140
+          -
+          4174
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          valExpIntern
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          valExpIntern(b, errorsAccumulator)
+        </td>
+      </tr><tr>
+        <td>
+          124
+        </td>
+        <td>
+          405
+        </td>
+        <td>
+          4238
+          -
+          4243
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Right
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Right
+        </td>
+      </tr><tr>
+        <td>
+          124
+        </td>
+        <td>
+          404
+        </td>
+        <td>
+          4209
+          -
+          4234
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case (Right(_), Right(_))
+        </td>
+      </tr><tr>
+        <td>
+          125
+        </td>
+        <td>
+          406
+        </td>
+        <td>
+          4270
+          -
+          4298
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case (Left(error), Right(_))
+        </td>
+      </tr><tr>
+        <td>
+          126
+        </td>
+        <td>
+          408
+        </td>
+        <td>
+          4323
+          -
+          4349
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          errorsAccumulator ++ error
+        </td>
+      </tr><tr>
+        <td>
+          126
+        </td>
+        <td>
+          407
+        </td>
+        <td>
+          4318
+          -
+          4322
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          127
+        </td>
+        <td>
+          409
+        </td>
+        <td>
+          4365
+          -
+          4393
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case (Right(_), Left(error))
+        </td>
+      </tr><tr>
+        <td>
+          128
+        </td>
+        <td>
+          411
+        </td>
+        <td>
+          4418
+          -
+          4444
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          errorsAccumulator ++ error
+        </td>
+      </tr><tr>
+        <td>
+          128
+        </td>
+        <td>
+          410
+        </td>
+        <td>
+          4413
+          -
+          4417
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          129
+        </td>
+        <td>
+          412
+        </td>
+        <td>
+          4460
+          -
+          4493
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case (Left(error1), Left(error2))
+        </td>
+      </tr><tr>
+        <td>
+          130
+        </td>
+        <td>
+          413
+        </td>
+        <td>
+          4513
+          -
+          4517
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          131
+        </td>
+        <td>
+          415
+        </td>
+        <td>
+          4537
+          -
+          4564
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          errorsAccumulator ++ error1
+        </td>
+      </tr><tr>
+        <td>
+          131
+        </td>
+        <td>
+          414
+        </td>
+        <td>
+          4537
+          -
+          4574
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          errorsAccumulator ++ error1 ++ error2
+        </td>
+      </tr><tr>
+        <td>
+          133
+        </td>
+        <td>
+          418
+        </td>
+        <td>
+          4621
+          -
+          4666
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          ++
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          errorsAccumulator ++ List(s&quot;null expression&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          133
+        </td>
+        <td>
+          421
+        </td>
+        <td>
+          4647
+          -
+          4665
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;null expression&quot;
+        </td>
+      </tr><tr>
+        <td>
+          133
+        </td>
+        <td>
+          420
+        </td>
+        <td>
+          4642
+          -
+          4646
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          List
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          List
+        </td>
+      </tr><tr>
+        <td>
+          133
+        </td>
+        <td>
+          417
+        </td>
+        <td>
+          4616
+          -
+          4620
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          133
+        </td>
+        <td>
+          419
+        </td>
+        <td>
+          4642
+          -
+          4666
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          List(s&quot;null expression&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          133
+        </td>
+        <td>
+          416
+        </td>
+        <td>
+          4603
+          -
+          4612
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          case null
+        </td>
+      </tr><tr>
+        <td>
+          135
+        </td>
+        <td>
+          423
+        </td>
+        <td>
+          4688
+          -
+          4698
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          case error
+        </td>
+      </tr><tr>
+        <td>
+          136
+        </td>
+        <td>
+          424
+        </td>
+        <td>
+          4712
+          -
+          4716
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Left
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Left
+        </td>
+      </tr><tr>
+        <td>
+          136
+        </td>
+        <td>
+          426
+        </td>
+        <td>
+          4738
+          -
+          4779
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          s&quot;error in expression validation: $error&quot;
+        </td>
+      </tr><tr>
+        <td>
+          136
+        </td>
+        <td>
+          425
+        </td>
+        <td>
+          4717
+          -
+          4779
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          :+
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          errorsAccumulator :+ s&quot;error in expression validation: $error&quot;
+        </td>
+      </tr><tr>
+        <td>
+          138
+        </td>
+        <td>
+          430
+        </td>
+        <td>
+          4831
+          -
+          4841
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          empty
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          List.empty
+        </td>
+      </tr><tr>
+        <td>
+          138
+        </td>
+        <td>
+          429
+        </td>
+        <td>
+          4831
+          -
+          4835
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          List
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          List
+        </td>
+      </tr><tr>
+        <td>
+          138
+        </td>
+        <td>
+          428
+        </td>
+        <td>
+          4806
+          -
+          4850
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          valExpIntern
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          valExpIntern(expression, List.empty[String])
+        </td>
+      </tr><tr>
+        <td>
+          153
+        </td>
+        <td>
+          432
+        </td>
+        <td>
+          5213
+          -
+          5225
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def validate
+        </td>
+      </tr><tr>
+        <td>
+          155
+        </td>
+        <td>
+          433
+        </td>
+        <td>
+          5294
+          -
+          5306
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def validate
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          435
+        </td>
+        <td>
+          5384
+          -
+          5396
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def validate
+        </td>
+      </tr><tr>
+        <td>
+          158
+        </td>
+        <td>
+          434
+        </td>
+        <td>
+          5452
+          -
+          5460
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          count
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          df.count
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

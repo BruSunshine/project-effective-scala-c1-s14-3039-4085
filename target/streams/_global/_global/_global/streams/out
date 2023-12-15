@@ -1,0 +1,16 @@
+[0m[[0m[0mdebug[0m] [0m[0mscalafmt: Adding repositories [https://repo1.maven.org/maven2/][0m
+[0m[[0m[0mdebug[0m] [0m[0mscalafmt: considering all files (no git)[0m
+[0m[[0m[0mdebug[0m] [0m[0mscalafmt: Change report:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Checked: /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/MyApp.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/sparkjobs/SparkJob.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/Ast.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/AstExpressionSerialize.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/sparkjobs/DataframesAndExpressions.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/web/WebServer.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/AstDataFrameName.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/AstArithmeticOperation.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/AstExpression.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Modified: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	Unmodified: /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/app/MyApp.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/sparkjobs/SparkJob.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/Ast.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/AstExpressionSerialize.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/sparkjobs/DataframesAndExpressions.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/web/WebServer.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/AstDataFrameName.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/AstArithmeticOperation.scala, /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/AstExpression.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Added: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	Removed: [0m
+[0m[[0m[33mwarn[0m] [0m[0mscalafmt: /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085: 6 files aren't formatted properly:[0m
+[0m[[0m[33mwarn[0m] [0m[0msrc/main/scala/startup/Ast.scala[0m
+[0m[[0m[33mwarn[0m] [0m[0msrc/main/scala/startup/AstArithmeticOperation.scala[0m
+[0m[[0m[33mwarn[0m] [0m[0msrc/main/scala/startup/AstDataFrameName.scala[0m
+[0m[[0m[33mwarn[0m] [0m[0msrc/main/scala/startup/AstExpression.scala[0m
+[0m[[0m[33mwarn[0m] [0m[0msrc/main/scala/startup/AstExpressionSerialize.scala[0m
+[0m[[0m[33mwarn[0m] [0m[0msrc/main/scala/web/WebServer.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0mscalafmt: Unchanged 0 Scala sources[0m

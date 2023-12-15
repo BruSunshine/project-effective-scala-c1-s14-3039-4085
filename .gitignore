@@ -1,6 +1,6 @@
 # SBT specific
 .bsp/
-target/
+# target/
 project/target/
 project/project/
 .lib/

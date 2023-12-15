@@ -1,0 +1,1489 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          startup/AstArithmeticOperation.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>package startup.ast
+</span>2 <span style=''>
+</span>3 <span style=''>import org.apache.spark.sql.{Dataset, Row}
+</span>4 <span style=''>import org.apache.spark.sql.functions.{col, concat}
+</span>5 <span style=''>
+</span>6 <span style=''>/** A type class that defines arithmetic operations for a type `T`.
+</span>7 <span style=''>  */
+</span>8 <span style=''>trait ArithmeticOperation[T]:
+</span>9 <span style=''>  /** Adds two values of type `T`.
+</span>10 <span style=''>    */
+</span>11 <span style=''>  def add(x: T, y: T): T
+</span>12 <span style=''>
+</span>13 <span style=''>  /** Multiplies two values of type `T`.
+</span>14 <span style=''>    */
+</span>15 <span style=''>  def mul(x: T, y: T): T
+</span>16 <span style=''>
+</span>17 <span style=''>/** Companion object for `ArithmeticOperation` that provides given instances for
+</span>18 <span style=''>  * `Int` and `Double`.
+</span>19 <span style=''>  */
+</span>20 <span style=''>object ArithmeticOperation:
+</span>21 <span style=''>
+</span>22 <span style=''>  /** Given instance of `ArithmeticOperation` for `Int`. Defines addition and
+</span>23 <span style=''>    * multiplication for `Int`.
+</span>24 <span style=''>    */
+</span>25 <span style=''>  given IntOps: ArithmeticOperation[Int] with
+</span>26 <span style=''>    </span><span style='background: #AEF1AE'>def add</span><span style=''>(x: Int, y: Int): Int = x + y
+</span>27 <span style=''>    </span><span style='background: #AEF1AE'>def mul</span><span style=''>(x: Int, y: Int): Int = x * y
+</span>28 <span style=''>
+</span>29 <span style=''>  /** Given instance of `ArithmeticOperation` for `Double`. Defines addition and
+</span>30 <span style=''>    * multiplication for `Double`.
+</span>31 <span style=''>    */
+</span>32 <span style=''>  given DoubleOps: ArithmeticOperation[Double] with
+</span>33 <span style=''>    </span><span style='background: #AEF1AE'>def add</span><span style=''>(x: Double, y: Double): Double = x + y
+</span>34 <span style=''>    </span><span style='background: #AEF1AE'>def mul</span><span style=''>(x: Double, y: Double): Double = x * y
+</span>35 <span style=''>
+</span>36 <span style=''>  /** Given instance of `ArithmeticOperation` for `DataFrame`. Defines addition
+</span>37 <span style=''>    * and multiplication for `DataFrame`. Addition concatenates string fields
+</span>38 <span style=''>    * and adds numeric fields. Multiplication concatenates string fields twice
+</span>39 <span style=''>    * and multiplies numeric fields.
+</span>40 <span style=''>    */
+</span>41 <span style=''>  given DfOps: ArithmeticOperation[Dataset[Row]] with
+</span>42 <span style=''>    </span><span style='background: #AEF1AE'>def add</span><span style=''>(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
+</span>43 <span style=''>      val resultDf =
+</span>44 <span style=''>        </span><span style='background: #AEF1AE'>dfx
+</span>45 <span style=''></span><span style='background: #AEF1AE'>          .alias(&quot;dfx&quot;)
+</span>46 <span style=''></span><span style='background: #AEF1AE'>          .join(dfy.alias(&quot;dfy&quot;), &quot;index&quot;)
+</span>47 <span style=''></span><span style='background: #AEF1AE'>          .select(
+</span>48 <span style=''></span><span style='background: #AEF1AE'>            (col(&quot;dfx.index&quot;)).as(&quot;index&quot;),
+</span>49 <span style=''></span><span style='background: #AEF1AE'>            (col(&quot;dfx.doubleField&quot;) + col(&quot;dfy.doubleField&quot;)).as(&quot;doubleField&quot;),
+</span>50 <span style=''></span><span style='background: #AEF1AE'>            concat(col(&quot;dfx.stringField&quot;), col(&quot;dfy.stringField&quot;))
+</span>51 <span style=''></span><span style='background: #AEF1AE'>              .as(&quot;stringField&quot;),
+</span>52 <span style=''></span><span style='background: #AEF1AE'>            (col(&quot;dfx.intField&quot;) + col(&quot;dfy.intField&quot;)).as(&quot;intField&quot;)
+</span>53 <span style=''></span><span style='background: #AEF1AE'>          )</span><span style=''>
+</span>54 <span style=''>      resultDf
+</span>55 <span style=''>
+</span>56 <span style=''>    </span><span style='background: #AEF1AE'>def mul</span><span style=''>(dfx: Dataset[Row], dfy: Dataset[Row]): Dataset[Row] =
+</span>57 <span style=''>      val resultDf =
+</span>58 <span style=''>        </span><span style='background: #AEF1AE'>dfx
+</span>59 <span style=''></span><span style='background: #AEF1AE'>          .alias(&quot;dfx&quot;)
+</span>60 <span style=''></span><span style='background: #AEF1AE'>          .join(dfy.alias(&quot;dfy&quot;), &quot;index&quot;)
+</span>61 <span style=''></span><span style='background: #AEF1AE'>          .select(
+</span>62 <span style=''></span><span style='background: #AEF1AE'>            (col(&quot;dfx.index&quot;)).as(&quot;index&quot;),
+</span>63 <span style=''></span><span style='background: #AEF1AE'>            (col(&quot;dfx.doubleField&quot;) * col(&quot;dfy.doubleField&quot;)).as(&quot;doubleField&quot;),
+</span>64 <span style=''></span><span style='background: #AEF1AE'>            concat(
+</span>65 <span style=''></span><span style='background: #AEF1AE'>              col(&quot;dfx.stringField&quot;),
+</span>66 <span style=''></span><span style='background: #AEF1AE'>              col(&quot;dfx.stringField&quot;),
+</span>67 <span style=''></span><span style='background: #AEF1AE'>              col(&quot;dfy.stringField&quot;),
+</span>68 <span style=''></span><span style='background: #AEF1AE'>              col(&quot;dfy.stringField&quot;)
+</span>69 <span style=''></span><span style='background: #AEF1AE'>            )
+</span>70 <span style=''></span><span style='background: #AEF1AE'>              .as(&quot;stringField&quot;),
+</span>71 <span style=''></span><span style='background: #AEF1AE'>            (col(&quot;dfx.intField&quot;) * col(&quot;dfy.intField&quot;)).as(&quot;intField&quot;)
+</span>72 <span style=''></span><span style='background: #AEF1AE'>          )</span><span style=''>
+</span>73 <span style=''>      resultDf
+</span>74 <span style=''>
+</span>75 <span style=''>// Trait defining a validation operation on two instances of a type T.
+</span>76 <span style=''>trait OperationValidator[T]:
+</span>77 <span style=''>  def validate(t1: T, t2: T, op: String): Boolean
+</span>78 <span style=''>object OperationValidator:
+</span>79 <span style=''>  // Validator for operations on Ints.
+</span>80 <span style=''>  given OperationValidator[Int] with
+</span>81 <span style=''>    // Validates an operation between two Ints.
+</span>82 <span style=''>    // For &quot;add&quot;, both Ints should be less than 800.
+</span>83 <span style=''>    // For &quot;mul&quot;, both Ints should be less than 40.
+</span>84 <span style=''>    // Returns false for all other operations.
+</span>85 <span style=''>    </span><span style='background: #AEF1AE'>def validate</span><span style=''>(x: Int, y: Int, op: String): Boolean =
+</span>86 <span style=''>      op match
+</span>87 <span style=''>        </span><span style='background: #AEF1AE'>case &quot;add&quot;</span><span style=''> =&gt; (x &lt; 800) &amp;&amp; (y &lt; 800)
+</span>88 <span style=''>        </span><span style='background: #AEF1AE'>case &quot;mul&quot;</span><span style=''> =&gt; (x &lt; 40) &amp;&amp; (y &lt; 40)
+</span>89 <span style=''>        </span><span style='background: #F0ADAD'>case _</span><span style=''>     =&gt; false
+</span>90 <span style=''>  // Validator for operations on Doubles. All operations are valid.
+</span>91 <span style=''>  given OperationValidator[Double] with
+</span>92 <span style=''>    </span><span style='background: #AEF1AE'>def validate</span><span style=''>(x: Double, y: Double, op: String): Boolean =
+</span>93 <span style=''>      true
+</span>94 <span style=''>  // Validator for operations on Datasets.
+</span>95 <span style=''>  given OperationValidator[Dataset[Row]] with
+</span>96 <span style=''>    // Validates an operation between two Datasets.
+</span>97 <span style=''>    // For &quot;add&quot; and &quot;mul&quot;, both Datasets should have the same schema and not be empty.
+</span>98 <span style=''>    // Returns false for all other operations.
+</span>99 <span style=''>    </span><span style='background: #AEF1AE'>def validate</span><span style=''>(df1: Dataset[Row], df2: Dataset[Row], op: String): Boolean =
+</span>100 <span style=''>      op match
+</span>101 <span style=''>        </span><span style='background: #AEF1AE'>case &quot;add&quot; | &quot;mul&quot;</span><span style=''> =&gt;
+</span>102 <span style=''>          (</span><span style='background: #AEF1AE'>df1.schema</span><span style=''> == </span><span style='background: #AEF1AE'>df2.schema</span><span style=''>) &amp;&amp; !</span><span style='background: #AEF1AE'>df1.isEmpty</span><span style=''> &amp;&amp; !</span><span style='background: #AEF1AE'>df2.isEmpty</span><span style=''>
+</span>103 <span style=''>        </span><span style='background: #F0ADAD'>case _</span><span style=''> =&gt; false
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Tests</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          25
+        </td>
+        <td>
+          93
+        </td>
+        <td>
+          668
+          -
+          675
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          add
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def add
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          94
+        </td>
+        <td>
+          709
+          -
+          716
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          mul
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def mul
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          95
+        </td>
+        <td>
+          926
+          -
+          933
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          add
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def add
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          96
+        </td>
+        <td>
+          976
+          -
+          983
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          mul
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def mul
+        </td>
+      </tr><tr>
+        <td>
+          41
+        </td>
+        <td>
+          115
+        </td>
+        <td>
+          1362
+          -
+          1369
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          add
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def add
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          99
+        </td>
+        <td>
+          1453
+          -
+          1480
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          alias
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          dfx\n          .alias(&quot;dfx&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          98
+        </td>
+        <td>
+          1453
+          -
+          1523
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          join
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          dfx\n          .alias(&quot;dfx&quot;)\n          .join(dfy.alias(&quot;dfy&quot;), &quot;index&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          100
+        </td>
+        <td>
+          1497
+          -
+          1513
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          alias
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          dfy.alias(&quot;dfy&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          97
+        </td>
+        <td>
+          1453
+          -
+          1851
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          select
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          dfx\n          .alias(&quot;dfx&quot;)\n          .join(dfy.alias(&quot;dfy&quot;), &quot;index&quot;)\n          .select(\n            (col(&quot;dfx.index&quot;)).as(&quot;index&quot;),\n            (col(&quot;dfx.doubleField&quot;) + col(&quot;dfy.doubleField&quot;)).as(&quot;doubleField&quot;),\n            concat(col(&quot;dfx.stringField&quot;), col(&quot;dfy.stringField&quot;))\n              .as(&quot;stringField&quot;),\n            (col(&quot;dfx.intField&quot;) + col(&quot;dfy.intField&quot;)).as(&quot;intField&quot;)\n          )
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          101
+        </td>
+        <td>
+          1555
+          -
+          1585
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          as
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          (col(&quot;dfx.index&quot;)).as(&quot;index&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          102
+        </td>
+        <td>
+          1556
+          -
+          1572
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.index&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          104
+        </td>
+        <td>
+          1600
+          -
+          1647
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.doubleField&quot;) + col(&quot;dfy.doubleField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          106
+        </td>
+        <td>
+          1625
+          -
+          1647
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfy.doubleField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          103
+        </td>
+        <td>
+          1599
+          -
+          1666
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          as
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          (col(&quot;dfx.doubleField&quot;) + col(&quot;dfy.doubleField&quot;)).as(&quot;doubleField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          105
+        </td>
+        <td>
+          1600
+          -
+          1622
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.doubleField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          110
+        </td>
+        <td>
+          1711
+          -
+          1733
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfy.stringField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          109
+        </td>
+        <td>
+          1687
+          -
+          1709
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.stringField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          108
+        </td>
+        <td>
+          1680
+          -
+          1734
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          concat
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          concat(col(&quot;dfx.stringField&quot;), col(&quot;dfy.stringField&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          107
+        </td>
+        <td>
+          1680
+          -
+          1767
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          as
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          concat(col(&quot;dfx.stringField&quot;), col(&quot;dfy.stringField&quot;))\n              .as(&quot;stringField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          113
+        </td>
+        <td>
+          1782
+          -
+          1801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.intField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          112
+        </td>
+        <td>
+          1782
+          -
+          1823
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          +
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.intField&quot;) + col(&quot;dfy.intField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          114
+        </td>
+        <td>
+          1804
+          -
+          1823
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfy.intField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          111
+        </td>
+        <td>
+          1781
+          -
+          1839
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          as
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          (col(&quot;dfx.intField&quot;) + col(&quot;dfy.intField&quot;)).as(&quot;intField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          136
+        </td>
+        <td>
+          1872
+          -
+          1879
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          mul
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def mul
+        </td>
+      </tr><tr>
+        <td>
+          58
+        </td>
+        <td>
+          118
+        </td>
+        <td>
+          1963
+          -
+          1990
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          alias
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          dfx\n          .alias(&quot;dfx&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          59
+        </td>
+        <td>
+          119
+        </td>
+        <td>
+          2007
+          -
+          2023
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          alias
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          dfy.alias(&quot;dfy&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          59
+        </td>
+        <td>
+          117
+        </td>
+        <td>
+          1963
+          -
+          2033
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          join
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          dfx\n          .alias(&quot;dfx&quot;)\n          .join(dfy.alias(&quot;dfy&quot;), &quot;index&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          60
+        </td>
+        <td>
+          116
+        </td>
+        <td>
+          1963
+          -
+          2479
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          select
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          dfx\n          .alias(&quot;dfx&quot;)\n          .join(dfy.alias(&quot;dfy&quot;), &quot;index&quot;)\n          .select(\n            (col(&quot;dfx.index&quot;)).as(&quot;index&quot;),\n            (col(&quot;dfx.doubleField&quot;) * col(&quot;dfy.doubleField&quot;)).as(&quot;doubleField&quot;),\n            concat(\n              col(&quot;dfx.stringField&quot;),\n              col(&quot;dfx.stringField&quot;),\n              col(&quot;dfy.stringField&quot;),\n              col(&quot;dfy.stringField&quot;)\n            )\n              .as(&quot;stringField&quot;),\n            (col(&quot;dfx.intField&quot;) * col(&quot;dfy.intField&quot;)).as(&quot;intField&quot;)\n          )
+        </td>
+      </tr><tr>
+        <td>
+          61
+        </td>
+        <td>
+          121
+        </td>
+        <td>
+          2066
+          -
+          2082
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.index&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          61
+        </td>
+        <td>
+          120
+        </td>
+        <td>
+          2065
+          -
+          2095
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          as
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          (col(&quot;dfx.index&quot;)).as(&quot;index&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          122
+        </td>
+        <td>
+          2109
+          -
+          2176
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          as
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          (col(&quot;dfx.doubleField&quot;) * col(&quot;dfy.doubleField&quot;)).as(&quot;doubleField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          125
+        </td>
+        <td>
+          2135
+          -
+          2157
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfy.doubleField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          124
+        </td>
+        <td>
+          2110
+          -
+          2132
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.doubleField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          123
+        </td>
+        <td>
+          2110
+          -
+          2157
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          *
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.doubleField&quot;) * col(&quot;dfy.doubleField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          63
+        </td>
+        <td>
+          127
+        </td>
+        <td>
+          2190
+          -
+          2362
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          concat
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          concat(\n              col(&quot;dfx.stringField&quot;),\n              col(&quot;dfx.stringField&quot;),\n              col(&quot;dfy.stringField&quot;),\n              col(&quot;dfy.stringField&quot;)\n            )
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          128
+        </td>
+        <td>
+          2212
+          -
+          2234
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.stringField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          65
+        </td>
+        <td>
+          129
+        </td>
+        <td>
+          2250
+          -
+          2272
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.stringField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          66
+        </td>
+        <td>
+          130
+        </td>
+        <td>
+          2288
+          -
+          2310
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfy.stringField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          131
+        </td>
+        <td>
+          2326
+          -
+          2348
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfy.stringField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          69
+        </td>
+        <td>
+          126
+        </td>
+        <td>
+          2190
+          -
+          2395
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          as
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          concat(\n              col(&quot;dfx.stringField&quot;),\n              col(&quot;dfx.stringField&quot;),\n              col(&quot;dfy.stringField&quot;),\n              col(&quot;dfy.stringField&quot;)\n            )\n              .as(&quot;stringField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          70
+        </td>
+        <td>
+          134
+        </td>
+        <td>
+          2410
+          -
+          2429
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.intField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          70
+        </td>
+        <td>
+          133
+        </td>
+        <td>
+          2410
+          -
+          2451
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          *
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfx.intField&quot;) * col(&quot;dfy.intField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          70
+        </td>
+        <td>
+          132
+        </td>
+        <td>
+          2409
+          -
+          2467
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          as
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          (col(&quot;dfx.intField&quot;) * col(&quot;dfy.intField&quot;)).as(&quot;intField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          70
+        </td>
+        <td>
+          135
+        </td>
+        <td>
+          2432
+          -
+          2451
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          col
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          col(&quot;dfy.intField&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          84
+        </td>
+        <td>
+          140
+        </td>
+        <td>
+          2953
+          -
+          2965
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def validate
+        </td>
+      </tr><tr>
+        <td>
+          86
+        </td>
+        <td>
+          137
+        </td>
+        <td>
+          3028
+          -
+          3038
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case &quot;add&quot;
+        </td>
+      </tr><tr>
+        <td>
+          87
+        </td>
+        <td>
+          138
+        </td>
+        <td>
+          3073
+          -
+          3083
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case &quot;mul&quot;
+        </td>
+      </tr><tr>
+        <td>
+          88
+        </td>
+        <td>
+          139
+        </td>
+        <td>
+          3116
+          -
+          3122
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          case _
+        </td>
+      </tr><tr>
+        <td>
+          91
+        </td>
+        <td>
+          141
+        </td>
+        <td>
+          3248
+          -
+          3260
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def validate
+        </td>
+      </tr><tr>
+        <td>
+          98
+        </td>
+        <td>
+          148
+        </td>
+        <td>
+          3597
+          -
+          3609
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          validate
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          def validate
+        </td>
+      </tr><tr>
+        <td>
+          100
+        </td>
+        <td>
+          142
+        </td>
+        <td>
+          3694
+          -
+          3712
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          case &quot;add&quot; | &quot;mul&quot;
+        </td>
+      </tr><tr>
+        <td>
+          101
+        </td>
+        <td>
+          146
+        </td>
+        <td>
+          3773
+          -
+          3784
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          isEmpty
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          df2.isEmpty
+        </td>
+      </tr><tr>
+        <td>
+          101
+        </td>
+        <td>
+          145
+        </td>
+        <td>
+          3757
+          -
+          3768
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          isEmpty
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          df1.isEmpty
+        </td>
+      </tr><tr>
+        <td>
+          101
+        </td>
+        <td>
+          144
+        </td>
+        <td>
+          3741
+          -
+          3751
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          schema
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          df2.schema
+        </td>
+      </tr><tr>
+        <td>
+          101
+        </td>
+        <td>
+          143
+        </td>
+        <td>
+          3727
+          -
+          3737
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          schema
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          df1.schema
+        </td>
+      </tr><tr>
+        <td>
+          102
+        </td>
+        <td>
+          147
+        </td>
+        <td>
+          3793
+          -
+          3799
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;none&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          case _
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

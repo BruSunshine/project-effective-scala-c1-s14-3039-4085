@@ -1,0 +1,246 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          app/MyApp.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>package app
+</span>2 <span style=''>
+</span>3 <span style=''>// Importing necessary modules
+</span>4 <span style=''>import cask.Main
+</span>5 <span style=''>import web.{TestRoutes, StaticFiles, JsonPost}
+</span>6 <span style=''>import sparkjobs.Session
+</span>7 <span style=''>
+</span>8 <span style=''>/*
+</span>9 <span style=''>This code is part of a Scala application that uses the Cask framework for handling HTTP requests and Apache Spark for data processing.
+</span>10 <span style=''>The MyApp trait is a common interface for the application.
+</span>11 <span style=''>The SparkMain object manages the Spark session, and the RoutesMain object manages the routes of the application.
+</span>12 <span style=''>When the application is shutting down, a shutdown hook is added to stop the Spark session.
+</span>13 <span style=''> */
+</span>14 <span style=''>
+</span>15 <span style=''>// MyApp is a trait that serves as a common interface for the application
+</span>16 <span style=''>trait MyApp
+</span>17 <span style=''>
+</span>18 <span style=''>// SparkMain is an object that extends MyApp. It is responsible for managing the Spark session.
+</span>19 <span style=''>object SparkMain extends MyApp:
+</span>20 <span style=''>  // sparkSession is a val that holds the Spark session from the Session object in the sparkjobs package.
+</span>21 <span style=''>  val sparkSession = Session.spark
+</span>22 <span style=''>  // stopSpark is a method that stops the Spark session.
+</span>23 <span style=''>  </span><span style='background: #F0ADAD'>def stopSpark</span><span style=''>(): Unit =
+</span>24 <span style=''>    </span><span style='background: #F0ADAD'>sparkSession.stop()</span><span style=''>
+</span>25 <span style=''>
+</span>26 <span style=''>// RoutesMain is an object that extends cask.Main and MyApp. It is responsible for managing the routes of the application.
+</span>27 <span style=''>object RoutesMain extends cask.Main with MyApp:
+</span>28 <span style=''>  // allRoutes is a sequence that holds all the routes for the application.
+</span>29 <span style=''>  val allRoutes = </span><span style='background: #F0ADAD'>Seq</span><span style='background: #AEF1AE'>(TestRoutes, StaticFiles, JsonPost)</span><span style=''>
+</span>30 <span style=''>  // Initializing the Spark session
+</span>31 <span style=''>  SparkMain.sparkSession
+</span>32 <span style=''>  // Adding a shutdown hook to stop the Spark session when the application is shutting down.
+</span>33 <span style=''>  </span><span style='background: #AEF1AE'>sys.addShutdownHook {
+</span>34 <span style=''></span><span style='background: #AEF1AE'>    </span><span style='background: #F0ADAD'>println(&quot;Shutting down Spark session...&quot;)</span><span style='background: #AEF1AE'>
+</span>35 <span style=''></span><span style='background: #AEF1AE'>    </span><span style='background: #F0ADAD'>SparkMain.stopSpark()</span><span style='background: #AEF1AE'>
+</span>36 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Tests</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          955
+          -
+          968
+        </td>
+        <td>
+          DefDef
+        </td>
+        <td>
+          stopSpark
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          def stopSpark
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          983
+          -
+          1002
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          stop
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          sparkSession.stop()
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          1269
+          -
+          1307
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Seq(TestRoutes, StaticFiles, JsonPost)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          1269
+          -
+          1272
+        </td>
+        <td>
+          Ident
+        </td>
+        <td>
+          Seq
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          Seq
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          1464
+          -
+          1561
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          addShutdownHook
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          sys.addShutdownHook {\n    println(&quot;Shutting down Spark session...&quot;)\n    SparkMain.stopSpark()\n  }
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          5
+        </td>
+        <td>
+          1490
+          -
+          1531
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          println(&quot;Shutting down Spark session...&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          6
+        </td>
+        <td>
+          1536
+          -
+          1557
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          stopSpark
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          SparkMain.stopSpark()
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

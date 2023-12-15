@@ -1,0 +1,19 @@
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(startup.property_based_testing.ArithmeticOperationProperties, CustomFingerprint{suite='munit.Suite'}, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(startup.unit_testing.ArithmeticOperationSuite, CustomFingerprint{suite='munit.Suite'}, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(web.WebServerSuite, CustomFingerprint{suite='munit.Suite'}, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(startup.unit_testing.ExpressionSuite, CustomFingerprint{suite='munit.Suite'}, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(startup.unit_testing.ExpressionSerializeSuite, CustomFingerprint{suite='munit.Suite'}, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(app.httpServerSuite, CustomFingerprint{suite='munit.Suite'}, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(sparkjobs.SparkJobSuite, CustomFingerprint{suite='munit.Suite'}, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(startup.unit_testing.DataFrameNameSuite, CustomFingerprint{suite='munit.Suite'}, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mSummary for munit not available.[0m
+[0m[[0m[0minfo[0m] [0m[0mPassed: Total 57, Failed 0, Errors 0, Passed 57[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	startup.unit_testing.ArithmeticOperationSuite[0m
+[0m[[0m[0mdebug[0m] [0m[0m	startup.unit_testing.ExpressionSerializeSuite[0m
+[0m[[0m[0mdebug[0m] [0m[0m	startup.unit_testing.DataFrameNameSuite[0m
+[0m[[0m[0mdebug[0m] [0m[0m	web.WebServerSuite[0m
+[0m[[0m[0mdebug[0m] [0m[0m	startup.unit_testing.ExpressionSuite[0m
+[0m[[0m[0mdebug[0m] [0m[0m	app.httpServerSuite[0m
+[0m[[0m[0mdebug[0m] [0m[0m	startup.property_based_testing.ArithmeticOperationProperties[0m
+[0m[[0m[0mdebug[0m] [0m[0m	sparkjobs.SparkJobSuite[0m

@@ -1,0 +1,16 @@
+#Successful Tests
+#Fri Dec 15 11:32:02 CET 2023
+startup.property_based_testing.StartUpPropertiesSuite=1702631362178
+startup.unit_testing.StartUpSuite=1702071788248
+startup.property_based_testing.ArithmeticOperationProperties=1702636322003
+app.httpServerSuite=1702636296632
+startup.unit_testing.ComputationSuite=1701788205905
+web.WebServerSuite=1702636296528
+startup.integration_testing.httpServerSuite=1701337634083
+startup.unit_testing.ExpressionSuite=1702636295128
+startup.unit_testing.ArithmeticOperationSuite=1702636296245
+web.httpServerSuite=1701426060501
+startup.unit_testing.DataFrameNameSuite=1702636296187
+sparkjobs.SparkJobSuite=1702636290618
+startup.unit_testing.ExpressionSerializeSuite=1702636295537
+app.AppSuite=1701337628505

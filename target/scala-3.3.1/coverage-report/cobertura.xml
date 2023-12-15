@@ -1,0 +1,1971 @@
+<?xml version="1.0"?>
+<!DOCTYPE coverage SYSTEM "https://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage 
+line-rate="0.64" lines-valid="739" lines-covered="474" branches-valid="11" branches-covered="10" branch-rate="0.91" complexity="0" version="1.0" timestamp="1702636323246">
+    <sources>
+        <source>--source</source>
+        <source>/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala</source>
+        <source>/home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/worksheets</source>
+    </sources>
+    <packages>
+        <package name="app" line-rate="0.29" branch-rate="1.00" complexity="0">
+            <classes>
+                <class name="app.RoutesMain$" filename="app/MyApp.scala" line-rate="0.40" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="app/RoutesMain$/&lt;init&gt;" signature="()V" line-rate="0.40" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="28" hits="1" branch="false"/>
+                                <line number="33" hits="0" branch="false"/>
+                                <line number="32" hits="1" branch="false"/>
+                                <line number="28" hits="0" branch="false"/>
+                                <line number="34" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="28" hits="1" branch="false"/>
+                        <line number="33" hits="0" branch="false"/>
+                        <line number="32" hits="1" branch="false"/>
+                        <line number="28" hits="0" branch="false"/>
+                        <line number="34" hits="0" branch="false"/>
+                    </lines>
+                </class>
+                <class name="app.SparkMain$" filename="app/MyApp.scala" line-rate="0.00" branch-rate="0.00" complexity="0">
+                    <methods>
+                        <method name="app/SparkMain$/stopSpark" signature="()V" line-rate="0.00" branch-rate="0.00" complexity="0">
+                            <lines>
+                                <line number="22" hits="0" branch="false"/>
+                                <line number="23" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="22" hits="0" branch="false"/>
+                        <line number="23" hits="0" branch="false"/>
+                    </lines>
+                </class>
+            </classes>
+        </package>
+        <package name="sparkjobs" line-rate="0.77" branch-rate="1.00" complexity="0">
+            <classes>
+                <class 
+                name="sparkjobs.SparkJob$" filename="sparkjobs/SparkJob.scala" line-rate="0.69" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="sparkjobs/SparkJob$/makeDummyDfNonValidated" signature="()V" line-rate="0.75" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="52" hits="1" branch="false"/>
+                                <line number="51" hits="0" branch="false"/>
+                                <line number="46" hits="1" branch="false"/>
+                                <line number="51" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="sparkjobs/SparkJob$/makeDummyDfValidated" signature="()V" line-rate="0.30" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="66" hits="0" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="66" hits="0" branch="false"/>
+                                <line number="66" hits="0" branch="false"/>
+                                <line number="66" hits="0" branch="false"/>
+                                <line number="55" hits="1" branch="false"/>
+                                <line number="61" hits="0" branch="false"/>
+                                <line number="66" hits="0" branch="false"/>
+                                <line number="61" hits="1" branch="true"/>
+                                <line number="66" hits="0" branch="false"/>
+                            </lines>
+</method>
+                        <method name="sparkjobs/SparkJob$/$anonfun" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="74" hits="1" branch="false"/>
+                                <line number="74" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method 
+                        name="sparkjobs/SparkJob$/makeInvalidDfExpression" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="93" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="sparkjobs/SparkJob$/runmakeInvalidDfExpression" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="108" hits="1" branch="false"/>
+                                <line number="107" hits="1" branch="false"/>
+                                <line number="106" hits="1" branch="false"/>
+                                <line number="101" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="sparkjobs/SparkJob$/convertDummyDfValidatedToString" signature="()V" line-rate="0.67" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="73" hits="1" branch="false"/>
+                                <line number="73" hits="0" branch="false"/>
+                                <line number="68" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="sparkjobs/SparkJob$/runMakeExpressionNonValidatedMix" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="88" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="89" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="sparkjobs/SparkJob$/makeDfExpressionNonValidatedMix" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="78" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="sparkjobs/SparkJob$/makeEmptyDfNonValidated" signature="()V" line-rate="0.75" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="42" hits="1" branch="false"/>
+                                <line number="38" hits="1" branch="false"/>
+                                <line number="43" hits="1" branch="false"/>
+                                <line number="42" hits="0" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="108" hits="1" branch="false"/>
+                        <line number="88" hits="1" branch="false"/>
+                        <line number="52" hits="1" branch="false"/>
+                        <line number="66" hits="0" branch="false"/>
+                        <line number="42" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="93" hits="1" branch="false"/>
+                        <line number="73" hits="1" branch="false"/>
+                        <line number="74" hits="1" branch="false"/>
+                        <line number="38" hits="1" branch="false"/>
+                        <line number="66" hits="0" branch="false"/>
+                        <line number="107" hits="1" branch="false"/>
+                        <line number="43" hits="1" branch="false"/>
+                        <line number="66" hits="0" branch="false"/>
+                        <line number="74" hits="1" branch="false"/>
+                        <line number="51" hits="0" branch="false"/>
+                        <line number="66" hits="0" branch="false"/>
+                        <line number="78" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="55" hits="1" branch="false"/>
+                        <line number="61" hits="0" branch="false"/>
+                        <line number="46" hits="1" branch="false"/>
+                        <line number="66" hits="0" branch="false"/>
+                        <line number="89" hits="1" branch="false"/>
+                        <line number="61" hits="1" branch="true"/>
+                        <line number="42" hits="0" branch="false"/>
+                        <line number="73" hits="0" branch="false"/>
+                        <line number="106" hits="1" branch="false"/>
+                        <line number="51" hits="1" branch="false"/>
+                        <line number="101" hits="1" branch="false"/>
+                        <line number="68" hits="1" branch="false"/>
+                        <line number="66" hits="0" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="sparkjobs.DataFramesExemples$" filename="sparkjobs/DataframesAndExpressions.scala" line-rate="0.87" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="sparkjobs/DataFramesExemples$/&lt;init&gt;" signature="()V" line-rate="0.87" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="47" hits="1" branch="false"/>
+                                <line number="56" hits="1" branch="false"/>
+                                <line number="61" hits="1" branch="false"/>
+                                <line number="23" hits="1" branch="false"/>
+                                <line number="39" hits="0" branch="false"/>
+                                <line number="49" hits="1" branch="false"/>
+                                <line number="32" hits="1" branch="false"/>
+                                <line number="52" hits="1" branch="false"/>
+                                <line number="42" hits="1" branch="false"/>
+                                <line number="35" hits="1" branch="false"/>
+                                <line number="34" hits="1" branch="false"/>
+                                <line number="44" hits="1" branch="false"/>
+                                <line number="55" hits="0" branch="false"/>
+                                <line number="39" hits="1" branch="false"/>
+                                <line number="14" hits="1" branch="false"/>
+                                <line number="48" hits="1" branch="false"/>
+                                <line number="60" hits="1" branch="false"/>
+                                <line number="31" hits="0" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="51" hits="1" branch="false"/>
+                                <line number="50" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="31" hits="1" branch="false"/>
+                                <line number="40" hits="1" branch="false"/>
+                                <line number="43" hits="1" branch="false"/>
+                                <line number="33" hits="1" branch="false"/>
+                                <line number="55" hits="1" branch="false"/>
+                                <line number="36" hits="1" branch="false"/>
+                                <line number="47" hits="0" branch="false"/>
+                                <line number="59" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="47" hits="1" branch="false"/>
+                        <line number="56" hits="1" branch="false"/>
+                        <line number="61" hits="1" branch="false"/>
+                        <line number="23" hits="1" branch="false"/>
+                        <line number="39" hits="0" branch="false"/>
+                        <line number="49" hits="1" branch="false"/>
+                        <line number="32" hits="1" branch="false"/>
+                        <line number="52" hits="1" branch="false"/>
+                        <line number="42" hits="1" branch="false"/>
+                        <line number="35" hits="1" branch="false"/>
+                        <line number="34" hits="1" branch="false"/>
+                        <line number="44" hits="1" branch="false"/>
+                        <line number="55" hits="0" branch="false"/>
+                        <line number="39" hits="1" branch="false"/>
+                        <line number="14" hits="1" branch="false"/>
+                        <line number="48" hits="1" branch="false"/>
+                        <line number="60" hits="1" branch="false"/>
+                        <line number="31" hits="0" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="51" hits="1" branch="false"/>
+                        <line number="50" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="31" hits="1" branch="false"/>
+                        <line number="40" hits="1" branch="false"/>
+                        <line number="43" hits="1" branch="false"/>
+                        <line number="33" hits="1" branch="false"/>
+                        <line number="55" hits="1" branch="false"/>
+                        <line number="36" hits="1" branch="false"/>
+                        <line number="47" hits="0" branch="false"/>
+                        <line number="59" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="sparkjobs.SparkJob$package$" filename="sparkjobs/SparkJob.scala" line-rate="0.88" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="sparkjobs/SparkJob$package$/dfToString" signature="()V" line-rate="0.83" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="8" hits="1" branch="false"/>
+                                <line number="10" hits="1" branch="false"/>
+                                <line number="10" hits="0" branch="false"/>
+                                <line number="9" hits="1" branch="false"/>
+                                <line number="10" hits="1" branch="false"/>
+                                <line number="10" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method name="sparkjobs/SparkJob$package$/$anonfun" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="10" hits="1" branch="false"/>
+                                <line number="10" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="8" hits="1" branch="false"/>
+                        <line number="10" hits="1" branch="false"/>
+                        <line number="10" hits="0" branch="false"/>
+                        <line number="10" hits="1" branch="false"/>
+                        <line number="9" hits="1" branch="false"/>
+                        <line number="10" hits="1" branch="false"/>
+                        <line number="10" hits="1" branch="false"/>
+                        <line number="10" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="sparkjobs.ExpressionsExemples$" filename="sparkjobs/DataframesAndExpressions.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="sparkjobs/ExpressionsExemples$/&lt;init&gt;" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="74" hits="1" branch="false"/>
+                                <line number="68" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="74" hits="1" branch="false"/>
+                        <line number="68" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="sparkjobs.Session$" filename="sparkjobs/SparkJob.scala" line-rate="0.64" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="sparkjobs/Session$/&lt;init&gt;" signature="()V" line-rate="0.75" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="28" hits="0" branch="false"/>
+                                <line number="15" hits="1" branch="false"/>
+                                <line number="22" hits="1" branch="false"/>
+                                <line number="24" hits="1" branch="true"/>
+                                <line number="20" hits="1" branch="false"/>
+                                <line number="15" hits="1" branch="false"/>
+                                <line number="27" hits="0" branch="false"/>
+                                <line number="23" hits="1" branch="false"/>
+                                <line number="21" hits="1" branch="false"/>
+                                <line number="26" hits="0" branch="false"/>
+                                <line number="15" hits="1" branch="false"/>
+                                <line number="24" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="sparkjobs/Session$/stopSparkSession" signature="()V" line-rate="0.00" branch-rate="0.00" complexity="0">
+                            <lines>
+                                <line number="31" hits="0" branch="false"/>
+                                <line number="32" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="28" hits="0" branch="false"/>
+                        <line number="15" hits="1" branch="false"/>
+                        <line number="22" hits="1" branch="false"/>
+                        <line number="24" hits="1" branch="true"/>
+                        <line number="20" hits="1" branch="false"/>
+                        <line number="15" hits="1" branch="false"/>
+                        <line number="27" hits="0" branch="false"/>
+                        <line number="23" hits="1" branch="false"/>
+                        <line number="31" hits="0" branch="false"/>
+                        <line number="21" hits="1" branch="false"/>
+                        <line number="26" hits="0" branch="false"/>
+                        <line number="15" hits="1" branch="false"/>
+                        <line number="24" hits="1" branch="false"/>
+                        <line number="32" hits="0" branch="false"/>
+                    </lines>
+</class>
+            </classes>
+        </package>
+        <package name="startup.ast" line-rate="0.62" branch-rate="0.89" complexity="0">
+            <classes>
+                <class 
+                name="startup.ast.given_OperationValidator_Double$" filename="startup/AstArithmeticOperation.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/given_OperationValidator_Double$/validate" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="91" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="91" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.given_ArgumentValidator_Int$" filename="startup/AstExpression.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/given_ArgumentValidator_Int$/validate" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="153" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="153" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.given_OperationValidator_Dataset$" filename="startup/AstArithmeticOperation.scala" line-rate="0.86" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/given_OperationValidator_Dataset$/validate" signature="()V" line-rate="0.86" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="101" hits="1" branch="false"/>
+                                <line number="100" hits="1" branch="false"/>
+                                <line number="101" hits="1" branch="false"/>
+                                <line number="98" hits="1" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="101" hits="1" branch="false"/>
+                                <line number="101" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="101" hits="1" branch="false"/>
+                        <line number="100" hits="1" branch="false"/>
+                        <line number="101" hits="1" branch="false"/>
+                        <line number="98" hits="1" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="101" hits="1" branch="false"/>
+                        <line number="101" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.DfOps$" filename="startup/AstArithmeticOperation.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="startup.ast/DfOps$/add" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="47" hits="1" branch="false"/>
+                                <line number="49" hits="1" branch="false"/>
+                                <line number="48" hits="1" branch="false"/>
+                                <line number="51" hits="1" branch="false"/>
+                                <line number="45" hits="1" branch="false"/>
+                                <line number="50" hits="1" branch="false"/>
+                                <line number="48" hits="1" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="45" hits="1" branch="false"/>
+                                <line number="49" hits="1" branch="false"/>
+                                <line number="48" hits="1" branch="false"/>
+                                <line number="51" hits="1" branch="false"/>
+                                <line number="46" hits="1" branch="false"/>
+                                <line number="48" hits="1" branch="false"/>
+                                <line number="51" hits="1" branch="false"/>
+                                <line number="44" hits="1" branch="false"/>
+                                <line number="49" hits="1" branch="false"/>
+                                <line number="47" hits="1" branch="false"/>
+                                <line number="51" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/DfOps$/mul" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="59" hits="1" branch="false"/>
+                                <line number="64" hits="1" branch="false"/>
+                                <line number="67" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="60" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="58" hits="1" branch="false"/>
+                                <line number="63" hits="1" branch="false"/>
+                                <line number="55" hits="1" branch="false"/>
+                                <line number="66" hits="1" branch="false"/>
+                                <line number="61" hits="1" branch="false"/>
+                                <line number="65" hits="1" branch="false"/>
+                                <line number="61" hits="1" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="69" hits="1" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="59" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="47" hits="1" branch="false"/>
+                        <line number="49" hits="1" branch="false"/>
+                        <line number="59" hits="1" branch="false"/>
+                        <line number="64" hits="1" branch="false"/>
+                        <line number="48" hits="1" branch="false"/>
+                        <line number="67" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="51" hits="1" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="60" hits="1" branch="false"/>
+                        <line number="45" hits="1" branch="false"/>
+                        <line number="50" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="48" hits="1" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="58" hits="1" branch="false"/>
+                        <line number="63" hits="1" branch="false"/>
+                        <line number="55" hits="1" branch="false"/>
+                        <line number="45" hits="1" branch="false"/>
+                        <line number="49" hits="1" branch="false"/>
+                        <line number="66" hits="1" branch="false"/>
+                        <line number="61" hits="1" branch="false"/>
+                        <line number="48" hits="1" branch="false"/>
+                        <line number="51" hits="1" branch="false"/>
+                        <line number="46" hits="1" branch="false"/>
+                        <line number="65" hits="1" branch="false"/>
+                        <line number="61" hits="1" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="48" hits="1" branch="false"/>
+                        <line number="51" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="44" hits="1" branch="false"/>
+                        <line number="69" hits="1" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="49" hits="1" branch="false"/>
+                        <line number="59" hits="1" branch="false"/>
+                        <line number="47" hits="1" branch="false"/>
+                        <line number="51" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.Expression$" filename="startup/AstExpression.scala" line-rate="0.72" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/Expression$/validateExpression" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="138" hits="1" branch="false"/>
+                                <line number="138" hits="1" branch="false"/>
+                                <line number="138" hits="1" branch="false"/>
+                                <line number="93" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method name="startup.ast/Expression$/writer" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="16" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="16" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="16" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/Expression$/$anonfun" signature="()V" line-rate="0.78" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="52" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="50" hits="0" branch="false"/>
+                                <line number="58" hits="0" branch="false"/>
+                                <line number="53" hits="1" branch="true"/>
+                                <line number="54" hits="1" branch="true"/>
+                                <line number="61" hits="1" branch="false"/>
+                                <line number="54" hits="1" branch="false"/>
+                                <line number="60" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="50" hits="0" branch="false"/>
+                                <line number="58" hits="1" branch="false"/>
+                                <line number="53" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="true"/>
+                                <line number="58" hits="0" branch="false"/>
+                                <line number="54" hits="1" branch="false"/>
+                                <line number="61" hits="1" branch="true"/>
+                                <line number="50" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method 
+                        name="startup.ast/Expression$/evaluateValidExpression" signature="()V" line-rate="0.60" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="57" hits="0" branch="false"/>
+                                <line number="46" hits="1" branch="false"/>
+                                <line number="57" hits="0" branch="false"/>
+                                <line number="44" hits="1" branch="false"/>
+                                <line number="64" hits="1" branch="false"/>
+                                <line number="63" hits="0" branch="false"/>
+                                <line number="47" hits="1" branch="false"/>
+                                <line number="49" hits="0" branch="false"/>
+                                <line number="64" hits="0" branch="false"/>
+                                <line number="64" hits="1" branch="false"/>
+                                <line number="49" hits="0" branch="false"/>
+                                <line number="64" hits="0" branch="false"/>
+                                <line number="56" hits="1" branch="false"/>
+                                <line number="63" hits="1" branch="false"/>
+                                <line number="46" hits="0" branch="false"/>
+                                <line number="37" hits="1" branch="false"/>
+                                <line number="43" hits="1" branch="true"/>
+                                <line number="48" hits="1" branch="false"/>
+                                <line number="64" hits="1" branch="false"/>
+                                <line number="55" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="startup.ast/Expression$/given_RW_Expression" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="80" hits="1" branch="false"/>
+                                <line number="79" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method name="startup.ast/Expression$/valExpIntern" signature="()V" line-rate="0.56" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="136" hits="0" branch="false"/>
+                                <line number="125" hits="1" branch="false"/>
+                                <line number="131" hits="0" branch="false"/>
+                                <line number="111" hits="1" branch="false"/>
+                                <line number="96" hits="1" branch="false"/>
+                                <line number="127" hits="1" branch="false"/>
+                                <line number="133" hits="0" branch="false"/>
+                                <line number="117" hits="0" branch="false"/>
+                                <line number="104" hits="0" branch="false"/>
+                                <line number="113" hits="1" branch="false"/>
+                                <line number="122" hits="1" branch="false"/>
+                                <line number="133" hits="0" branch="false"/>
+                                <line number="129" hits="1" branch="false"/>
+                                <line number="104" hits="1" branch="true"/>
+                                <line number="108" hits="1" branch="false"/>
+                                <line number="115" hits="1" branch="false"/>
+                                <line number="103" hits="1" branch="false"/>
+                                <line number="133" hits="0" branch="false"/>
+                                <line number="107" hits="1" branch="false"/>
+                                <line number="131" hits="1" branch="false"/>
+                                <line number="135" hits="0" branch="false"/>
+                                <line number="114" hits="1" branch="false"/>
+                                <line number="124" hits="0" branch="false"/>
+                                <line number="102" hits="1" branch="false"/>
+                                <line number="136" hits="0" branch="false"/>
+                                <line number="117" hits="1" branch="false"/>
+                                <line number="126" hits="1" branch="false"/>
+                                <line number="103" hits="1" branch="true"/>
+                                <line number="110" hits="0" branch="false"/>
+                                <line number="133" hits="0" branch="false"/>
+                                <line number="112" hits="1" branch="false"/>
+                                <line number="121" hits="1" branch="false"/>
+                                <line number="128" hits="1" branch="false"/>
+                                <line number="104" hits="1" branch="false"/>
+                                <line number="104" hits="1" branch="false"/>
+                                <line number="112" hits="0" branch="false"/>
+                                <line number="133" hits="0" branch="false"/>
+                                <line number="119" hits="1" branch="false"/>
+                                <line number="128" hits="0" branch="false"/>
+                                <line number="124" hits="1" branch="false"/>
+                                <line number="105" hits="1" branch="false"/>
+                                <line number="114" hits="0" branch="false"/>
+                                <line number="101" hits="1" branch="true"/>
+                                <line number="130" hits="0" branch="false"/>
+                                <line number="110" hits="1" branch="false"/>
+                                <line number="136" hits="0" branch="false"/>
+                                <line number="103" hits="0" branch="false"/>
+                                <line number="133" hits="0" branch="false"/>
+                                <line number="116" hits="0" branch="false"/>
+                                <line number="126" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="57" hits="0" branch="false"/>
+                        <line number="136" hits="0" branch="false"/>
+                        <line number="52" hits="1" branch="false"/>
+                        <line number="125" hits="1" branch="false"/>
+                        <line number="131" hits="0" branch="false"/>
+                        <line number="46" hits="1" branch="false"/>
+                        <line number="111" hits="1" branch="false"/>
+                        <line number="96" hits="1" branch="false"/>
+                        <line number="127" hits="1" branch="false"/>
+                        <line number="133" hits="0" branch="false"/>
+                        <line number="117" hits="0" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="104" hits="0" branch="false"/>
+                        <line number="113" hits="1" branch="false"/>
+                        <line number="122" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="138" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="133" hits="0" branch="false"/>
+                        <line number="129" hits="1" branch="false"/>
+                        <line number="104" hits="1" branch="true"/>
+                        <line number="108" hits="1" branch="false"/>
+                        <line number="115" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="16" hits="1" branch="false"/>
+                        <line number="103" hits="1" branch="false"/>
+                        <line number="50" hits="0" branch="false"/>
+                        <line number="57" hits="0" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="44" hits="1" branch="false"/>
+                        <line number="64" hits="1" branch="false"/>
+                        <line number="63" hits="0" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="58" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="53" hits="1" branch="true"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="47" hits="1" branch="false"/>
+                        <line number="54" hits="1" branch="true"/>
+                        <line number="61" hits="1" branch="false"/>
+                        <line number="133" hits="0" branch="false"/>
+                        <line number="138" hits="1" branch="false"/>
+                        <line number="49" hits="0" branch="false"/>
+                        <line number="64" hits="0" branch="false"/>
+                        <line number="107" hits="1" branch="false"/>
+                        <line number="131" hits="1" branch="false"/>
+                        <line number="135" hits="0" branch="false"/>
+                        <line number="114" hits="1" branch="false"/>
+                        <line number="124" hits="0" branch="false"/>
+                        <line number="102" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="136" hits="0" branch="false"/>
+                        <line number="117" hits="1" branch="false"/>
+                        <line number="126" hits="1" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="103" hits="1" branch="true"/>
+                        <line number="110" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="16" hits="1" branch="false"/>
+                        <line number="133" hits="0" branch="false"/>
+                        <line number="112" hits="1" branch="false"/>
+                        <line number="121" hits="1" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="128" hits="1" branch="false"/>
+                        <line number="104" hits="1" branch="false"/>
+                        <line number="54" hits="1" branch="false"/>
+                        <line number="60" hits="1" branch="false"/>
+                        <line number="64" hits="1" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="49" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="64" hits="0" branch="false"/>
+                        <line number="56" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="50" hits="0" branch="false"/>
+                        <line number="58" hits="1" branch="false"/>
+                        <line number="63" hits="1" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="46" hits="0" branch="false"/>
+                        <line number="53" hits="1" branch="false"/>
+                        <line number="80" hits="1" branch="false"/>
+                        <line number="104" hits="1" branch="false"/>
+                        <line number="112" hits="0" branch="false"/>
+                        <line number="133" hits="0" branch="false"/>
+                        <line number="138" hits="1" branch="false"/>
+                        <line number="119" hits="1" branch="false"/>
+                        <line number="128" hits="0" branch="false"/>
+                        <line number="93" hits="1" branch="false"/>
+                        <line number="124" hits="1" branch="false"/>
+                        <line number="105" hits="1" branch="false"/>
+                        <line number="114" hits="0" branch="false"/>
+                        <line number="101" hits="1" branch="true"/>
+                        <line number="79" hits="1" branch="false"/>
+                        <line number="130" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="110" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="true"/>
+                        <line number="37" hits="1" branch="false"/>
+                        <line number="136" hits="0" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="16" hits="1" branch="false"/>
+                        <line number="103" hits="0" branch="false"/>
+                        <line number="133" hits="0" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="116" hits="0" branch="false"/>
+                        <line number="126" hits="0" branch="false"/>
+                        <line number="58" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="54" hits="1" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="43" hits="1" branch="true"/>
+                        <line number="48" hits="1" branch="false"/>
+                        <line number="61" hits="1" branch="true"/>
+                        <line number="64" hits="1" branch="false"/>
+                        <line number="50" hits="1" branch="false"/>
+                        <line number="55" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.$anon" filename="startup/AstDataFrameName.scala" line-rate="0.39" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="startup.ast/$anon/storeDefaults" signature="()V" line-rate="0.67" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="77" hits="1" branch="false"/>
+                                <line number="77" hits="1" branch="false"/>
+                                <line number="44" hits="1" branch="false"/>
+                                <line number="77" hits="1" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/$anon/writeToObject" signature="()V" line-rate="0.59" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="34" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="34" hits="1" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="29" hits="0" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="33" hits="0" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="33" hits="0" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="34" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/$anon/visitors0" signature="()V" line-rate="0.55" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="44" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="73" hits="0" branch="false"/>
+                                <line number="73" hits="0" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="81" hits="0" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/$anon/allKeysArray" signature="()V" line-rate="0.00" branch-rate="0.00" complexity="0">
+                            <lines>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="44" hits="0" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="75" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="81" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="80" hits="0" branch="false"/>
+                                <line number="80" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="81" hits="0" branch="false"/>
+                                <line number="75" hits="0" branch="false"/>
+                                <line number="75" hits="0" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="81" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="81" hits="0" branch="false"/>
+                                <line number="81" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/$anon/keyToIndex" signature="()V" line-rate="0.50" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="81" hits="0" branch="false"/>
+                                <line number="44" hits="1" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="79" hits="0" branch="false"/>
+                                <line number="79" hits="0" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="72" hits="1" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="72" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="72" hits="1" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/$anon/$anonfun" signature="()V" line-rate="0.00" branch-rate="0.00" complexity="0">
+                            <lines>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="81" hits="0" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="83" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/$anon/write0" signature="()V" line-rate="0.17" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="21" hits="0" branch="false"/>
+                                <line number="21" hits="0" branch="false"/>
+                                <line number="19" hits="0" branch="false"/>
+                                <line number="20" hits="1" branch="false"/>
+                                <line number="19" hits="0" branch="false"/>
+                                <line number="19" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/$anon/fromProduct" signature="()V" line-rate="0.67" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="71" hits="1" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="44" hits="1" branch="false"/>
+                                <line number="82" hits="1" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="76" hits="0" branch="false"/>
+                                <line number="76" hits="0" branch="false"/>
+                                <line number="71" hits="1" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="71" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/$anon/length" signature="()V" line-rate="0.67" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="16" hits="1" branch="false"/>
+                                <line number="19" hits="0" branch="false"/>
+                                <line number="18" hits="1" branch="false"/>
+                                <line number="18" hits="1" branch="false"/>
+                                <line number="19" hits="0" branch="false"/>
+                                <line number="18" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="21" hits="0" branch="false"/>
+                        <line number="44" hits="1" branch="false"/>
+                        <line number="21" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="44" hits="0" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="75" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="81" hits="0" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="16" hits="1" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="77" hits="1" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="34" hits="1" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="19" hits="0" branch="false"/>
+                        <line number="18" hits="1" branch="false"/>
+                        <line number="77" hits="1" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="81" hits="0" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="73" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="73" hits="0" branch="false"/>
+                        <line number="81" hits="0" branch="false"/>
+                        <line number="18" hits="1" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="71" hits="1" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="80" hits="0" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="44" hits="1" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="80" hits="0" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="19" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="19" hits="0" branch="false"/>
+                        <line number="44" hits="1" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="81" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="75" hits="0" branch="false"/>
+                        <line number="79" hits="0" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="34" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="79" hits="0" branch="false"/>
+                        <line number="75" hits="0" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="72" hits="1" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="81" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="76" hits="0" branch="false"/>
+                        <line number="76" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="29" hits="0" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="44" hits="1" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="77" hits="1" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="20" hits="1" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="18" hits="1" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="19" hits="0" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="72" hits="1" branch="false"/>
+                        <line number="83" hits="0" branch="false"/>
+                        <line number="33" hits="0" branch="false"/>
+                        <line number="71" hits="1" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="33" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="81" hits="0" branch="false"/>
+                        <line number="81" hits="0" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                        <line number="19" hits="0" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="72" hits="1" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="81" hits="0" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="34" hits="1" branch="false"/>
+                        <line number="71" hits="1" branch="false"/>
+                        <line number="82" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.given_ArgumentValidator_Dataset$" filename="startup/AstExpression.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/given_ArgumentValidator_Dataset$/validate" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="157" hits="1" branch="false"/>
+                                <line number="158" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="157" hits="1" branch="false"/>
+                        <line number="158" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.IntOps$" filename="startup/AstArithmeticOperation.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="startup.ast/IntOps$/mul" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="26" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/IntOps$/add" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="25" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="26" hits="1" branch="false"/>
+                        <line number="25" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.given_OperationValidator_Int$" filename="startup/AstArithmeticOperation.scala" line-rate="0.75" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/given_OperationValidator_Int$/validate" signature="()V" line-rate="0.75" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="86" hits="1" branch="false"/>
+                                <line number="84" hits="1" branch="false"/>
+                                <line number="88" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="86" hits="1" branch="false"/>
+                        <line number="84" hits="1" branch="false"/>
+                        <line number="88" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.DataFrameName$" filename="startup/AstDataFrameName.scala" line-rate="0.61" branch-rate="0.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/DataFrameName$/readAsDataFrame" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="94" hits="1" branch="false"/>
+                                <line number="92" hits="1" branch="false"/>
+                                <line number="93" hits="1" branch="false"/>
+                                <line number="94" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="startup.ast/DataFrameName$/contentHash" signature="()V" line-rate="0.79" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="60" hits="1" branch="false"/>
+                                <line number="61" hits="1" branch="false"/>
+                                <line number="57" hits="1" branch="false"/>
+                                <line number="65" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="63" hits="0" branch="false"/>
+                                <line number="59" hits="1" branch="false"/>
+                                <line number="60" hits="1" branch="false"/>
+                                <line number="60" hits="1" branch="false"/>
+                                <line number="62" hits="1" branch="false"/>
+                                <line number="58" hits="1" branch="false"/>
+                                <line number="63" hits="0" branch="false"/>
+                                <line number="58" hits="1" branch="false"/>
+                                <line number="62" hits="0" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="startup.ast/DataFrameName$/toDataFrameName" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="44" hits="1" branch="false"/>
+                                <line number="43" hits="1" branch="false"/>
+                                <line number="46" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="startup.ast/DataFrameName$/writeAsParquet" signature="()V" line-rate="0.44" branch-rate="0.00" complexity="0">
+                            <lines>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="79" hits="1" branch="false"/>
+                                <line number="82" hits="0" branch="true"/>
+                                <line number="81" hits="1" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="80" hits="1" branch="false"/>
+                                <line number="82" hits="0" branch="false"/>
+                                <line number="81" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method name="startup.ast/DataFrameName$/writer" signature="()V" line-rate="0.00" branch-rate="0.00" complexity="0">
+                            <lines>
+                                <line number="17" hits="0" branch="false"/>
+                                <line number="17" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/DataFrameName$/$anonfun" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="64" hits="1" branch="false"/>
+                                <line number="103" hits="1" branch="false"/>
+                                <line number="112" hits="1" branch="false"/>
+                                <line number="64" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method 
+                        name="startup.ast/DataFrameName$/&lt;init&gt;" signature="()V" line-rate="0.25" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="103" hits="1" branch="false"/>
+                                <line number="112" hits="1" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="102" hits="0" branch="false"/>
+                                <line number="111" hits="0" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="60" hits="1" branch="false"/>
+                        <line number="64" hits="1" branch="false"/>
+                        <line number="79" hits="1" branch="false"/>
+                        <line number="61" hits="1" branch="false"/>
+                        <line number="57" hits="1" branch="false"/>
+                        <line number="44" hits="1" branch="false"/>
+                        <line number="82" hits="0" branch="true"/>
+                        <line number="65" hits="1" branch="false"/>
+                        <line number="43" hits="1" branch="false"/>
+                        <line number="17" hits="0" branch="false"/>
+                        <line number="17" hits="0" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="94" hits="1" branch="false"/>
+                        <line number="103" hits="1" branch="false"/>
+                        <line number="63" hits="0" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="112" hits="1" branch="false"/>
+                        <line number="59" hits="1" branch="false"/>
+                        <line number="60" hits="1" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="92" hits="1" branch="false"/>
+                        <line number="103" hits="1" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="112" hits="1" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="60" hits="1" branch="false"/>
+                        <line number="64" hits="1" branch="false"/>
+                        <line number="80" hits="1" branch="false"/>
+                        <line number="93" hits="1" branch="false"/>
+                        <line number="46" hits="1" branch="false"/>
+                        <line number="62" hits="1" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                        <line number="82" hits="0" branch="false"/>
+                        <line number="58" hits="1" branch="false"/>
+                        <line number="63" hits="0" branch="false"/>
+                        <line number="94" hits="1" branch="false"/>
+                        <line number="58" hits="1" branch="false"/>
+                        <line number="81" hits="1" branch="false"/>
+                        <line number="62" hits="0" branch="false"/>
+                        <line number="102" hits="0" branch="false"/>
+                        <line number="111" hits="0" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.DoubleOps$" filename="startup/AstArithmeticOperation.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="startup.ast/DoubleOps$/add" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="32" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="startup.ast/DoubleOps$/mul" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="33" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="32" hits="1" branch="false"/>
+                        <line number="33" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.given_ArgumentValidator_Double$" filename="startup/AstExpression.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/given_ArgumentValidator_Double$/validate" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="155" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="155" hits="1" branch="false"/>
+                    </lines>
+</class>
+                <class 
+                name="startup.ast.ExpressionToSerialize$" filename="startup/AstExpressionSerialize.scala" line-rate="1.00" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="startup.ast/ExpressionToSerialize$/given_RW_ExpressionToSerialize" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="40" hits="1" branch="false"/>
+                                <line number="41" hits="1" branch="false"/>
+                            </lines>
+</method>
+                        <method 
+                        name="startup.ast/ExpressionToSerialize$/writer" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="41" hits="1" branch="false"/>
+                                <line number="14" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="40" hits="1" branch="false"/>
+                        <line number="41" hits="1" branch="false"/>
+                        <line number="14" hits="1" branch="false"/>
+                    </lines>
+</class>
+            </classes>
+        </package>
+        <package name="web" line-rate="0.63" branch-rate="1.00" complexity="0">
+            <classes>
+                <class name="web.TestRoutes$" filename="web/WebServer.scala" line-rate="0.57" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="web/TestRoutes$/showDf" signature="()V" line-rate="0.64" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="72" hits="0" branch="false"/>
+                                <line number="63" hits="1" branch="false"/>
+                                <line number="72" hits="0" branch="false"/>
+                                <line number="72" hits="0" branch="false"/>
+                                <line number="61" hits="1" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="78" hits="1" branch="false"/>
+                                <line number="71" hits="0" branch="false"/>
+                                <line number="73" hits="0" branch="false"/>
+                                <line number="78" hits="1" branch="false"/>
+                                <line number="69" hits="1" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="70" hits="1" branch="false"/>
+                                <line number="59" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/TestRoutes$/doThing" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="85" hits="1" branch="false"/>
+                                <line number="85" hits="1" branch="false"/>
+                                <line number="85" hits="1" branch="false"/>
+                                <line number="84" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/TestRoutes$/getResultDataframe" signature="()V" line-rate="0.56" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="55" hits="0" branch="false"/>
+                                <line number="51" hits="1" branch="false"/>
+                                <line number="50" hits="1" branch="false"/>
+                                <line number="52" hits="1" branch="false"/>
+                                <line number="54" hits="0" branch="false"/>
+                                <line number="46" hits="1" branch="false"/>
+                                <line number="51" hits="1" branch="false"/>
+                                <line number="54" hits="0" branch="false"/>
+                                <line number="53" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/TestRoutes$/getResultNumbers" signature="()V" line-rate="0.56" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="42" hits="0" branch="false"/>
+                                <line number="38" hits="1" branch="false"/>
+                                <line number="39" hits="1" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="37" hits="1" branch="false"/>
+                                <line number="33" hits="1" branch="false"/>
+                                <line number="38" hits="1" branch="false"/>
+                                <line number="41" hits="0" branch="false"/>
+                                <line number="40" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/TestRoutes$/$anonfun" signature="()V" line-rate="0.45" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/TestRoutes$/&lt;init&gt;" signature="()V" line-rate="0.75" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="83" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="32" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="58" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="87" hits="1" branch="false"/>
+                                <line number="45" hits="1" branch="false"/>
+                                <line number="87" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="72" hits="0" branch="false"/>
+                        <line number="85" hits="1" branch="false"/>
+                        <line number="42" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="83" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="55" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="38" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="63" hits="1" branch="false"/>
+                        <line number="72" hits="0" branch="false"/>
+                        <line number="51" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="32" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="50" hits="1" branch="false"/>
+                        <line number="72" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="61" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="39" hits="1" branch="false"/>
+                        <line number="52" hits="1" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="78" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="71" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="85" hits="1" branch="false"/>
+                        <line number="54" hits="0" branch="false"/>
+                        <line number="37" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="58" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="85" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="46" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="73" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="33" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="84" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="51" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="78" hits="1" branch="false"/>
+                        <line number="38" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="69" hits="1" branch="false"/>
+                        <line number="54" hits="0" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="41" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="70" hits="1" branch="false"/>
+                        <line number="45" hits="1" branch="false"/>
+                        <line number="59" hits="1" branch="false"/>
+                        <line number="40" hits="0" branch="false"/>
+                        <line number="53" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="0" branch="false"/>
+                        <line number="87" hits="1" branch="false"/>
+                    </lines>
+                </class>
+                <class name="web.JsonPost$" filename="web/WebServer.scala" line-rate="0.72" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="web/JsonPost$/evaluate1" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="145" hits="1" branch="false"/>
+                                <line number="148" hits="1" branch="false"/>
+                                <line number="108" hits="1" branch="false"/>
+                                <line number="143" hits="1" branch="false"/>
+                                <line number="148" hits="1" branch="false"/>
+                                <line number="146" hits="1" branch="false"/>
+                                <line number="148" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/JsonPost$/tryeval2" signature="()V" line-rate="0.82" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="187" hits="1" branch="false"/>
+                                <line number="168" hits="1" branch="false"/>
+                                <line number="180" hits="0" branch="false"/>
+                                <line number="183" hits="1" branch="false"/>
+                                <line number="160" hits="1" branch="false"/>
+                                <line number="176" hits="1" branch="false"/>
+                                <line number="175" hits="1" branch="false"/>
+                                <line number="185" hits="1" branch="false"/>
+                                <line number="164" hits="0" branch="false"/>
+                                <line number="155" hits="1" branch="false"/>
+                                <line number="187" hits="1" branch="false"/>
+                                <line number="179" hits="1" branch="false"/>
+                                <line number="168" hits="1" branch="false"/>
+                                <line number="158" hits="1" branch="false"/>
+                                <line number="183" hits="1" branch="false"/>
+                                <line number="171" hits="1" branch="false"/>
+                                <line number="174" hits="1" branch="false"/>
+                                <line number="185" hits="1" branch="false"/>
+                                <line number="162" hits="0" branch="false"/>
+                                <line number="184" hits="1" branch="false"/>
+                                <line number="166" hits="1" branch="false"/>
+                                <line number="172" hits="1" branch="false"/>
+                                <line number="185" hits="1" branch="false"/>
+                                <line number="179" hits="0" branch="false"/>
+                                <line number="154" hits="1" branch="false"/>
+                                <line number="158" hits="1" branch="false"/>
+                                <line number="168" hits="1" branch="false"/>
+                                <line number="181" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/JsonPost$/$anonfun" signature="()V" line-rate="0.53" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="122" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="166" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/JsonPost$/&lt;init&gt;" signature="()V" line-rate="0.55" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="107" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="151" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="1" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                                <line number="197" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/JsonPost$/evaluate2" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="192" hits="1" branch="false"/>
+                                <line number="195" hits="1" branch="false"/>
+                                <line number="195" hits="1" branch="false"/>
+                                <line number="152" hits="1" branch="false"/>
+                                <line number="190" hits="1" branch="false"/>
+                                <line number="193" hits="1" branch="false"/>
+                                <line number="195" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/JsonPost$/tryeval1" signature="()V" line-rate="0.85" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="124" hits="1" branch="false"/>
+                                <line number="136" hits="1" branch="false"/>
+                                <line number="114" hits="1" branch="false"/>
+                                <line number="138" hits="1" branch="false"/>
+                                <line number="122" hits="1" branch="false"/>
+                                <line number="129" hits="1" branch="false"/>
+                                <line number="133" hits="1" branch="false"/>
+                                <line number="140" hits="1" branch="false"/>
+                                <line number="120" hits="0" branch="false"/>
+                                <line number="132" hits="0" branch="false"/>
+                                <line number="140" hits="1" branch="false"/>
+                                <line number="124" hits="1" branch="false"/>
+                                <line number="136" hits="1" branch="false"/>
+                                <line number="111" hits="1" branch="false"/>
+                                <line number="127" hits="1" branch="false"/>
+                                <line number="138" hits="1" branch="false"/>
+                                <line number="116" hits="1" branch="false"/>
+                                <line number="130" hits="1" branch="false"/>
+                                <line number="138" hits="1" branch="false"/>
+                                <line number="118" hits="0" branch="false"/>
+                                <line number="134" hits="0" branch="false"/>
+                                <line number="110" hits="1" branch="false"/>
+                                <line number="124" hits="1" branch="false"/>
+                                <line number="126" hits="1" branch="false"/>
+                                <line number="137" hits="1" branch="false"/>
+                                <line number="114" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="107" hits="1" branch="false"/>
+                        <line number="187" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="168" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="180" hits="0" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="192" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="183" hits="1" branch="false"/>
+                        <line number="145" hits="1" branch="false"/>
+                        <line number="160" hits="1" branch="false"/>
+                        <line number="124" hits="1" branch="false"/>
+                        <line number="136" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="176" hits="1" branch="false"/>
+                        <line number="114" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="138" hits="1" branch="false"/>
+                        <line number="148" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="195" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="175" hits="1" branch="false"/>
+                        <line number="185" hits="1" branch="false"/>
+                        <line number="122" hits="1" branch="false"/>
+                        <line number="164" hits="0" branch="false"/>
+                        <line number="129" hits="1" branch="false"/>
+                        <line number="122" hits="1" branch="false"/>
+                        <line number="133" hits="1" branch="false"/>
+                        <line number="140" hits="1" branch="false"/>
+                        <line number="155" hits="1" branch="false"/>
+                        <line number="195" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="152" hits="1" branch="false"/>
+                        <line number="120" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="187" hits="1" branch="false"/>
+                        <line number="132" hits="0" branch="false"/>
+                        <line number="140" hits="1" branch="false"/>
+                        <line number="151" hits="1" branch="false"/>
+                        <line number="179" hits="1" branch="false"/>
+                        <line number="108" hits="1" branch="false"/>
+                        <line number="168" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="158" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="124" hits="1" branch="false"/>
+                        <line number="136" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="143" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="183" hits="1" branch="false"/>
+                        <line number="190" hits="1" branch="false"/>
+                        <line number="171" hits="1" branch="false"/>
+                        <line number="111" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="174" hits="1" branch="false"/>
+                        <line number="185" hits="1" branch="false"/>
+                        <line number="127" hits="1" branch="false"/>
+                        <line number="138" hits="1" branch="false"/>
+                        <line number="116" hits="1" branch="false"/>
+                        <line number="148" hits="1" branch="false"/>
+                        <line number="162" hits="0" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="146" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="193" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="184" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="166" hits="1" branch="false"/>
+                        <line number="172" hits="1" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="185" hits="1" branch="false"/>
+                        <line number="195" hits="1" branch="false"/>
+                        <line number="166" hits="1" branch="false"/>
+                        <line number="130" hits="1" branch="false"/>
+                        <line number="138" hits="1" branch="false"/>
+                        <line number="148" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="118" hits="0" branch="false"/>
+                        <line number="197" hits="1" branch="false"/>
+                        <line number="179" hits="0" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="154" hits="1" branch="false"/>
+                        <line number="197" hits="0" branch="false"/>
+                        <line number="158" hits="1" branch="false"/>
+                        <line number="168" hits="1" branch="false"/>
+                        <line number="134" hits="0" branch="false"/>
+                        <line number="181" hits="0" branch="false"/>
+                        <line number="110" hits="1" branch="false"/>
+                        <line number="124" hits="1" branch="false"/>
+                        <line number="126" hits="1" branch="false"/>
+                        <line number="137" hits="1" branch="false"/>
+                        <line number="114" hits="1" branch="false"/>
+                    </lines>
+                </class>
+                <class name="web.ResultsHolder$" filename="web/WebServer.scala" line-rate="0.00" branch-rate="0.00" complexity="0">
+                    <methods>
+                        <method name="web/ResultsHolder$/&lt;init&gt;" signature="()V" line-rate="0.00" branch-rate="0.00" complexity="0">
+                            <lines>
+                                <line number="21" hits="0" branch="false"/>
+                                <line number="24" hits="0" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="21" hits="0" branch="false"/>
+                        <line number="24" hits="0" branch="false"/>
+                    </lines>
+                </class>
+                <class name="web.StaticFiles$" filename="web/WebServer.scala" line-rate="0.54" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method name="web/StaticFiles$/$anonfun" signature="()V" line-rate="0.40" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/StaticFiles$/&lt;init&gt;" signature="()V" line-rate="0.75" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="99" hits="0" branch="false"/>
+                                <line number="99" hits="1" branch="false"/>
+                                <line number="95" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                        <method name="web/StaticFiles$/staticFiles" signature="()V" line-rate="1.00" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="96" hits="1" branch="false"/>
+                            </lines>
+                        </method>
+                    </methods>
+                    <lines>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="96" hits="1" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="95" hits="1" branch="false"/>
+                        <line number="99" hits="0" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                        <line number="99" hits="1" branch="false"/>
+                    </lines>
+                </class>
+            </classes>
+        </package>
+    </packages>
+</coverage>

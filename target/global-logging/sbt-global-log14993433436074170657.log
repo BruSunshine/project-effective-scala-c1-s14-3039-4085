@@ -1,0 +1,18 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(test, Some(adf8a035-b0fc-4e39-b28b-e701bd978150), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Test / test[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/target/scala-3.3.1/classes ...[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m-- Warning: /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/Ast.scala:42:2 [0m[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m42 |[0m  reader,[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m   |[0m  ^^^^^^[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m   |[0m  unused import[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m-- Warning: /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/src/main/scala/startup/Ast.scala:43:2 [0m[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m43 |[0m  writer[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m   |[0m  ^^^^^^[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m   |[0m  unused import[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/target/scala-3.3.1/test-classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mPassed: Total 10, Failed 0, Errors 0, Passed 10[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 10 s, completed Nov 30, 2023, 10:42:18 AM[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
+[0m[[0m[0minfo[0m] [0m[0mshutting down sbt server[0m
