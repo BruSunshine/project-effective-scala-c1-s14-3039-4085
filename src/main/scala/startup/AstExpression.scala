@@ -11,12 +11,13 @@ sealed trait Expression[T]
   */
 case class Num[T](n: T) extends Expression[T]
 
-/** A case class representing a kind of multiplication operation in an arithmetic
-  * expression.
+/** A case class representing a kind of multiplication operation in an
+  * arithmetic expression.
   */
 case class Mult[T](a: Expression[T], b: Expression[T]) extends Expression[T]
 
-/** A case class representing a kind of addition operation in an arithmetic expression.
+/** A case class representing a kind of addition operation in an arithmetic
+  * expression.
   */
 case class Plus[T](a: Expression[T], b: Expression[T]) extends Expression[T]
 
@@ -24,7 +25,7 @@ case class Plus[T](a: Expression[T], b: Expression[T]) extends Expression[T]
   * expression.
   */
 object Expression:
-  
+
   /** Evaluates an arithmetic expression.
     *
     * @param expression
@@ -82,7 +83,7 @@ object Expression:
       macroRW[Plus[T]],
       macroRW[Mult[T]]
     )
-  
+
   /** Validates an arithmetic expression.
     *
     * @param expression
@@ -144,6 +145,7 @@ end Expression
   */
 trait ArgumentValidator[T]:
   def validate(t: T): Boolean
+
 /** Companion object for `ArgumentValidator` that provides given instances for
   * `Int`, `Double`, and `Dataset[Row]` types.
   */

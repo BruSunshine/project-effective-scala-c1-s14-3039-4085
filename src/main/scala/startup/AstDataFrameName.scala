@@ -31,11 +31,12 @@ object DataFrameName:
     *   file.
     */
   extension (df: Dataset[Row])
-    
+
     /** Converts a DataFrame to a DataFrameName by writing it as a Parquet file.
       *
-      * The method generates a DataFrameName based on the content hash of the DataFrame,
-      * writes the DataFrame to a Parquet file, and returns the DataFrameName.
+      * The method generates a DataFrameName based on the content hash of the
+      * DataFrame, writes the DataFrame to a Parquet file, and returns the
+      * DataFrameName.
       *
       * @return
       *   The DataFrameName that represents the DataFrame.
@@ -45,11 +46,11 @@ object DataFrameName:
       val name = DataFrameName(dfId)
       name.writeAsParquet(df)
       name
-    
+
     /** Calculates the content hash of a DataFrame.
       *
-      * The method sorts the DataFrame by the first column, converts it to a string,
-      * and calculates the SHA-256 hash of the string.
+      * The method sorts the DataFrame by the first column, converts it to a
+      * string, and calculates the SHA-256 hash of the string.
       *
       * @return
       *   The content hash of the DataFrame.
@@ -66,11 +67,12 @@ object DataFrameName:
       hash
 
   extension (name: DataFrameName)
-    
+
     /** Writes a DataFrame as a Parquet file.
       *
-      * The method writes the DataFrame to a Parquet file at a path based on the DataFrameName.
-      * If a file already exists at the path, the method does nothing.
+      * The method writes the DataFrame to a Parquet file at a path based on the
+      * DataFrameName. If a file already exists at the path, the method does
+      * nothing.
       *
       * @param df
       *   The DataFrame to write.
@@ -82,7 +84,8 @@ object DataFrameName:
 
     /** Reads a DataFrame from a Parquet file.
       *
-      * The method reads a DataFrame from a Parquet file at a path based on the DataFrameName.
+      * The method reads a DataFrame from a Parquet file at a path based on the
+      * DataFrameName.
       *
       * @return
       *   The DataFrame read from the Parquet file.

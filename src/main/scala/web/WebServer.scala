@@ -28,33 +28,33 @@ object ResultsHolder:
 
 // Object defining test routes for the web server.
 object TestRoutes extends cask.Routes:
-  
+
   // Route to get the result of the AST evaluation on numbers.
   @cask.get("/resultsstring1")
   def getResultNumbers() =
-    //s"""|This is the result the ast evaluation 
+    // s"""|This is the result the ast evaluation
     //    |on numbers ${ResultsHolder.shareintExpressionEvaluated.right.get}""".stripMargin
     ResultsHolder.shareintExpressionEvaluated match
-      case Right(result)  =>
+      case Right(result) =>
         s"""|This is a valid result of the ast evaluation 
             |on numbers ${result}""".stripMargin
-      case Left(result)   =>
+      case Left(result) =>
         s"""|This is an error result of the ast evaluation 
             |on numbers ${result}""".stripMargin
 
   // Route to get the result of the AST evaluation on dataframes.
   @cask.get("/resultsstring2")
   def getResultDataframe() =
-    //s"""|This is the result the ast evaluation 
+    // s"""|This is the result the ast evaluation
     //    |on dataframes ${ResultsHolder.sharedfExpressionEvaluated.right.get}""".stripMargin
     ResultsHolder.sharedfExpressionEvaluated match
-      case Right(result)  =>
+      case Right(result) =>
         s"""|This is a valid result of the ast evaluation 
             |on dataframes ${result}""".stripMargin
-      case Left(result)   =>
+      case Left(result) =>
         s"""|This is an error result of the ast evaluation 
             |on dataframes ${result}""".stripMargin
-  
+
   // Route to show the dataframe.
   @cask.get("/showdfstring")
   def showDf(): cask.Response[String] =
@@ -91,11 +91,11 @@ end TestRoutes
 
 // Object defining the routes for serving static files.
 object StaticFiles extends cask.Routes:
-  
+
   // Route to serve static files from the "/static" path.
   @cask.staticFiles("/static")
   def staticFiles(): String =
-    "src/main/resources/static"  // The directory containing the static files.
+    "src/main/resources/static" // The directory containing the static files.
 
   initialize()
 
@@ -115,7 +115,7 @@ object JsonPost extends cask.Routes:
           read[Either[List[String], Expression[Int]]](argast)
         eitherExpression match
           case Right(expression) =>
-             // Evaluate the expression.
+            // Evaluate the expression.
             val intResultAsExpression = Expression
               .evaluateValidExpression(
                 Expression.validateExpression(expression)
@@ -124,17 +124,15 @@ object JsonPost extends cask.Routes:
             // Convert the result to JSON.
             val intResultJson: String = write(intResultAsExpression)
             intResultAsExpression match
-              case Right(_) => 
+              case Right(_) =>
                 val result = Expression
                   .evaluateValidExpression(intResultAsExpression)
                   .right
                   .get
                 // Store the result in the ResultsHolder.
-                ResultsHolder.shareintExpressionEvaluated =
-                  Right(Some(result))
-              case Left(_) => 
-                ResultsHolder.shareintExpressionEvaluated =
-                  Right(None)
+                ResultsHolder.shareintExpressionEvaluated = Right(Some(result))
+              case Left(_) =>
+                ResultsHolder.shareintExpressionEvaluated = Right(None)
             // Return the result as a JSON object.
             ujson.Obj("result" -> intResultJson)
           case Left(error) =>
@@ -145,7 +143,7 @@ object JsonPost extends cask.Routes:
     end tryeval1
     val result: Try[ujson.Obj] = tryeval1(argast)
     result match
-      case Success(value) => value
+      case Success(value)     => value
       case Failure(exception) =>
         // Return the exception message as a JSON object.
         ujson.Obj("error" -> exception.getMessage)
@@ -169,9 +167,9 @@ object JsonPost extends cask.Routes:
               .flatMap(x => Expression.validateExpression(Num(x)))
             // Convert the result to JSON.
             val dfResultJson: String = write(dfResultAsExpression)
-            
+
             dfResultAsExpression match
-              case Right(_) => 
+              case Right(_) =>
                 val result = Expression
                   .evaluateValidExpression(dfResultAsExpression)
                   .right
@@ -180,9 +178,8 @@ object JsonPost extends cask.Routes:
                 // Store the result in the ResultsHolder.
                 ResultsHolder.sharedfExpressionEvaluated =
                   Right(Some(dfResultJson + result))
-              case Left(_) => 
-                ResultsHolder.sharedfExpressionEvaluated =
-                  Right(None)
+              case Left(_) =>
+                ResultsHolder.sharedfExpressionEvaluated = Right(None)
             // Return the result as a JSON object.
             ujson.Obj("result" -> dfResultJson)
           case Left(error) =>
@@ -193,7 +190,7 @@ object JsonPost extends cask.Routes:
     end tryeval2
     val result: Try[ujson.Obj] = tryeval2(argast)
     result match
-      case Success(value) => value
+      case Success(value)     => value
       case Failure(exception) =>
         // Return the exception message as a JSON object.
         ujson.Obj("error" -> exception.getMessage)

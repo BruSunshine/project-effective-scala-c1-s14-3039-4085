@@ -11,18 +11,20 @@ libraryDependencies ++= Seq(
   "com.lihaoyi" %% "upickle" % "3.1.3",
   "com.lihaoyi" %% "os-lib" % "0.9.2",
   "org.apache.logging.log4j" % "log4j-core" % "2.20.0",
-  ("org.apache.spark" %% "spark-core" % "3.5.0").cross(CrossVersion.for3Use2_13),
+  ("org.apache.spark" %% "spark-core" % "3.5.0")
+    .cross(CrossVersion.for3Use2_13),
   ("org.apache.spark" %% "spark-sql" % "3.5.0").cross(CrossVersion.for3Use2_13)
 )
 
 scalacOptions ++= Seq(
-  //"-sourceroot", "startup", // source root path
+  // "-sourceroot", "startup", // source root path
   "-Wunused:imports", // show warnings during compilation
   "-Ylog:typer"
-  )
- 
-//scalacOptions in Test ++= Seq(
-//  "-coverage-out", "coverage", // destination for measurement files
-//)
+)
+
+Test / scalacOptions ++= Seq(
+  "-coverage-out",
+  "coverage" // destination for measurement files
+)
 
 Compile / unmanagedSourceDirectories += baseDirectory.value / "worksheets"
