@@ -1,6 +1,0 @@
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(d2caebae-215a-46ca-9b06-9facdceee56b), Some(CommandSource(console0)))[0m
-[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 7 Scala sources to /home/bsoleille/gitea/project-effective-scala-c1-s14-3039-4085/target/scala-3.3.1/classes ...[0m
-[0m[[0m[32msuccess[0m] [0m[0mTotal time: 9 s, completed Dec 7, 2023, 6:06:03 PM[0m
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

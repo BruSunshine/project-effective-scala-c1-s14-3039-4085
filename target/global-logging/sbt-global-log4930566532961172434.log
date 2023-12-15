@@ -1,6 +1,0 @@
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(console, Some(2ccadc30-6699-4e6d-bd66-65912009e4a7), Some(CommandSource(console0)))[0m
-[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / console[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0minfo[0m] [0m[0mshutting down sbt server[0m
-[0m[[0m[0mdebug[0m] [0m[0mjsonRpcNotify: JsonRpcNotificationMessage(2.0, shutdown, [false,null])[0m
-[0m[[0m[0mdebug[0m] [0m[0mjsonRpcNotify: JsonRpcNotificationMessage(2.0, shutdown, [true,null])[0m
